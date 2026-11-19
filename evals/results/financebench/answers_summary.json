@@ -5,22 +5,29 @@
   "provider": "ollama",
   "model": "qwen2.5:3b",
   "judge_model": "llama3.2:3b",
-  "accuracy_llm_judge": 0.94,
-  "incorrect_rate": 0.06,
-  "refusal_rate": 0.0,
+  "accuracy": 0.193,
+  "accuracy_when_answered": 0.592,
+  "accuracy_llm_judge_alone": 0.94,
+  "judge_called_refusals_correct": 0.931,
+  "incorrect_rate": 0.133,
+  "refusal_rate": 0.673,
   "unparsed_grades": 0,
-  "numeric_match": 0.214,
-  "numeric_questions": 126,
+  "numeric_match_when_answered": 0.486,
+  "numeric_answers_checked": 37,
+  "refusal_rate_when_retrieval_hit_vs_miss": {
+    "miss": 0.846,
+    "hit": 0.283
+  },
   "answers_with_citations": 0.353,
   "citation_page_precision": 0.355,
   "accuracy_by_question_type": {
-    "domain-relevant": 0.98,
-    "metrics-generated": 0.92,
-    "novel-generated": 0.92
+    "domain-relevant": 0.14,
+    "metrics-generated": 0.2,
+    "novel-generated": 0.24
   },
   "accuracy_when_retrieval_hit_vs_miss": {
-    "miss": 0.962,
-    "hit": 0.891
+    "miss": 0.077,
+    "hit": 0.457
   },
   "cost_usd_total": 0,
   "latency_s_p50": 41.99,

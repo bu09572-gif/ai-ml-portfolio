@@ -113,7 +113,7 @@ def eval_answers(items, r: Retriever, config: str, k: int, out_path: Path) -> No
             hits = _search(r, it, k, RETRIEVAL_CONFIGS[config])
             gold = {M.page_key(e["doc_id"], e["page_num"]) for e in it.gold_evidence}
             a = answer(it.question, hits)
-            g = M.judge(it.question, it.gold_answer, a.text, provider=judge_provider)
+            g = M.judge(it.question, it.gold_answer, a.text, provider=judge_provider)   # final grade is set in summarize()
             cited = [M.page_key(c.doc_id, c.page_num) for c in a.citations]
             row = {"id": it.id, "question": it.question, "gold_answer": it.gold_answer, "answer": a.text,
                    "question_type": it.tags.get("question_type"), "grade": g["grade"], "judge_reason": g["reason"],
@@ -129,18 +129,34 @@ def eval_answers(items, r: Retriever, config: str, k: int, out_path: Path) -> No
 
 
 def summarize(df: pd.DataFrame) -> dict:
+    from docqa.answer import Answer
+    df = df.copy()
+    df["refused"] = df.answer.map(lambda t: Answer(str(t)).refused)
+    df["numeric_match"] = [M.numeric_match(str(a), str(g)) if not r else None
+                           for a, g, r in zip(df.answer, df.gold_answer, df.refused)]
+    df["judge_grade"] = df.grade
+    df["grade"] = [M.final_grade(j, r, n if pd.notna(n) else None)
+                   for j, r, n in zip(df.judge_grade, df.refused, df.numeric_match)]
     correct = df.grade == "correct"
+    judge_said_correct_on_refusals = (df[df.refused].judge_grade == "correct").mean() if df.refused.any() else None
     by_hit = df.assign(c=correct).groupby("retrieval_hit").c.mean().round(3).to_dict()
     has_cite = df.citations.map(len) > 0
     return {
         "n": len(df), "config": df.config.iloc[0], "k": int(df.k.iloc[0]),
         "provider": df.provider.iloc[0], "model": df.model.iloc[0], "judge_model": df.judge_model.iloc[0],
-        "accuracy_llm_judge": round(correct.mean(), 3),
+        "accuracy": round(correct.mean(), 3),
+        "accuracy_when_answered": round(correct[~df.refused].mean(), 3) if (~df.refused).any() else None,
+        "accuracy_llm_judge_alone": round((df.judge_grade == "correct").mean(), 3),
+        "judge_called_refusals_correct": round(judge_said_correct_on_refusals, 3)
+        if judge_said_correct_on_refusals is not None else None,
         "incorrect_rate": round((df.grade == "incorrect").mean(), 3),
         "refusal_rate": round((df.grade == "refused").mean(), 3),
         "unparsed_grades": int((df.grade == "unparsed").sum()),
-        "numeric_match": round(df.numeric_match.dropna().mean(), 3) if df.numeric_match.notna().any() else None,
-        "numeric_questions": int(df.numeric_match.notna().sum()),
+        "numeric_match_when_answered": round(df.numeric_match.dropna().mean(), 3)
+        if df.numeric_match.notna().any() else None,
+        "numeric_answers_checked": int(df.numeric_match.notna().sum()),
+        "refusal_rate_when_retrieval_hit_vs_miss": {("hit" if h else "miss"): round(v, 3)
+                                                     for h, v in df.groupby("retrieval_hit").refused.mean().items()},
         "answers_with_citations": round(has_cite.mean(), 3),
         "citation_page_precision": round(df.citation_page_precision.dropna().mean(), 3)
         if df.citation_page_precision.notna().any() else None,

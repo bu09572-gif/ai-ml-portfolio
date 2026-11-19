@@ -31,7 +31,14 @@ def mrr(retrieved: list[str], gold: set[str]) -> float:
     return 0.0
 
 
+CITE_TAG = re.compile(r"\[S\d+\]")
+YEAR_LIKE = re.compile(r"\b(?:FY|Q[1-4]\s?(?:of\s)?(?:FY)?)?\s?(?:19|20)\d\d\b")
+
+
 def numbers(text: str) -> list[float]:
+    """Numbers in a text, ignoring citation tags like [S2] and fiscal-year labels like FY2023."""
+    text = YEAR_LIKE.sub(" ", CITE_TAG.sub(" ", text))
+    text = re.sub(r"\bQ[1-4]\b", " ", text)
     out = []
     for m in NUM.findall(text):
         neg = m.strip().startswith("(") and m.strip().endswith(")") or "-" in m
@@ -55,6 +62,18 @@ def numeric_match(answer: str, gold: str, rel_tol: float = 0.01) -> float | None
             if abs(a * scale - target) <= rel_tol * max(abs(target), 1e-9):
                 return 1.0
     return 0.0
+
+
+def final_grade(judge_grade: str, refused: bool, numeric: float | None) -> str:
+    """Combine the LLM judge with deterministic checks; the deterministic ones win.
+    Found in practice: a small judge model graded 93% of "not enough information"
+    answers as correct, so refusals are detected by rule, and a numeric answer that
+    misses the gold number cannot be "correct"."""
+    if refused:
+        return "refused"
+    if numeric == 0.0:
+        return "incorrect"
+    return judge_grade
 
 
 def citation_page_precision(cited_pages: list[str], gold: set[str]) -> float | None:

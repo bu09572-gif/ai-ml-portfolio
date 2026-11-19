@@ -99,8 +99,12 @@ def test_summary_from_rows():
         {"grade": "refused", "numeric_match": None, "retrieval_hit": 0.0, "citations": [], "citation_page_precision": None,
          "question_type": "x", "cost_usd": 0.0, "latency_s": 4.0},
     ]).assign(config="c", k=5, provider="ollama", model="m", judge_model="j")
+    rows = rows.assign(answer=["The value is $1,577 million [S1].", "Not enough information in the provided filings."],
+                       gold_answer=["$1577.00", "Yes"])
+    rows.loc[1, "grade"] = "correct"          # a lenient judge calling a refusal correct...
     s = summarize(rows)
-    assert s["accuracy_llm_judge"] == 0.5 and s["refusal_rate"] == 0.5 and s["answers_with_citations"] == 0.5
+    assert s["refusal_rate"] == 0.5 and s["accuracy"] == 0.5   # ...is overridden by the rule
+    assert s["judge_called_refusals_correct"] == 1.0 and s["answers_with_citations"] == 0.5
     assert s["accuracy_when_retrieval_hit_vs_miss"] == {"hit": 1.0, "miss": 0.0}
 
 
@@ -115,6 +119,7 @@ def test_refusal_detection():
     ("Margin of 24.5%", "24.5%", 1.0),
     ("Capex was $1.577 billion", "$1577.00", 1.0),
     ("No", "Yes, it is capital intensive", None),
+    ("Not in sources [S1] for Q2 of FY2023", "0.96", 0.0),   # citation tags and years are not answers
 ])
 def test_numeric_match(ans, gold, exp):
     assert M.numeric_match(ans, gold) == exp

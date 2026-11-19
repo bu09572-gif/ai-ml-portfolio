@@ -32,11 +32,26 @@ Metadata filtering doubled hit@5, and vocabulary expansion added another 7 point
 
 Caveat: the vocabulary list was written from general accounting terms, but it is evaluated on the same 150 questions, so treat the last row as slightly optimistic until it is checked on the held-out 10k-question set.
 
-**Answer accuracy (free model, all 150 questions):** this runs in GitHub Actions (`free-llm-eval` workflow) with Qwen2.5-3B answering and Llama-3.2-3B grading, both open-source on CPU at $0. The results are committed automatically to `evals/results/financebench/answers_summary.json` and copied into this table when the run finishes.
+**Answer accuracy (free model, all 150 questions, $0):** measured in GitHub Actions with the `free-llm-eval` workflow. Qwen2.5-3B wrote the answers from the top 5 retrieved pages, and Llama-3.2-3B graded them. Both models are open-source and ran on CPU through Ollama. Full per-question results: `evals/results/financebench/answers_ollama_qwen2.5-3b.jsonl`.
 
-| Model (answers) | Judge | Accuracy (LLM judge) | Numeric match | Refusal rate | Answers with citations | Citation page precision | p50 latency | Cost |
-|---|---|---|---|---|---|---|---|---|
-| qwen2.5:3b | llama3.2:3b | *running* | | | | | | $0 |
+| Metric | Value |
+|---|---|
+| **Accuracy (final grade)** | **19.3%** (29 of 150) |
+| Refused ("not enough information") | 67.3% |
+| Accuracy when it did answer | 59.2% |
+| Numeric answers matching the gold number (±1%) | 48.6% of 37 checked |
+| Accuracy when the evidence page was retrieved vs. not | 45.7% vs. 7.7% |
+| Refusal rate when the evidence page was retrieved vs. not | 28.3% vs. 84.6% |
+| Answers that cite a source / cited pages that are gold pages | 35.3% / 35.5% |
+| Latency p50 / p95 (CPU, GitHub runner) | 42 s / 97 s |
+| Cost | $0 |
+
+What the evaluation platform caught:
+1. **The LLM judge was unreliable.** Alone, it scored the system at 94%. It graded 93% of "not enough information" refusals as correct. The platform now detects refusals by rule and cross-checks numeric answers against the gold number, and those rules override the judge (`evalkit.metrics.final_grade`). Without this check the headline number would have been 94% instead of 19%.
+2. **Retrieval is the bottleneck, not the model.** When the right page was retrieved, accuracy was 6 times higher and refusals dropped from 85% to 28%. The next improvement is better retrieval (dense/hybrid search, a reranker, choosing the right filing), not a bigger model.
+3. **For context only:** the FinanceBench paper reports that GPT-4-Turbo with a shared vector store got 81% of questions wrong or refused, which means about 19% correct. Our free 3B setup lands in the same range. The setups differ, so this is not a head-to-head comparison.
+
+Caveat: 12 of the 49 answered questions have no number to check, and for those the final grade still relies on the small judge, so "accuracy when it did answer" may be a little optimistic.
 
 Dense and hybrid retrieval rows are added by the `ci` workflow (`--dense`).
 
@@ -122,7 +137,9 @@ The foundations map onto these employers. Sector projects add their own lists.
 2. **Data:** "I used FinanceBench, real filings with 150 expert questions and the evidence page for each. Before trusting any score, I checked that all 189 evidence snippets land on the page number my extractor assigns."
 3. **Ablation:** "Plain BM25 found the evidence page in the top 5 only 11% of the time. Detecting the company and fiscal year and filtering on them doubled that. A small finance glossary got it to 31%. Each change was measured separately."
 4. **Honesty:** "The glossary was evaluated on the same questions, so I say that number is optimistic. And the gap to the 43% you get when the right filing is known tells me where the next gain is: picking the right filing."
-5. **Production:** "The eval runs in CI and fails the build if retrieval drops more than 2 points, so a 'small refactor' can't quietly make answers worse."
+5. **Don't trust the judge blindly:** "My LLM judge said 94%. When I audited it, I found it was marking 'I don't know' answers as correct. I added rule-based refusal detection and a numeric cross-check that override it, and the real number was 19%. That's the most important thing this platform did."
+6. **Where to improve:** "Accuracy was 46% when retrieval found the right page and 8% when it didn't, so retrieval is the bottleneck, not the model."
+7. **Production:** "The eval runs in CI and fails the build if retrieval drops more than 2 points, so a 'small refactor' can't quietly make answers worse."
 
 ## Repo layout
 ```
