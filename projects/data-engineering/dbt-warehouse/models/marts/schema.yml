@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: fct_flights
+    description: One row per scheduled flight, with origin weather at the scheduled hour.
+    columns:
+      - name: flight_id
+        tests: [unique, not_null]
+      - name: arrival_status
+        tests:
+          - accepted_values: { values: ['cancelled', 'no_arrival_record', 'on_time', 'late'] }
+  - name: mart_carrier_monthly
+    columns:
+      - name: on_time_rate
+        tests:
+          - accepted_range: { min_value: 0, max_value: 1 }

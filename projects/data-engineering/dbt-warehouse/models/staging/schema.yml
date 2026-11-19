@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: stg_flights
+    columns:
+      - name: flight_id
+        tests: [unique, not_null]
+      - name: carrier_code
+        tests:
+          - not_null
+          - relationships: { to: ref('stg_airlines'), field: carrier_code }
+      - name: origin_code
+        tests:
+          - accepted_values: { values: ['JFK', 'LGA', 'EWR'] }
+      - name: dest_code
+        tests:
+          - relationships:
+              to: ref('stg_airports')
+              field: airport_code
+              config: { severity: warn }   # a few destinations (e.g. San Juan) aren't in the FAA airport list
+      - name: tail_number
+        tests:
+          - relationships:
+              to: ref('stg_planes')
+              field: tail_number
+              config: { severity: warn }   # the FAA registry extract doesn't cover every aircraft
+      - name: distance_mi
+        tests:
+          - accepted_range: { min_value: 1, max_value: 6000 }
+      - name: dep_delay_min
+        tests:
+          - accepted_range: { min_value: -120, max_value: 1440, config: { severity: warn } }
+
+  - name: stg_weather
+    columns:
+      - name: wind_speed_mph
+        tests:
+          - accepted_range: { min_value: 0, max_value: 150, config: { severity: warn } }
+      - name: humidity_pct
+        tests:
+          - accepted_range: { min_value: 0, max_value: 100 }
+
+  - name: stg_planes
+    columns:
+      - name: tail_number
+        tests: [unique, not_null]

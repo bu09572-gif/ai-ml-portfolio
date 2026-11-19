@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: raw
+    description: NYC flights 2013 CSVs (BTS on-time data, FAA registry, NOAA weather)
+    meta:
+      external_location: >-
+        read_csv_auto('{{ env_var("RAW_DIR", "../../../data/raw/nycflights13") }}/{name}.csv', header=true, nullstr='NA')
+    tables:
+      - name: flights
+      - name: airlines
+      - name: airports
+      - name: planes
+      - name: weather
