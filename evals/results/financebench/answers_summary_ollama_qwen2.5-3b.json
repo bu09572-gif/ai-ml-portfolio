@@ -1,0 +1,28 @@
+{
+  "n": 150,
+  "config": "+query_expansion",
+  "k": 5,
+  "provider": "ollama",
+  "model": "qwen2.5:3b",
+  "judge_model": "llama3.2:3b",
+  "accuracy_llm_judge": 0.94,
+  "incorrect_rate": 0.06,
+  "refusal_rate": 0.0,
+  "unparsed_grades": 0,
+  "numeric_match": 0.214,
+  "numeric_questions": 126,
+  "answers_with_citations": 0.353,
+  "citation_page_precision": 0.355,
+  "accuracy_by_question_type": {
+    "domain-relevant": 0.98,
+    "metrics-generated": 0.92,
+    "novel-generated": 0.92
+  },
+  "accuracy_when_retrieval_hit_vs_miss": {
+    "miss": 0.962,
+    "hit": 0.891
+  },
+  "cost_usd_total": 0,
+  "latency_s_p50": 41.99,
+  "latency_s_p95": 97.48
+}
