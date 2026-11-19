@@ -1,0 +1,12 @@
+{
+  "name": "ai-ml-portfolio",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "hostRequirements": { "cpus": 4, "memory": "8gb", "storage": "32gb" },
+  "postCreateCommand": "pip install -e '.[dev]'",
+  "containerEnv": { "PYTHONPATH": "src" },
+  "forwardPorts": [8000],
+  "secrets": {
+    "ANTHROPIC_API_KEY": { "description": "Needed only for answer generation and LLM grading (make eval-answers)." }
+  },
+  "customizations": { "vscode": { "extensions": ["ms-python.python", "charliermarsh.ruff"] } }
+}
