@@ -67,17 +67,41 @@ def test_rrf_rewards_agreement():
 
 
 # ---------- answer ----------
-def test_answer_parses_citations_with_fake_client():
+def test_free_path_parses_source_tags(monkeypatch):
+    from docqa import llm
+    hits, _ = Retriever(_chunks()).search("ACME FY2022 net sales", k=2)
+    fake = llm.Completion("Net sales were $1,577 million [S1]. Also see [S9] and [S1].", 900, 40, 1.2,
+                          "qwen2.5:3b", "ollama")
+    monkeypatch.setattr(llm, "chat", lambda *a, **kw: fake)
+    a = answer("ACME FY2022 net sales?", hits, provider="ollama")
+    assert [c.page_num for c in a.citations] == [hits[0].page_num]     # [S9] doesn't exist, duplicate [S1] dropped
+    assert a.cost_usd == 0.0
+
+
+def test_anthropic_path_parses_native_citations():
     hits, _ = Retriever(_chunks()).search("ACME FY2022 net sales", k=2)
     cit = SimpleNamespace(document_index=0, cited_text="Net sales were $1,577 million")
     resp = SimpleNamespace(stop_reason="end_turn", model="claude-opus-5-5",
                            usage=SimpleNamespace(input_tokens=1000, output_tokens=100),
                            content=[SimpleNamespace(type="text", text="$1,577 million.", citations=[cit])])
     client = SimpleNamespace(beta=SimpleNamespace(messages=SimpleNamespace(create=lambda **kw: resp)))
-    a = answer("ACME FY2022 net sales?", hits, client=client)
+    a = answer("ACME FY2022 net sales?", hits, provider="anthropic", client=client)
     assert a.citations[0].page_num == hits[0].page_num
     assert a.cost_usd == pytest.approx((1000 * 4 + 100 * 20) / 1e6)
     assert build_content("q", hits)[0]["citations"] == {"enabled": True}
+
+
+def test_summary_from_rows():
+    from evalkit.run import summarize
+    rows = pd.DataFrame([
+        {"grade": "correct", "numeric_match": 1.0, "retrieval_hit": 1.0, "citations": ["a:1"], "citation_page_precision": 1.0,
+         "question_type": "x", "cost_usd": 0.0, "latency_s": 2.0},
+        {"grade": "refused", "numeric_match": None, "retrieval_hit": 0.0, "citations": [], "citation_page_precision": None,
+         "question_type": "x", "cost_usd": 0.0, "latency_s": 4.0},
+    ]).assign(config="c", k=5, provider="ollama", model="m", judge_model="j")
+    s = summarize(rows)
+    assert s["accuracy_llm_judge"] == 0.5 and s["refusal_rate"] == 0.5 and s["answers_with_citations"] == 0.5
+    assert s["accuracy_when_retrieval_hit_vs_miss"] == {"hit": 1.0, "miss": 0.0}
 
 
 def test_refusal_detection():

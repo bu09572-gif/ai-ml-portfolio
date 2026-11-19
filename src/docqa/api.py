@@ -50,12 +50,13 @@ def search(q: Query):
 
 @app.post("/ask")
 def ask(q: Query):
-    if not os.environ.get("ANTHROPIC_API_KEY"):
-        raise HTTPException(503, "ANTHROPIC_API_KEY is not set; /search works without it")
     from .answer import answer
     hits, filters = retriever().search(q.question, k=q.k, doc_id=q.doc_id)
-    a = answer(q.question, hits)
-    return {"answer": a.text, "refused": a.refused, "filters": filters,
+    try:
+        a = answer(q.question, hits)
+    except Exception as e:  # noqa: BLE001  model server down, missing key, etc.
+        raise HTTPException(503, f"LLM backend unavailable ({type(e).__name__}); /search still works") from e
+    return {"answer": a.text, "refused": a.refused, "filters": filters, "model": a.model,
             "citations": [c.__dict__ for c in a.citations],
             "usage": {"input_tokens": a.input_tokens, "output_tokens": a.output_tokens,
                       "cost_usd": round(a.cost_usd, 5), "latency_s": round(a.latency_s, 2)}}

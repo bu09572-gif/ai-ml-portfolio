@@ -77,19 +77,21 @@ Grade the candidate:
 Reply with JSON only: {{"grade": "correct|incorrect|refused", "reason": "<one sentence>"}}"""
 
 
-def judge(question: str, gold: str, answer: str, client, model: str) -> dict:
-    resp = client.messages.create(
-        model=model, max_tokens=1024,
-        output_config={"effort": "low"},
-        messages=[{"role": "user", "content": JUDGE_PROMPT.format(question=question, gold=gold, answer=answer)}],
-    )
-    text = "".join(b.text for b in resp.content if b.type == "text")
-    m = re.search(r"\{.*\}", text, re.DOTALL)
+def judge(question: str, gold: str, answer: str, provider: str | None = None) -> dict:
+    """LLM grader. Same free backend as answering unless EVAL_JUDGE_PROVIDER / EVAL_JUDGE_MODEL are set.
+    A model grading itself can be lenient, so numeric_match is reported alongside as a
+    deterministic cross-check."""
+    import os
+
+    from docqa import llm
+    c = llm.chat("You are a strict grader. Reply with JSON only.",
+                 JUDGE_PROMPT.format(question=question, gold=gold, answer=answer),
+                 provider=provider, model=os.environ.get("EVAL_JUDGE_MODEL") or None, max_tokens=256)
+    m = re.search(r"\{.*\}", c.text, re.DOTALL)
     try:
         out = json.loads(m.group(0)) if m else {}
     except json.JSONDecodeError:
         out = {}
-    grade = out.get("grade", "unparsed")
+    grade = str(out.get("grade", "unparsed")).lower()
     return {"grade": grade if grade in {"correct", "incorrect", "refused"} else "unparsed",
-            "reason": out.get("reason", text[:200]),
-            "judge_input_tokens": resp.usage.input_tokens, "judge_output_tokens": resp.usage.output_tokens}
+            "reason": out.get("reason", c.text[:200]), "judge_model": c.model}

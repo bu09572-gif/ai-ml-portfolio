@@ -15,7 +15,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 TOLERANCE = 0.02          # allowed absolute drop before we call it a regression
 WATCH = {"retrieval": ("+query_expansion", ["hit@5", "hit@10", "mrr"]),
-         "answers": ["accuracy", "citation_page_precision"]}
+         "answers": ["accuracy_llm_judge", "numeric_match", "citation_page_precision"]}
 
 
 def current(dataset: str) -> dict:

@@ -1,34 +1,34 @@
-"""Answer a question from retrieved chunks with Claude, with page-level citations.
+"""Answer a question from retrieved chunks, with page-level citations.
 
-Each retrieved chunk is passed as its own `document` content block with
-citations enabled, so every sentence of the answer comes back linked to the
-exact chunk (and therefore filing + page) it was drawn from. If the sources
-don't contain the answer, the model is told to say so instead of guessing.
+Two paths, same output:
+  * free default (Ollama / Groq): sources are numbered [S1]..[Sk] in the prompt and the
+    model is asked to cite them inline; we parse the [S#] markers back to filing pages.
+  * optional Anthropic backend: each chunk is a `document` block with citations enabled,
+    so the API itself links every cited sentence to its chunk.
 
-Needs ANTHROPIC_API_KEY (set it as a Codespaces secret; never commit it).
-Model and effort are configurable: DOCQA_MODEL, DOCQA_EFFORT.
+Pick the backend with LLM_PROVIDER (see llm.py). If the sources don't contain the answer,
+the model must say so instead of guessing.
 """
 from __future__ import annotations
 
 import os
+import re
 import time
 from dataclasses import dataclass, field
 
+from . import llm
 from .retrieve import Hit
 
-MODEL = os.environ.get("DOCQA_MODEL", "claude-opus-5-5")
-EFFORT = os.environ.get("DOCQA_EFFORT", "medium")
-# USD per million tokens (input, output); used for the cost dashboard. Update if pricing changes.
-PRICES = {"claude-opus-5-5": (4.0, 20.0), "claude-sonnet-5-5": (2.0, 10.0), "claude-haiku-5-5": (0.10, 0.50)}
-
 SYSTEM = (
-    "You answer questions about public-company SEC filings using ONLY the provided documents. "
+    "You answer questions about public-company SEC filings using ONLY the provided sources. "
     "Show the numbers you use and the arithmetic for any calculation. "
     "Give the final answer in the first sentence. "
-    "If the documents do not contain enough information, reply exactly: "
+    "If the sources do not contain enough information, reply exactly: "
     "\"Not enough information in the provided filings.\""
 )
+CITE_RULE = "Cite the sources you used inline with their tags, for example [S2]. Only cite sources you actually used."
 REFUSAL_TEXT = "Not enough information in the provided filings."
+TAG = re.compile(r"\[S(\d+)\]")
 
 
 @dataclass
@@ -36,14 +36,15 @@ class Citation:
     chunk_id: str
     doc_id: str
     page_num: int
-    cited_text: str
+    cited_text: str = ""
 
 
 @dataclass
 class Answer:
     text: str
     citations: list[Citation] = field(default_factory=list)
-    model: str = MODEL
+    model: str = ""
+    provider: str = ""
     input_tokens: int = 0
     output_tokens: int = 0
     latency_s: float = 0.0
@@ -51,7 +52,7 @@ class Answer:
 
     @property
     def cost_usd(self) -> float:
-        pin, pout = PRICES.get(self.model, (0.0, 0.0))
+        pin, pout = llm.PRICES.get(self.model, (0.0, 0.0))
         return (self.input_tokens * pin + self.output_tokens * pout) / 1e6
 
     @property
@@ -59,6 +60,32 @@ class Answer:
         return REFUSAL_TEXT.lower().rstrip(".") in self.text.lower()
 
 
+def numbered_sources(hits: list[Hit]) -> str:
+    return "\n\n".join(f"[S{i}] ({h.header})\n{h.text}" for i, h in enumerate(hits, 1))
+
+
+def parse_citations(text: str, hits: list[Hit]) -> list[Citation]:
+    seen, out = set(), []
+    for m in TAG.finditer(text):
+        i = int(m.group(1)) - 1
+        if 0 <= i < len(hits) and i not in seen:     # ignore tags that point at no source
+            seen.add(i)
+            h = hits[i]
+            out.append(Citation(h.chunk_id, h.doc_id, h.page_num))
+    return out
+
+
+def answer(question: str, hits: list[Hit], provider: str | None = None, client=None) -> Answer:
+    provider = provider or llm.PROVIDER
+    if provider == "anthropic":
+        return _answer_anthropic(question, hits, client)
+    user = f"Sources:\n\n{numbered_sources(hits)}\n\nQuestion: {question}\n\n{CITE_RULE}"
+    c = llm.chat(SYSTEM, user, provider=provider, max_tokens=1024)
+    return Answer(c.text.strip(), parse_citations(c.text, hits), c.model, c.provider,
+                  c.input_tokens, c.output_tokens, c.latency_s)
+
+
+# ---------- optional paid backend: Anthropic native citations ----------
 def build_content(question: str, hits: list[Hit]) -> list[dict]:
     blocks = [{
         "type": "document",
@@ -71,26 +98,23 @@ def build_content(question: str, hits: list[Hit]) -> list[dict]:
     return blocks
 
 
-def _client():
-    import anthropic
-    return anthropic.Anthropic()
-
-
-def answer(question: str, hits: list[Hit], client=None, model: str = MODEL) -> Answer:
-    client = client or _client()
+def _answer_anthropic(question: str, hits: list[Hit], client=None) -> Answer:
+    if client is None:
+        import anthropic
+        client = anthropic.Anthropic()
+    model = llm.model_name("anthropic")
     t0 = time.perf_counter()
     resp = client.beta.messages.create(
-        model=model,
-        max_tokens=4096,
-        system=SYSTEM,
-        output_config={"effort": EFFORT},
-        betas=["server-side-fallback-2026-07-01"],   # if a request is declined, the server retries on a fallback model
+        model=model, max_tokens=4096, system=SYSTEM,
+        output_config={"effort": os.environ.get("DOCQA_EFFORT", "medium")},
+        betas=["server-side-fallback-2026-07-01"],   # a declined request is retried on a fallback model
         fallbacks="default",
         messages=[{"role": "user", "content": build_content(question, hits)}],
     )
     latency = time.perf_counter() - t0
     if resp.stop_reason == "refusal":
-        return Answer("[declined by model safety system]", model=resp.model, stop_reason=resp.stop_reason, latency_s=latency)
+        return Answer("[declined by model safety system]", model=resp.model, provider="anthropic",
+                      stop_reason=resp.stop_reason, latency_s=latency)
     texts, cites = [], []
     for block in resp.content:
         if block.type != "text":
@@ -99,6 +123,5 @@ def answer(question: str, hits: list[Hit], client=None, model: str = MODEL) -> A
         for c in getattr(block, "citations", None) or []:
             h = hits[c.document_index]
             cites.append(Citation(h.chunk_id, h.doc_id, h.page_num, c.cited_text))
-    return Answer(text="".join(texts).strip(), citations=cites, model=resp.model,
-                  input_tokens=resp.usage.input_tokens, output_tokens=resp.usage.output_tokens,
-                  latency_s=latency, stop_reason=resp.stop_reason)
+    return Answer("".join(texts).strip(), cites, resp.model, "anthropic", resp.usage.input_tokens,
+                  resp.usage.output_tokens, latency, resp.stop_reason)

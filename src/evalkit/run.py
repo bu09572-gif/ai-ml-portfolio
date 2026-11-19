@@ -1,7 +1,7 @@
 """Run an evaluation and write results + a summary.
 
     python -m evalkit.run --dataset financebench                 # retrieval ablations (free, no API key)
-    python -m evalkit.run --dataset financebench --answers       # + generate and grade answers (needs ANTHROPIC_API_KEY)
+    python -m evalkit.run --dataset financebench --answers       # + generate and grade answers (free local model by default)
     python -m evalkit.run --dataset financebench --answers --limit 20
 
 Outputs (under evals/results/<dataset>/):
@@ -104,58 +104,87 @@ def eval_retrieval(items, r: Retriever, ks=(1, 5, 10)) -> dict:
     return out
 
 
-def eval_answers(items, r: Retriever, config: str, k: int, out_path: Path) -> dict:
-    import anthropic
-
-    from docqa.answer import MODEL, answer
-    client = anthropic.Anthropic()
-    judge_model = os.environ.get("EVAL_JUDGE_MODEL", MODEL)
-    rows = []
+def eval_answers(items, r: Retriever, config: str, k: int, out_path: Path) -> None:
+    """Answer + grade each item, one JSON line per question (written as we go, so a crash keeps progress)."""
+    from docqa.answer import answer
+    judge_provider = os.environ.get("EVAL_JUDGE_PROVIDER") or None
     with out_path.open("w") as fh:
         for i, it in enumerate(items, 1):
             hits = _search(r, it, k, RETRIEVAL_CONFIGS[config])
             gold = {M.page_key(e["doc_id"], e["page_num"]) for e in it.gold_evidence}
-            a = answer(it.question, hits, client=client)
-            g = M.judge(it.question, it.gold_answer, a.text, client, judge_model)
+            a = answer(it.question, hits)
+            g = M.judge(it.question, it.gold_answer, a.text, provider=judge_provider)
+            cited = [M.page_key(c.doc_id, c.page_num) for c in a.citations]
             row = {"id": it.id, "question": it.question, "gold_answer": it.gold_answer, "answer": a.text,
                    "question_type": it.tags.get("question_type"), "grade": g["grade"], "judge_reason": g["reason"],
                    "numeric_match": M.numeric_match(a.text, it.gold_answer),
                    "retrieval_hit": M.hit_at_k([M.page_key(h.doc_id, h.page_num) for h in hits], gold, k),
-                   "citations": [M.page_key(c.doc_id, c.page_num) for c in a.citations],
-                   "citation_page_precision": M.citation_page_precision(
-                       [M.page_key(c.doc_id, c.page_num) for c in a.citations], gold),
-                   "input_tokens": a.input_tokens, "output_tokens": a.output_tokens,
-                   "cost_usd": a.cost_usd, "latency_s": a.latency_s, "model": a.model}
+                   "citations": cited, "citation_page_precision": M.citation_page_precision(cited, gold),
+                   "refused": a.refused, "input_tokens": a.input_tokens, "output_tokens": a.output_tokens,
+                   "cost_usd": a.cost_usd, "latency_s": a.latency_s, "provider": a.provider, "model": a.model,
+                   "judge_model": g["judge_model"], "config": config, "k": k}
             fh.write(json.dumps(row) + "\n")
-            rows.append(row)
-            print(f"[{i}/{len(items)}] {g['grade']:9s} {it.id}")
-    df = pd.DataFrame(rows)
-    acc_by_hit = df.groupby("retrieval_hit").grade.apply(lambda s: (s == "correct").mean()).round(3).to_dict()
+            fh.flush()
+            print(f"[{i}/{len(items)}] {g['grade']:9s} num={row['numeric_match']} {a.latency_s:5.1f}s {it.id}", flush=True)
+
+
+def summarize(df: pd.DataFrame) -> dict:
+    correct = df.grade == "correct"
+    by_hit = df.assign(c=correct).groupby("retrieval_hit").c.mean().round(3).to_dict()
+    has_cite = df.citations.map(len) > 0
     return {
-        "config": config, "k": k, "n": len(df), "model": df.model.iloc[0], "judge_model": judge_model,
-        "accuracy": round((df.grade == "correct").mean(), 3),
+        "n": len(df), "config": df.config.iloc[0], "k": int(df.k.iloc[0]),
+        "provider": df.provider.iloc[0], "model": df.model.iloc[0], "judge_model": df.judge_model.iloc[0],
+        "accuracy_llm_judge": round(correct.mean(), 3),
         "incorrect_rate": round((df.grade == "incorrect").mean(), 3),
         "refusal_rate": round((df.grade == "refused").mean(), 3),
+        "unparsed_grades": int((df.grade == "unparsed").sum()),
         "numeric_match": round(df.numeric_match.dropna().mean(), 3) if df.numeric_match.notna().any() else None,
+        "numeric_questions": int(df.numeric_match.notna().sum()),
+        "answers_with_citations": round(has_cite.mean(), 3),
         "citation_page_precision": round(df.citation_page_precision.dropna().mean(), 3)
         if df.citation_page_precision.notna().any() else None,
-        "accuracy_by_question_type": df.groupby("question_type").grade.apply(lambda s: (s == "correct").mean()).round(3).to_dict(),
-        "accuracy_when_retrieval_hit_vs_miss": {("hit" if k else "miss"): v for k, v in acc_by_hit.items()},
-        "cost_usd_total": round(df.cost_usd.sum(), 4), "cost_usd_per_question": round(df.cost_usd.mean(), 5),
+        "accuracy_by_question_type": df.assign(c=correct).groupby("question_type").c.mean().round(3).to_dict(),
+        "accuracy_when_retrieval_hit_vs_miss": {("hit" if h else "miss"): v for h, v in by_hit.items()},
+        "cost_usd_total": round(df.cost_usd.sum(), 4),
         "latency_s_p50": round(float(np.percentile(df.latency_s, 50)), 2),
         "latency_s_p95": round(float(np.percentile(df.latency_s, 95)), 2),
     }
 
 
+def merge(out: Path, tag: str) -> dict:
+    files = sorted(out.glob(f"answers_{tag}_shard*.jsonl")) or sorted(out.glob(f"answers_{tag}.jsonl"))
+    df = pd.concat([pd.read_json(f, lines=True) for f in files], ignore_index=True)
+    s = summarize(df)
+    text = json.dumps(s, indent=2, default=lambda o: o.item() if hasattr(o, "item") else str(o))
+    (out / f"answers_summary_{tag}.json").write_text(text)
+    (out / "answers_summary.json").write_text(text)
+    df.to_json(out / f"answers_{tag}.jsonl", orient="records", lines=True)
+    for f in out.glob(f"answers_{tag}_shard*.jsonl"):   # shards are merged; remove them only after the write succeeded
+        f.unlink()
+    return s
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--dataset", default="financebench", choices=list(DATASETS))
-    ap.add_argument("--answers", action="store_true")
+    ap.add_argument("--answers", action="store_true", help="generate + grade answers with the configured LLM")
+    ap.add_argument("--merge", action="store_true", help="combine answer shards and write the summary")
     ap.add_argument("--config", default=DEFAULT_CONFIG, choices=list(RETRIEVAL_CONFIGS))
-    ap.add_argument("--k", type=int, default=10)
+    ap.add_argument("--k", type=int, default=5)
     ap.add_argument("--limit", type=int)
+    ap.add_argument("--shard", default=None, help="i/n: answer only every n-th question starting at i (parallel CI jobs)")
     ap.add_argument("--dense", action="store_true", help="also evaluate dense and hybrid retrieval")
     a = ap.parse_args(argv)
+
+    from docqa import llm
+    tag = f"{llm.PROVIDER}_{llm.model_name().replace(':', '-').replace('/', '-')}"
+    out = OUT / a.dataset
+    out.mkdir(parents=True, exist_ok=True)
+    if a.merge:
+        merge(out, tag)
+        print((out / "answers_summary.json").read_text())
+        return
 
     items = DATASETS[a.dataset]()
     if a.limit:
@@ -165,8 +194,18 @@ def main(argv=None):
     if enc is not None:
         RETRIEVAL_CONFIGS.update(DENSE_CONFIGS)
     r = Retriever(chunks, encoder=enc)
-    out = OUT / a.dataset
-    out.mkdir(parents=True, exist_ok=True)
+
+    if a.answers:
+        name = f"answers_{tag}.jsonl"
+        if a.shard:
+            i, n = map(int, a.shard.split("/"))
+            items = items[i::n]
+            name = f"answers_{tag}_shard{i}.jsonl"
+        eval_answers(items, r, a.config, a.k, out / name)
+        if not a.shard:
+            merge(out, tag)
+            print((out / "answers_summary.json").read_text())
+        return
 
     ret = eval_retrieval(items, r)
     pages_path = storage.path("silver", a.dataset, "pages.parquet")
@@ -175,13 +214,6 @@ def main(argv=None):
     (out / "retrieval_summary.json").write_text(json.dumps(ret, indent=2))
     print(pd.DataFrame({k: v["overall"] for k, v in ret.items() if not k.startswith("_")}).T.to_string())
     print("evidence alignment:", ret.get("_data_check_evidence_alignment"))
-
-    if a.answers:
-        if not os.environ.get("ANTHROPIC_API_KEY"):
-            raise SystemExit("--answers needs ANTHROPIC_API_KEY")
-        s = eval_answers(items, r, a.config, a.k, out / f"answers_{a.config.strip('+')}.jsonl")
-        (out / "answers_summary.json").write_text(json.dumps(s, indent=2))
-        print(json.dumps(s, indent=2))
 
 
 if __name__ == "__main__":
