@@ -1,0 +1,481 @@
+day,fault,metric,z_clean,z_faulted,already_alerting,detected
+2013-07-22,flights: 10% of rows missing,flights_scheduled,0.91,-7.02,False,True
+2013-07-22,flights: 25% of rows missing,flights_scheduled,0.91,-18.93,False,True
+2013-07-22,arr_delay blank on 1% of flown,missing_arr_delay_rate,2.86,4.69,False,True
+2013-07-22,arr_delay blank on 3% of flown,missing_arr_delay_rate,2.86,8.16,False,True
+2013-07-22,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.13,False,True
+2013-07-22,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.82,False,True
+2013-07-22,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-07-22,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-11-04,flights: 10% of rows missing,flights_scheduled,-1.35,-11.15,False,True
+2013-11-04,flights: 25% of rows missing,flights_scheduled,-1.35,-25.75,False,True
+2013-11-04,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.01,3.4,False,False
+2013-11-04,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.01,9.87,False,True
+2013-11-04,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.14,False,True
+2013-11-04,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.9,False,True
+2013-11-04,weather: 3 hours missing at one airport,weather_rows,-3.0,-6.0,False,True
+2013-11-04,weather: 6 hours missing at one airport,weather_rows,-3.0,-9.0,False,True
+2013-05-13,flights: 10% of rows missing,flights_scheduled,-0.2,-10.0,False,True
+2013-05-13,flights: 25% of rows missing,flights_scheduled,-0.2,-24.7,False,True
+2013-05-13,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.4,3.01,False,False
+2013-05-13,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.4,9.48,False,True
+2013-05-13,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.14,False,True
+2013-05-13,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.9,False,True
+2013-05-13,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-05-13,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-10-04,flights: 10% of rows missing,flights_scheduled,0.0,-10.0,False,True
+2013-10-04,flights: 25% of rows missing,flights_scheduled,0.0,-24.9,False,True
+2013-10-04,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.33,3.02,False,False
+2013-10-04,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.33,9.72,False,True
+2013-10-04,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.06,False,True
+2013-10-04,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.17,False,True
+2013-10-04,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-10-04,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-03-12,flights: 10% of rows missing,flights_scheduled,7.1,-2.6,True,False
+2013-03-12,flights: 25% of rows missing,flights_scheduled,7.1,-17.1,True,True
+2013-03-12,arr_delay blank on 1% of flown,missing_arr_delay_rate,0.95,4.06,False,True
+2013-03-12,arr_delay blank on 3% of flown,missing_arr_delay_rate,0.95,10.27,False,True
+2013-03-12,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,4.97,False,True
+2013-03-12,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.9,False,True
+2013-03-12,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-03-12,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-08-08,flights: 10% of rows missing,flights_scheduled,0.35,-9.65,False,True
+2013-08-08,flights: 25% of rows missing,flights_scheduled,0.35,-24.65,False,True
+2013-08-08,arr_delay blank on 1% of flown,missing_arr_delay_rate,2.25,4.28,False,True
+2013-08-08,arr_delay blank on 3% of flown,missing_arr_delay_rate,2.25,8.57,False,True
+2013-08-08,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,4.77,False,True
+2013-08-08,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.85,False,True
+2013-08-08,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-08-08,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-10-23,flights: 10% of rows missing,flights_scheduled,0.15,-9.65,False,True
+2013-10-23,flights: 25% of rows missing,flights_scheduled,0.15,-24.25,False,True
+2013-10-23,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.0,3.42,False,False
+2013-10-23,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.0,9.91,False,True
+2013-10-23,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.15,False,True
+2013-10-23,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.93,False,True
+2013-10-23,weather: 3 hours missing at one airport,weather_rows,-2.0,-5.0,False,True
+2013-10-23,weather: 6 hours missing at one airport,weather_rows,-2.0,-8.0,False,True
+2013-04-01,flights: 10% of rows missing,flights_scheduled,0.06,-5.63,False,True
+2013-04-01,flights: 25% of rows missing,flights_scheduled,0.06,-14.13,False,True
+2013-04-01,arr_delay blank on 1% of flown,missing_arr_delay_rate,0.16,3.6,False,False
+2013-04-01,arr_delay blank on 3% of flown,missing_arr_delay_rate,0.16,10.13,False,True
+2013-04-01,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.2,False,True
+2013-04-01,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.09,False,True
+2013-04-01,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-04-01,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-08-03,flights: 10% of rows missing,flights_scheduled,-0.15,-8.25,False,True
+2013-08-03,flights: 25% of rows missing,flights_scheduled,-0.15,-20.35,False,True
+2013-08-03,arr_delay blank on 1% of flown,missing_arr_delay_rate,0.47,2.4,False,False
+2013-08-03,arr_delay blank on 3% of flown,missing_arr_delay_rate,0.47,6.26,False,True
+2013-08-03,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.01,False,True
+2013-08-03,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.02,False,True
+2013-08-03,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-08-03,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-11-28,flights: 10% of rows missing,flights_scheduled,-35.9,-42.2,True,True
+2013-11-28,flights: 25% of rows missing,flights_scheduled,-35.9,-51.7,True,True
+2013-11-28,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.46,2.7,False,False
+2013-11-28,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.46,9.53,False,True
+2013-11-28,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,4.73,False,True
+2013-11-28,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.98,False,True
+2013-11-28,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-11-28,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-10-10,flights: 10% of rows missing,flights_scheduled,0.2,-9.7,False,True
+2013-10-10,flights: 25% of rows missing,flights_scheduled,0.2,-24.6,False,True
+2013-10-10,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.03,3.32,False,False
+2013-10-10,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.03,9.69,False,True
+2013-10-10,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.12,False,True
+2013-10-10,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.86,False,True
+2013-10-10,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-10-10,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-04-24,flights: 10% of rows missing,flights_scheduled,0.04,-7.31,False,True
+2013-04-24,flights: 25% of rows missing,flights_scheduled,0.04,-18.25,False,True
+2013-04-24,arr_delay blank on 1% of flown,missing_arr_delay_rate,0.01,3.08,False,False
+2013-04-24,arr_delay blank on 3% of flown,missing_arr_delay_rate,0.01,9.57,False,True
+2013-04-24,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,4.82,False,True
+2013-04-24,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.99,False,True
+2013-04-24,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-04-24,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-07-17,flights: 10% of rows missing,flights_scheduled,1.21,-5.53,False,True
+2013-07-17,flights: 25% of rows missing,flights_scheduled,1.21,-15.65,False,True
+2013-07-17,arr_delay blank on 1% of flown,missing_arr_delay_rate,0.02,2.52,False,False
+2013-07-17,arr_delay blank on 3% of flown,missing_arr_delay_rate,0.02,7.52,False,True
+2013-07-17,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.05,False,True
+2013-07-17,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.15,False,True
+2013-07-17,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-07-17,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-12-20,flights: 10% of rows missing,flights_scheduled,-0.44,-8.21,False,True
+2013-12-20,flights: 25% of rows missing,flights_scheduled,-0.44,-19.88,False,True
+2013-12-20,arr_delay blank on 1% of flown,missing_arr_delay_rate,1.69,5.09,False,True
+2013-12-20,arr_delay blank on 3% of flown,missing_arr_delay_rate,1.69,11.56,False,True
+2013-12-20,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.16,False,True
+2013-12-20,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.96,False,True
+2013-12-20,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-12-20,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-03-08,flights: 10% of rows missing,flights_scheduled,4.72,-4.72,True,True
+2013-03-08,flights: 25% of rows missing,flights_scheduled,4.72,-18.89,True,True
+2013-03-08,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.45,2.27,False,False
+2013-03-08,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.45,7.72,False,True
+2013-03-08,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.01,False,True
+2013-03-08,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.02,False,True
+2013-03-08,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-03-08,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-12-30,flights: 10% of rows missing,flights_scheduled,-0.8,-7.03,False,True
+2013-12-30,flights: 25% of rows missing,flights_scheduled,-0.8,-16.35,False,True
+2013-12-30,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.67,2.77,False,False
+2013-12-30,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.67,9.32,False,True
+2013-12-30,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.24,False,True
+2013-12-30,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.2,False,True
+2013-12-30,weather: 3 hours missing at one airport,weather_rows,-15.0,-18.0,True,True
+2013-12-30,weather: 6 hours missing at one airport,weather_rows,-15.0,-21.0,True,True
+2013-06-04,flights: 10% of rows missing,flights_scheduled,-0.28,-7.9,False,True
+2013-06-04,flights: 25% of rows missing,flights_scheduled,-0.28,-19.32,False,True
+2013-06-04,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.95,2.52,False,False
+2013-06-04,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.95,9.12,False,True
+2013-06-04,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.23,False,True
+2013-06-04,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.17,False,True
+2013-06-04,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-06-04,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-12-04,flights: 10% of rows missing,flights_scheduled,-1.65,-11.25,False,True
+2013-12-04,flights: 25% of rows missing,flights_scheduled,-1.65,-25.65,False,True
+2013-12-04,arr_delay blank on 1% of flown,missing_arr_delay_rate,1.16,4.29,False,True
+2013-12-04,arr_delay blank on 3% of flown,missing_arr_delay_rate,1.16,10.9,False,True
+2013-12-04,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.26,False,True
+2013-12-04,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.74,False,True
+2013-12-04,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-12-04,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-05-07,flights: 10% of rows missing,flights_scheduled,-1.5,-11.1,False,True
+2013-05-07,flights: 25% of rows missing,flights_scheduled,-1.5,-25.4,False,True
+2013-05-07,arr_delay blank on 1% of flown,missing_arr_delay_rate,0.69,3.83,False,False
+2013-05-07,arr_delay blank on 3% of flown,missing_arr_delay_rate,0.69,10.46,False,True
+2013-05-07,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.25,False,True
+2013-05-07,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.23,False,True
+2013-05-07,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-05-07,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-07-08,flights: 10% of rows missing,flights_scheduled,2.15,-7.85,False,True
+2013-07-08,flights: 25% of rows missing,flights_scheduled,2.15,-22.95,False,True
+2013-07-08,arr_delay blank on 1% of flown,missing_arr_delay_rate,-1.06,2.07,False,False
+2013-07-08,arr_delay blank on 3% of flown,missing_arr_delay_rate,-1.06,8.02,False,True
+2013-07-08,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.24,False,True
+2013-07-08,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.2,False,True
+2013-07-08,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-07-08,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-03-29,flights: 10% of rows missing,flights_scheduled,0.54,-2.65,False,False
+2013-03-29,flights: 25% of rows missing,flights_scheduled,0.54,-7.49,False,True
+2013-03-29,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.36,3.07,False,False
+2013-03-29,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.36,9.57,False,True
+2013-03-29,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.15,False,True
+2013-03-29,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.95,False,True
+2013-03-29,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-03-29,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-11-26,flights: 10% of rows missing,flights_scheduled,2.4,-7.5,False,True
+2013-11-26,flights: 25% of rows missing,flights_scheduled,2.4,-22.3,False,True
+2013-11-26,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.12,3.25,False,False
+2013-11-26,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.12,9.99,False,True
+2013-11-26,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.07,False,True
+2013-11-26,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.21,False,True
+2013-11-26,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-11-26,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-10-11,flights: 10% of rows missing,flights_scheduled,-0.35,-10.25,False,True
+2013-10-11,flights: 25% of rows missing,flights_scheduled,-0.35,-25.15,False,True
+2013-10-11,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.02,3.01,False,False
+2013-10-11,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.02,9.4,False,True
+2013-10-11,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,4.81,False,True
+2013-10-11,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.96,False,True
+2013-10-11,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-10-11,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-03-11,flights: 10% of rows missing,flights_scheduled,2.67,-2.62,False,False
+2013-03-11,flights: 25% of rows missing,flights_scheduled,2.67,-10.55,False,True
+2013-03-11,arr_delay blank on 1% of flown,missing_arr_delay_rate,0.25,3.65,False,False
+2013-03-11,arr_delay blank on 3% of flown,missing_arr_delay_rate,0.25,10.11,False,True
+2013-03-11,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.12,False,True
+2013-03-11,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.84,False,True
+2013-03-11,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-03-11,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-08-23,flights: 10% of rows missing,flights_scheduled,-1.0,-10.9,False,True
+2013-08-23,flights: 25% of rows missing,flights_scheduled,-1.0,-25.7,False,True
+2013-08-23,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.36,3.01,False,False
+2013-08-23,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.36,9.42,False,True
+2013-08-23,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.08,False,True
+2013-08-23,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.24,False,True
+2013-08-23,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-08-23,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-10-30,flights: 10% of rows missing,flights_scheduled,-0.1,-9.8,False,True
+2013-10-30,flights: 25% of rows missing,flights_scheduled,-0.1,-24.4,False,True
+2013-10-30,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.34,3.08,False,False
+2013-10-30,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.34,9.59,False,True
+2013-10-30,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.16,False,True
+2013-10-30,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.96,False,True
+2013-10-30,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-10-30,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-08-17,flights: 10% of rows missing,flights_scheduled,-3.05,-10.85,False,True
+2013-08-17,flights: 25% of rows missing,flights_scheduled,-3.05,-22.55,False,True
+2013-08-17,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.91,2.51,False,False
+2013-08-17,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.91,8.92,False,True
+2013-08-17,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.15,False,True
+2013-08-17,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.8,False,True
+2013-08-17,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-08-17,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-02-27,flights: 10% of rows missing,flights_scheduled,4.35,-5.05,True,True
+2013-02-27,flights: 25% of rows missing,flights_scheduled,4.35,-19.25,True,True
+2013-02-27,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.71,2.46,False,False
+2013-02-27,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.71,8.81,False,True
+2013-02-27,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,4.98,False,True
+2013-02-27,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.93,False,True
+2013-02-27,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-02-27,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-12-08,flights: 10% of rows missing,flights_scheduled,-2.7,-11.5,False,True
+2013-12-08,flights: 25% of rows missing,flights_scheduled,-2.7,-24.6,False,True
+2013-12-08,arr_delay blank on 1% of flown,missing_arr_delay_rate,3.14,6.19,False,True
+2013-12-08,arr_delay blank on 3% of flown,missing_arr_delay_rate,3.14,12.28,False,True
+2013-12-08,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,4.91,False,True
+2013-12-08,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.72,False,True
+2013-12-08,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-12-08,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-08-01,flights: 10% of rows missing,flights_scheduled,0.42,-8.01,False,True
+2013-08-01,flights: 25% of rows missing,flights_scheduled,0.42,-20.66,False,True
+2013-08-01,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.81,1.02,False,False
+2013-08-01,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.81,4.88,False,True
+2013-08-01,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,4.83,False,True
+2013-08-01,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.02,False,True
+2013-08-01,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-08-01,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-07-01,flights: 10% of rows missing,flights_scheduled,-1.65,-11.35,False,True
+2013-07-01,flights: 25% of rows missing,flights_scheduled,-1.65,-25.85,False,True
+2013-07-01,arr_delay blank on 1% of flown,missing_arr_delay_rate,0.22,2.93,False,False
+2013-07-01,arr_delay blank on 3% of flown,missing_arr_delay_rate,0.22,8.05,False,True
+2013-07-01,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.11,False,True
+2013-07-01,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.76,False,True
+2013-07-01,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-07-01,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-08-25,flights: 10% of rows missing,flights_scheduled,-2.6,-11.6,False,True
+2013-08-25,flights: 25% of rows missing,flights_scheduled,-2.6,-25.2,False,True
+2013-08-25,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.67,2.66,False,False
+2013-08-25,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.67,9.3,False,True
+2013-08-25,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.0,False,True
+2013-08-25,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.0,False,True
+2013-08-25,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-08-25,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-04-29,flights: 10% of rows missing,flights_scheduled,0.25,-9.55,False,True
+2013-04-29,flights: 25% of rows missing,flights_scheduled,0.25,-24.35,False,True
+2013-04-29,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.34,3.05,False,False
+2013-04-29,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.34,9.5,False,True
+2013-04-29,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.11,False,True
+2013-04-29,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.83,False,True
+2013-04-29,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-04-29,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-07-31,flights: 10% of rows missing,flights_scheduled,0.87,-7.06,False,True
+2013-07-31,flights: 25% of rows missing,flights_scheduled,0.87,-18.97,False,True
+2013-07-31,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.41,1.63,False,False
+2013-07-31,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.41,5.69,False,True
+2013-07-31,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.02,False,True
+2013-07-31,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.05,False,True
+2013-07-31,weather: 3 hours missing at one airport,weather_rows,-2.0,-5.0,False,True
+2013-07-31,weather: 6 hours missing at one airport,weather_rows,-2.0,-8.0,False,True
+2013-03-31,flights: 10% of rows missing,flights_scheduled,0.17,-3.2,False,False
+2013-03-31,flights: 25% of rows missing,flights_scheduled,0.17,-8.23,False,True
+2013-03-31,arr_delay blank on 1% of flown,missing_arr_delay_rate,0.22,3.56,False,False
+2013-03-31,arr_delay blank on 3% of flown,missing_arr_delay_rate,0.22,10.25,False,True
+2013-03-31,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.03,False,True
+2013-03-31,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.1,False,True
+2013-03-31,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-03-31,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-07-11,flights: 10% of rows missing,flights_scheduled,1.75,-8.35,False,True
+2013-07-11,flights: 25% of rows missing,flights_scheduled,1.75,-23.45,False,True
+2013-07-11,arr_delay blank on 1% of flown,missing_arr_delay_rate,0.5,3.31,False,False
+2013-07-11,arr_delay blank on 3% of flown,missing_arr_delay_rate,0.5,9.25,False,True
+2013-07-11,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,4.8,False,True
+2013-07-11,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.94,False,True
+2013-07-11,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-07-11,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-07-19,flights: 10% of rows missing,flights_scheduled,0.97,-7.46,False,True
+2013-07-19,flights: 25% of rows missing,flights_scheduled,0.97,-20.11,False,True
+2013-07-19,arr_delay blank on 1% of flown,missing_arr_delay_rate,0.58,2.93,False,False
+2013-07-19,arr_delay blank on 3% of flown,missing_arr_delay_rate,0.58,7.4,False,True
+2013-07-19,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.08,False,True
+2013-07-19,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.24,False,True
+2013-07-19,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-07-19,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-09-14,flights: 10% of rows missing,flights_scheduled,-4.27,-7.0,True,True
+2013-09-14,flights: 25% of rows missing,flights_scheduled,-4.27,-11.09,True,True
+2013-09-14,arr_delay blank on 1% of flown,missing_arr_delay_rate,0.61,3.98,False,False
+2013-09-14,arr_delay blank on 3% of flown,missing_arr_delay_rate,0.61,10.24,False,True
+2013-09-14,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.12,False,True
+2013-09-14,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.35,False,True
+2013-09-14,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-09-14,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-12-16,flights: 10% of rows missing,flights_scheduled,-1.9,-11.5,False,True
+2013-12-16,flights: 25% of rows missing,flights_scheduled,-1.9,-26.0,False,True
+2013-12-16,arr_delay blank on 1% of flown,missing_arr_delay_rate,0.35,3.81,False,False
+2013-12-16,arr_delay blank on 3% of flown,missing_arr_delay_rate,0.35,10.38,False,True
+2013-12-16,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.22,False,True
+2013-12-16,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.14,False,True
+2013-12-16,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-12-16,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-05-19,flights: 10% of rows missing,flights_scheduled,-0.05,-9.15,False,True
+2013-05-19,flights: 25% of rows missing,flights_scheduled,-0.05,-22.85,False,True
+2013-05-19,arr_delay blank on 1% of flown,missing_arr_delay_rate,0.42,3.71,False,False
+2013-05-19,arr_delay blank on 3% of flown,missing_arr_delay_rate,0.42,10.29,False,True
+2013-05-19,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,4.98,False,True
+2013-05-19,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.95,False,True
+2013-05-19,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-05-19,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-09-27,flights: 10% of rows missing,flights_scheduled,0.1,-9.9,False,True
+2013-09-27,flights: 25% of rows missing,flights_scheduled,0.1,-24.8,False,True
+2013-09-27,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.35,2.95,False,False
+2013-09-27,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.35,9.54,False,True
+2013-09-27,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.04,False,True
+2013-09-27,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.12,False,True
+2013-09-27,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-09-27,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-04-13,flights: 10% of rows missing,flights_scheduled,0.4,-7.3,False,True
+2013-04-13,flights: 25% of rows missing,flights_scheduled,0.4,-18.8,False,True
+2013-04-13,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.24,3.22,False,False
+2013-04-13,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.24,9.72,False,True
+2013-04-13,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.22,False,True
+2013-04-13,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.99,False,True
+2013-04-13,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-04-13,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-07-30,flights: 10% of rows missing,flights_scheduled,0.71,-6.78,False,True
+2013-07-30,flights: 25% of rows missing,flights_scheduled,0.71,-17.95,False,True
+2013-07-30,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.81,1.23,False,False
+2013-07-30,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.81,5.31,False,True
+2013-07-30,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.07,False,True
+2013-07-30,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.2,False,True
+2013-07-30,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-07-30,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-06-29,flights: 10% of rows missing,flights_scheduled,2.21,-0.75,False,False
+2013-06-29,flights: 25% of rows missing,flights_scheduled,2.21,-5.2,False,True
+2013-06-29,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.7,2.08,False,False
+2013-06-29,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.7,7.65,False,True
+2013-06-29,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.05,False,True
+2013-06-29,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.15,False,True
+2013-06-29,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-06-29,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-10-29,flights: 10% of rows missing,flights_scheduled,0.3,-9.3,False,True
+2013-10-29,flights: 25% of rows missing,flights_scheduled,0.3,-23.8,False,True
+2013-10-29,arr_delay blank on 1% of flown,missing_arr_delay_rate,0.35,3.8,False,False
+2013-10-29,arr_delay blank on 3% of flown,missing_arr_delay_rate,0.35,10.37,False,True
+2013-10-29,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.21,False,True
+2013-10-29,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.12,False,True
+2013-10-29,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-10-29,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-09-07,flights: 10% of rows missing,flights_scheduled,-12.0,-18.9,True,True
+2013-09-07,flights: 25% of rows missing,flights_scheduled,-12.0,-29.2,True,True
+2013-09-07,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.21,3.15,False,False
+2013-09-07,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.21,9.87,False,True
+2013-09-07,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.09,False,True
+2013-09-07,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.28,False,True
+2013-09-07,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-09-07,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-09-26,flights: 10% of rows missing,flights_scheduled,0.34,-8.09,False,True
+2013-09-26,flights: 25% of rows missing,flights_scheduled,0.34,-20.66,False,True
+2013-09-26,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.69,2.58,False,False
+2013-09-26,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.69,9.11,False,True
+2013-09-26,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.04,False,True
+2013-09-26,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.11,False,True
+2013-09-26,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-09-26,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-10-13,flights: 10% of rows missing,flights_scheduled,-0.39,-9.06,False,True
+2013-10-13,flights: 25% of rows missing,flights_scheduled,-0.39,-22.16,False,True
+2013-10-13,arr_delay blank on 1% of flown,missing_arr_delay_rate,0.03,3.36,False,False
+2013-10-13,arr_delay blank on 3% of flown,missing_arr_delay_rate,0.03,10.01,False,True
+2013-10-13,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.01,False,True
+2013-10-13,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.02,False,True
+2013-10-13,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-10-13,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-05-14,flights: 10% of rows missing,flights_scheduled,-1.5,-11.1,False,True
+2013-05-14,flights: 25% of rows missing,flights_scheduled,-1.5,-25.4,False,True
+2013-05-14,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.74,2.4,False,False
+2013-05-14,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.74,9.04,False,True
+2013-05-14,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,4.75,False,True
+2013-05-14,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.77,False,True
+2013-05-14,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-05-14,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-11-05,flights: 10% of rows missing,flights_scheduled,0.35,-9.35,False,True
+2013-11-05,flights: 25% of rows missing,flights_scheduled,0.35,-23.85,False,True
+2013-11-05,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.35,3.1,False,False
+2013-11-05,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.35,9.64,False,True
+2013-11-05,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.2,False,True
+2013-11-05,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.09,False,True
+2013-11-05,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-11-05,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-10-09,flights: 10% of rows missing,flights_scheduled,0.0,-7.27,False,True
+2013-10-09,flights: 25% of rows missing,flights_scheduled,0.0,-18.29,False,True
+2013-10-09,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.43,2.99,False,False
+2013-10-09,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.43,9.5,False,True
+2013-10-09,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.17,False,True
+2013-10-09,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.99,False,True
+2013-10-09,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-10-09,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-04-09,flights: 10% of rows missing,flights_scheduled,0.51,-4.78,False,True
+2013-04-09,flights: 25% of rows missing,flights_scheduled,0.51,-12.65,False,True
+2013-04-09,arr_delay blank on 1% of flown,missing_arr_delay_rate,0.13,3.55,False,False
+2013-04-09,arr_delay blank on 3% of flown,missing_arr_delay_rate,0.13,10.05,False,True
+2013-04-09,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.21,False,True
+2013-04-09,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.1,False,True
+2013-04-09,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-04-09,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-05-11,flights: 10% of rows missing,flights_scheduled,-2.9,-10.3,False,True
+2013-05-11,flights: 25% of rows missing,flights_scheduled,-2.9,-21.3,False,True
+2013-05-11,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.73,2.43,False,False
+2013-05-11,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.73,8.76,False,True
+2013-05-11,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,4.98,False,True
+2013-05-11,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.94,False,True
+2013-05-11,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-05-11,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-09-11,flights: 10% of rows missing,flights_scheduled,-5.15,-14.65,True,True
+2013-09-11,flights: 25% of rows missing,flights_scheduled,-5.15,-28.85,True,True
+2013-09-11,arr_delay blank on 1% of flown,missing_arr_delay_rate,2.15,5.32,False,True
+2013-09-11,arr_delay blank on 3% of flown,missing_arr_delay_rate,2.15,11.65,False,True
+2013-09-11,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,4.89,False,True
+2013-09-11,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.2,False,True
+2013-09-11,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-09-11,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-10-20,flights: 10% of rows missing,flights_scheduled,1.15,-8.05,False,True
+2013-10-20,flights: 25% of rows missing,flights_scheduled,1.15,-21.75,False,True
+2013-10-20,arr_delay blank on 1% of flown,missing_arr_delay_rate,0.01,3.29,False,False
+2013-10-20,arr_delay blank on 3% of flown,missing_arr_delay_rate,0.01,9.85,False,True
+2013-10-20,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,4.92,False,True
+2013-10-20,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.75,False,True
+2013-10-20,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-10-20,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-12-02,flights: 10% of rows missing,flights_scheduled,2.0,-8.0,False,True
+2013-12-02,flights: 25% of rows missing,flights_scheduled,2.0,-23.1,False,True
+2013-12-02,arr_delay blank on 1% of flown,missing_arr_delay_rate,0.54,3.86,False,False
+2013-12-02,arr_delay blank on 3% of flown,missing_arr_delay_rate,0.54,10.5,False,True
+2013-12-02,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.0,False,True
+2013-12-02,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.99,False,True
+2013-12-02,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-12-02,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-07-07,flights: 10% of rows missing,flights_scheduled,2.22,-6.74,False,True
+2013-07-07,flights: 25% of rows missing,flights_scheduled,2.22,-20.33,False,True
+2013-07-07,arr_delay blank on 1% of flown,missing_arr_delay_rate,4.7,7.91,True,True
+2013-07-07,arr_delay blank on 3% of flown,missing_arr_delay_rate,4.7,13.98,True,True
+2013-07-07,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.03,False,True
+2013-07-07,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.1,False,True
+2013-07-07,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-07-07,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-05-29,flights: 10% of rows missing,flights_scheduled,0.0,-6.89,False,True
+2013-05-29,flights: 25% of rows missing,flights_scheduled,0.0,-17.32,False,True
+2013-05-29,arr_delay blank on 1% of flown,missing_arr_delay_rate,0.82,4.24,False,True
+2013-05-29,arr_delay blank on 3% of flown,missing_arr_delay_rate,0.82,10.74,False,True
+2013-05-29,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.16,False,True
+2013-05-29,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,14.96,False,True
+2013-05-29,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-05-29,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-07-16,flights: 10% of rows missing,flights_scheduled,0.67,-3.68,False,False
+2013-07-16,flights: 25% of rows missing,flights_scheduled,0.67,-10.16,False,True
+2013-07-16,arr_delay blank on 1% of flown,missing_arr_delay_rate,1.19,4.45,False,True
+2013-07-16,arr_delay blank on 3% of flown,missing_arr_delay_rate,1.19,10.65,False,True
+2013-07-16,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.06,False,True
+2013-07-16,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.17,False,True
+2013-07-16,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-07-16,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True
+2013-10-01,flights: 10% of rows missing,flights_scheduled,0.2,-9.4,False,True
+2013-10-01,flights: 25% of rows missing,flights_scheduled,0.2,-23.9,False,True
+2013-10-01,arr_delay blank on 1% of flown,missing_arr_delay_rate,-0.68,2.78,False,False
+2013-10-01,arr_delay blank on 3% of flown,missing_arr_delay_rate,-0.68,9.34,False,True
+2013-10-01,tailnum blank on 1% of flown,missing_tail_rate_flown,0.0,5.21,False,True
+2013-10-01,tailnum blank on 3% of flown,missing_tail_rate_flown,0.0,15.1,False,True
+2013-10-01,weather: 3 hours missing at one airport,weather_rows,0.0,-3.0,False,False
+2013-10-01,weather: 6 hours missing at one airport,weather_rows,0.0,-6.0,False,True

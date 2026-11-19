@@ -1,0 +1,26 @@
+{
+  "days_tested": 60,
+  "seed": 7,
+  "z_threshold": 4.0,
+  "detection_rate": {
+    "flights: 10% of rows missing": 0.906,
+    "flights: 25% of rows missing": 1.0,
+    "arr_delay blank on 1% of flown": 0.153,
+    "arr_delay blank on 3% of flown": 1.0,
+    "tailnum blank on 1% of flown": 1.0,
+    "tailnum blank on 3% of flown": 1.0,
+    "weather: 3 hours missing at one airport": 0.051,
+    "weather: 6 hours missing at one airport": 1.0
+  },
+  "median_abs_z_faulted": {
+    "flights: 10% of rows missing": 8.2,
+    "flights: 25% of rows missing": 22.3,
+    "arr_delay blank on 1% of flown": 3.1,
+    "arr_delay blank on 3% of flown": 9.6,
+    "tailnum blank on 1% of flown": 5.1,
+    "tailnum blank on 3% of flown": 15.0,
+    "weather: 3 hours missing at one airport": 3.0,
+    "weather: 6 hours missing at one airport": 6.0
+  },
+  "excluded_already_alerting": 18
+}

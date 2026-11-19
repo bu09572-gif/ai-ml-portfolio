@@ -1,0 +1,114 @@
+{
+  "days": 365,
+  "metrics_per_day": 7,
+  "z_threshold": 4.0,
+  "checks": 2478,
+  "alerts": 148,
+  "days_with_alerts": 98,
+  "alerts_by_metric": {
+    "cancel_rate": 44,
+    "flights_scheduled": 40,
+    "p90_dep_delay": 27,
+    "median_dep_delay": 24,
+    "missing_arr_delay_rate": 7,
+    "weather_rows": 6
+  },
+  "days_with_alerts_by_kind": {
+    "data": 12,
+    "ops": 92
+  },
+  "top_days": [
+    {
+      "day": "2013-02-09",
+      "max_abs_z": 56.1,
+      "metrics": [
+        "cancel_rate"
+      ]
+    },
+    {
+      "day": "2013-02-08",
+      "max_abs_z": 49.5,
+      "metrics": [
+        "cancel_rate"
+      ]
+    },
+    {
+      "day": "2013-11-28",
+      "max_abs_z": 35.9,
+      "metrics": [
+        "flights_scheduled"
+      ]
+    },
+    {
+      "day": "2013-11-29",
+      "max_abs_z": 32.9,
+      "metrics": [
+        "flights_scheduled"
+      ]
+    },
+    {
+      "day": "2013-03-08",
+      "max_abs_z": 30.0,
+      "metrics": [
+        "cancel_rate",
+        "flights_scheduled",
+        "median_dep_delay",
+        "p90_dep_delay"
+      ]
+    },
+    {
+      "day": "2013-07-04",
+      "max_abs_z": 25.1,
+      "metrics": [
+        "flights_scheduled"
+      ]
+    },
+    {
+      "day": "2013-05-23",
+      "max_abs_z": 21.8,
+      "metrics": [
+        "cancel_rate",
+        "median_dep_delay",
+        "p90_dep_delay"
+      ]
+    },
+    {
+      "day": "2013-12-10",
+      "max_abs_z": 21.1,
+      "metrics": [
+        "cancel_rate",
+        "median_dep_delay"
+      ]
+    },
+    {
+      "day": "2013-09-01",
+      "max_abs_z": 21.1,
+      "metrics": [
+        "flights_scheduled"
+      ]
+    },
+    {
+      "day": "2013-12-24",
+      "max_abs_z": 20.9,
+      "metrics": [
+        "flights_scheduled"
+      ]
+    },
+    {
+      "day": "2013-09-12",
+      "max_abs_z": 18.8,
+      "metrics": [
+        "cancel_rate",
+        "missing_arr_delay_rate",
+        "p90_dep_delay"
+      ]
+    },
+    {
+      "day": "2013-05-26",
+      "max_abs_z": 18.2,
+      "metrics": [
+        "flights_scheduled"
+      ]
+    }
+  ]
+}
