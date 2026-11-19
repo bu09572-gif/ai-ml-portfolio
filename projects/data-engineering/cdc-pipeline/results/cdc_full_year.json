@@ -1,0 +1,39 @@
+{
+  "scope": "2013 full year",
+  "flights": 336776,
+  "changes": 1000898,
+  "changes_by_status": {
+    "scheduled": 336776,
+    "departed": 328521,
+    "arrived": 327346,
+    "cancelled": 8255
+  },
+  "history_rows": 1000898,
+  "final_status": {
+    "arrived": 327346,
+    "cancelled": 8255,
+    "departed": 1175
+  },
+  "polls": 8742,
+  "seconds": {
+    "build_events": 1.1,
+    "source_writes": 50.3,
+    "cdc_apply": 221.5
+  },
+  "cdc_changes_per_second": 4519,
+  "checks": {
+    "changes_out_of_lifecycle_order": 0,
+    "current_vs_source_row_diffs": 0,
+    "point_in_time_row_diffs": {
+      "2013-01-15 09:00": 0,
+      "2013-02-08 19:00": 0,
+      "2013-07-04 12:00": 0,
+      "2013-11-27 17:00": 0
+    },
+    "flights_without_one_current_row": 0,
+    "versions_with_gap_or_overlap": 0,
+    "versions_ending_before_they_start": 0,
+    "redelivered_changes_applied_again": 0
+  },
+  "passed": true
+}

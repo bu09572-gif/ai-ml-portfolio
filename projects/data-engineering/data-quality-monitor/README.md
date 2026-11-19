@@ -66,6 +66,7 @@ Needs the raw CSVs from `src/flightsdata` (see the dbt warehouse README).
 
 ```bash
 pip install duckdb pandas numpy pytest
+export PYTHONPATH=../../../src   # shared code in src/flightsdata
 python monitor.py      # results/summary.json, alerts.csv, daily_metrics.csv  (~2 s)
 python faults.py       # results/fault_detection.json, fault_detection.csv     (~20 s)
 pytest -q test_monitor.py

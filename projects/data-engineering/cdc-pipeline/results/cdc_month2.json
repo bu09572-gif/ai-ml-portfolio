@@ -1,0 +1,36 @@
+{
+  "scope": "month 2",
+  "flights": 24951,
+  "changes": 73513,
+  "changes_by_status": {
+    "scheduled": 24951,
+    "departed": 23690,
+    "arrived": 23611,
+    "cancelled": 1261
+  },
+  "history_rows": 73513,
+  "final_status": {
+    "arrived": 23611,
+    "cancelled": 1261,
+    "departed": 79
+  },
+  "polls": 672,
+  "seconds": {
+    "build_events": 0.3,
+    "source_writes": 3.7,
+    "cdc_apply": 15.0
+  },
+  "cdc_changes_per_second": 4916,
+  "checks": {
+    "changes_out_of_lifecycle_order": 0,
+    "current_vs_source_row_diffs": 0,
+    "point_in_time_row_diffs": {
+      "2013-02-08 19:00": 0
+    },
+    "flights_without_one_current_row": 0,
+    "versions_with_gap_or_overlap": 0,
+    "versions_ending_before_they_start": 0,
+    "redelivered_changes_applied_again": 0
+  },
+  "passed": true
+}
