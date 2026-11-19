@@ -65,10 +65,9 @@ def numeric_match(answer: str, gold: str, rel_tol: float = 0.01) -> float | None
 
 
 def final_grade(judge_grade: str, refused: bool, numeric: float | None) -> str:
-    """Combine the LLM judge with deterministic checks; the deterministic ones win.
-    Found in practice: a small judge model graded 93% of "not enough information"
-    answers as correct, so refusals are detected by rule, and a numeric answer that
-    misses the gold number cannot be "correct"."""
+    """Combine the LLM judge with rule-based checks; the rules win.
+    The 3B judge graded most "not enough information" replies as correct, so refusals
+    are detected by rule, and a numeric answer that misses the gold number can't be correct."""
     if refused:
         return "refused"
     if numeric == 0.0:

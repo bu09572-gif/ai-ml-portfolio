@@ -4,8 +4,7 @@
     python -m docpipe.run --scope all           # all 368 filings
     python -m docpipe.run --scope eval --limit 5
 
-Idempotent: files already in bronze are not downloaded again, so a re-run only
-fetches what is new (how incremental loads work in production pipelines).
+Files already in bronze are not downloaded again, so a re-run only fetches new ones.
 """
 from __future__ import annotations
 
@@ -48,7 +47,7 @@ def ingest(docs: pd.DataFrame, workers: int = 8) -> tuple[pd.DataFrame, dict]:
             meta = futures[fut]
             try:
                 f = fut.result()
-            except Exception as e:  # keep going; failures are reported, not hidden
+            except Exception as e:  # record the failure and continue
                 failures.append({"doc_id": meta["doc_name"], "error": repr(e)[:200]})
                 continue
             with storage.fs_for(_bronze_pdf(f.doc_id)).open(_bronze_pdf(f.doc_id), "wb") as fh:

@@ -1,154 +1,129 @@
-# AI / ML portfolio: shared foundations + sector projects
+# Document Q&A over SEC filings: pipeline, retrieval and evaluation
 
-Every project in this repo runs on **real public data** and is scored by the same evaluation platform, so each one comes with measured numbers, not claims.
+This repo has three pieces that I plan to reuse across later projects:
 
-The repo is built in layers:
+- `src/docpipe`: downloads filings, extracts page text, chunks it, and runs data checks
+- `src/docqa`: retrieval (BM25 with metadata filters) and LLM answers with page citations
+- `src/evalkit`: evaluation of retrieval and answers, plus a regression check that runs in CI
 
-1. **Foundations** (this first release, all three are built and measured):
-   - `src/docpipe`: **document data pipeline**. Real SEC filings in, quality-checked, retrieval-ready chunks out.
-   - `src/docqa`: **document Q&A (RAG) with citations**. Search plus LLM answers that cite the exact filing page. The default model is a **free open-source model** (Qwen2.5-3B via Ollama, no API key), and Groq (free tier) and Claude are optional.
-   - `src/evalkit`: **evaluation platform**. Retrieval metrics, LLM-graded answer accuracy, citation checks, cost and latency, and a CI regression gate.
-2. **Sector projects** (healthcare, finance, tech/LLM, data engineering, insurance). Each reuses the foundations and gets its own folder and README as it is built.
+Everything runs on free tools. The default LLM is Qwen2.5-3B through Ollama, so no API key is needed. Groq and Claude are optional backends.
 
-## Results so far (measured on real data)
+## Data
 
-**Data:** [FinanceBench](https://github.com/patronus-ai/financebench) (Patronus AI, 2023): real 10-K/10-Q/8-K filings and 150 questions written by finance analysts, each with a gold answer and the evidence page. Paper: [arXiv 2311.11944](https://arxiv.org/abs/2311.11944).
+[FinanceBench](https://github.com/patronus-ai/financebench) (Islam et al., 2023, [arXiv 2311.11944](https://arxiv.org/abs/2311.11944)): 368 public-company filings (10-K, 10-Q, 8-K, earnings releases) and an open set of 150 questions written by financial analysts. Each question has a reference answer and the page where the evidence is. The PDFs are downloaded at run time and are not stored in this repo.
 
-**Pipeline run** (`evals/results/financebench/pipeline_run.json`): 84 filings from 32 companies (165.5 MB of PDFs), giving 12,013 pages and 37,785 chunks. All 9 data-quality checks pass. 0.77% of pages have no text layer. Extracting the text took 53 s on a 4-core machine.
+I only process the 84 filings that the 150 questions refer to.
 
-**Data check:** all 189 of 189 expert evidence snippets appear on the page number our extractor assigned. This rules out an off-by-one page error that would silently corrupt every retrieval score.
+## Results
 
-**Retrieval ablation** (`evals/results/financebench/retrieval_summary.json`), 150 questions. "hit@k" means a gold evidence page is in the top k results:
+### Pipeline
 
-| Configuration (each row adds one change) | hit@1 | hit@5 | hit@10 | MRR | right filing in top 5 |
+From `evals/results/financebench/pipeline_run.json`:
+
+- 84 filings from 32 companies (165.5 MB of PDFs)
+- 12,013 pages and 37,785 chunks
+- all 9 data checks pass; 0.77% of pages have no text layer
+- text extraction took 53 s on a 4-core machine
+
+Before trusting any retrieval numbers, I checked that every evidence snippet in the dataset appears on the page number my extractor assigns it. All 189 do, so the page numbering lines up.
+
+### Retrieval
+
+150 questions. hit@k means one of the evidence pages is in the top k results. Each row adds one change to the row above.
+
+| Setup | hit@1 | hit@5 | hit@10 | MRR | right filing in top 5 |
 |---|---|---|---|---|---|
 | BM25 over all 84 filings | 0.053 | 0.113 | 0.160 | 0.082 | 0.513 |
-| + one result per page (dedupe overlapping chunks) | 0.053 | 0.120 | 0.167 | 0.084 | 0.520 |
-| + company and fiscal-year filters detected from the question | 0.113 | 0.233 | 0.313 | 0.160 | 0.800 |
-| + finance vocabulary expansion ("capex" → "purchases of property, plant and equipment") | 0.107 | **0.307** | **0.413** | 0.194 | 0.760 |
-| Upper reference: told which filing to search | 0.167 | 0.433 | 0.620 | 0.289 | 1.000 |
+| + one result per page | 0.053 | 0.120 | 0.167 | 0.084 | 0.520 |
+| + company / fiscal-year filter from the question | 0.113 | 0.233 | 0.313 | 0.160 | 0.800 |
+| + finance term expansion ("capex" → "purchases of property, plant and equipment") | 0.107 | 0.307 | 0.413 | 0.194 | 0.760 |
+| Reference: search only the correct filing | 0.167 | 0.433 | 0.620 | 0.289 | 1.000 |
 
-Metadata filtering doubled hit@5, and vocabulary expansion added another 7 points. Search takes about 14 ms per question on CPU.
+The company/year filter roughly doubled hit@5, and the term expansion added about 7 more points. A query takes about 14 ms on CPU.
 
-Caveat: the vocabulary list was written from general accounting terms, but it is evaluated on the same 150 questions, so treat the last row as slightly optimistic until it is checked on the held-out 10k-question set.
+The term list is generic accounting vocabulary, but I tested it on the same 150 questions, so the last row is probably a bit optimistic.
 
-**Answer accuracy (free model, all 150 questions, $0):** measured in GitHub Actions with the `free-llm-eval` workflow. Qwen2.5-3B wrote the answers from the top 5 retrieved pages, and Llama-3.2-3B graded them. Both models are open-source and ran on CPU through Ollama. Full per-question results: `evals/results/financebench/answers_ollama_qwen2.5-3b.jsonl`.
+### Answers
+
+All 150 questions, answered by Qwen2.5-3B from the top 5 retrieved pages and graded by Llama-3.2-3B. Both run on CPU through Ollama in GitHub Actions, so the cost is $0. Per-question results are in `evals/results/financebench/answers_ollama_qwen2.5-3b.jsonl`.
 
 | Metric | Value |
 |---|---|
-| **Accuracy (final grade)** | **19.3%** (29 of 150) |
-| Refused ("not enough information") | 67.3% |
-| Accuracy when it did answer | 59.2% |
-| Numeric answers matching the gold number (±1%) | 48.6% of 37 checked |
-| Accuracy when the evidence page was retrieved vs. not | 45.7% vs. 7.7% |
-| Refusal rate when the evidence page was retrieved vs. not | 28.3% vs. 84.6% |
-| Answers that cite a source / cited pages that are gold pages | 35.3% / 35.5% |
-| Latency p50 / p95 (CPU, GitHub runner) | 42 s / 97 s |
-| Cost | $0 |
+| Accuracy | 19.3% (29 / 150) |
+| Said "not enough information" | 67.3% |
+| Accuracy when it gave an answer | 59.2% |
+| Numeric answers within 1% of the reference | 48.6% (of 37 checked) |
+| Accuracy: evidence page retrieved vs. not | 45.7% vs. 7.7% |
+| "Not enough information": evidence page retrieved vs. not | 28.3% vs. 84.6% |
+| Answers with a citation / citations pointing at an evidence page | 35.3% / 35.5% |
+| Latency p50 / p95 | 42 s / 97 s |
 
-What the evaluation platform caught:
-1. **The LLM judge was unreliable.** Alone, it scored the system at 94%. It graded 93% of "not enough information" refusals as correct. The platform now detects refusals by rule and cross-checks numeric answers against the gold number, and those rules override the judge (`evalkit.metrics.final_grade`). Without this check the headline number would have been 94% instead of 19%.
-2. **Retrieval is the bottleneck, not the model.** When the right page was retrieved, accuracy was 6 times higher and refusals dropped from 85% to 28%. The next improvement is better retrieval (dense/hybrid search, a reranker, choosing the right filing), not a bigger model.
-3. **For context only:** the FinanceBench paper reports that GPT-4-Turbo with a shared vector store got 81% of questions wrong or refused, which means about 19% correct. Our free 3B setup lands in the same range. The setups differ, so this is not a head-to-head comparison.
+Notes:
 
-Caveat: 12 of the 49 answered questions have no number to check, and for those the final grade still relies on the small judge, so "accuracy when it did answer" may be a little optimistic.
+- The LLM judge on its own gave 94%. When I looked at the graded answers, it was marking most "not enough information" replies as correct (93% of them). So the final grade now treats those replies as refusals by rule, and a numeric answer that misses the reference number can't be graded correct (`evalkit.metrics.final_grade`). That is where the 19.3% comes from.
+- 12 of the 49 answered questions have no number to check. For those the grade still comes from the small judge, so the 59.2% may be a little high.
+- Most of the misses come from retrieval. With the evidence page in context, accuracy goes from 8% to 46%. Better retrieval (dense or hybrid search, a reranker, picking the right filing first) is the next step, more than a bigger model.
+- For rough context only: the FinanceBench paper reports GPT-4-Turbo with a shared vector store at about 19% correct. The setups are different.
 
-Dense and hybrid retrieval rows are added by the `ci` workflow (`--dense`).
+The CI workflow also runs dense and hybrid retrieval (`--dense`).
 
-## How the three foundations fit together
+## How it fits together
 
 ```
-FinanceBench PDFs ──► docpipe ─────────────────────────────► docqa ──────────────────────► evalkit
-                                                             LLM: Ollama (free, default) |
-                                                             Groq (free tier) | Claude
- (GitHub, 368 filings)  fetch (retries, idempotent)          BM25 index (scipy sparse)    retrieval hit@k / MRR
-                        bronze: raw PDFs + sha256 manifest   company/year filters         ablation table
-                        silver: page text (pypdfium2)        query expansion              Claude answers with
-                        gold:   page-aware chunks            optional dense + RRF hybrid   answers vs gold
-                        9 data-quality checks + run report   FastAPI /search /ask          LLM judge + numeric match
-                        local disk or s3:// (DATA_ROOT)    page citations [S#]            cost, p50/p95 latency
-                                                                                           CI regression gate
+FinanceBench PDFs
+      │
+      ▼
+docpipe   fetch with retries; skip files already downloaded
+          bronze: raw PDFs + manifest with sha256
+          silver: page text (pypdfium2)
+          gold:   chunks that never cross a page, with company / filing / page metadata
+          data checks + run report; local disk or s3:// (DATA_ROOT)
+      │
+      ▼
+docqa     BM25 on a scipy sparse matrix, company/year filters, term expansion,
+          optional dense embeddings + reciprocal rank fusion
+          LLM answer with [S#] source tags mapped back to pages
+          FastAPI: /search, /ask
+      │
+      ▼
+evalkit   hit@k, MRR, LLM judge + rule checks, citation precision, latency, cost
+          regression gate against evals/baseline/
 ```
 
-## Run it
+## Running it
 
-In **GitHub Codespaces** (no local disk needed): click *Code → Codespaces → Create codespace*, then:
+The easiest way is a GitHub Codespace (Code → Codespaces → Create codespace). Ollama gets installed when the container is created.
 
 ```bash
-make pipeline      # download + process the 84 filings (about 1.5 min)
-make eval          # retrieval ablation table (free, no API key)
-make test          # unit tests
-make api           # http://localhost:8000/docs
-ollama pull qwen2.5:3b       # free local model (Ollama is installed when the Codespace is created)
-make eval-answers LIMIT=20   # answers + grading with the free model, $0
+make pipeline                # download and process the 84 filings (~1.5 min)
+make eval                    # retrieval table
+make test
+make api                     # http://localhost:8000/docs
+ollama pull qwen2.5:3b
+make eval-answers LIMIT=20   # answer + grade 20 questions with the local model
 ```
 
-**Choosing the LLM** (all optional; the default needs nothing):
+LLM backend, set with `LLM_PROVIDER`:
 
-| `LLM_PROVIDER` | Cost | Setup | Notes |
-|---|---|---|---|
-| `ollama` (default) | free | none | runs locally in Codespaces/Colab; `LLM_MODEL=llama3.2:3b` etc. |
-| `groq` | free tier, no credit card | `GROQ_API_KEY` from console.groq.com | much faster; rate-limited |
-| `anthropic` | paid | `ANTHROPIC_API_KEY` | native citation API; strongest answers |
-
-`DATA_ROOT=s3://your-bucket/portfolio make pipeline` writes the same bronze/silver/gold layout to S3 (`pip install -e ".[aws]"`), and Athena can query the parquet files from there.
-
-CI (`.github/workflows/ci.yml`) runs lint and tests on every push. It then runs the real-data pipeline and evaluation, and fails the build if hit@5, hit@10 or MRR drops more than 0.02 below `evals/baseline/financebench.json`. `free-llm-eval.yml` answers and grades all 150 questions with free local models across 10 parallel jobs, then commits the results.
-
-## Who this is for
-
-The foundations map onto these employers. Sector projects add their own lists.
-
-| Foundation | Anchor companies | Also doing similar work |
+| Value | Cost | Needs |
 |---|---|---|
-| Document Q&A over filings | Bloomberg, S&P Global, Morgan Stanley | JPMorgan Chase, Goldman Sachs, Moody's, BlackRock, Capital One, American Express, Wells Fargo, Intuit, Fidelity, State Street, Accenture, PwC, McKinsey (QuantumBlack), BCG X, IBM |
-| Evaluation platform | Scale AI, Databricks, Datadog | Anthropic, OpenAI, DataRobot, Microsoft, Google, Amazon/AWS, Salesforce, ServiceNow, Snowflake |
-| Document data pipeline | Snowflake, Databricks, Capital One | S&P Global, Bloomberg, Fidelity, Goldman Sachs, Oracle, SAP, Accenture, Cognizant |
+| `ollama` (default) | free | nothing; change the model with `LLM_MODEL` |
+| `groq` | free tier | `GROQ_API_KEY` |
+| `anthropic` | paid | `ANTHROPIC_API_KEY` |
 
-### Skills, tier 1: basics nearly every company expects
-| Skill | Where |
-|---|---|
-| Python packaging, CLI tools, tests, lint | `pyproject.toml`, `tests/`, `Makefile`, ruff |
-| SQL-ready columnar data (parquet), medallion layers | `src/docpipe/run.py`, `storage.py` |
-| Data-quality checks with clear pass/fail | `src/docpipe/quality.py` |
-| Retries, idempotent incremental loads | `sources/financebench.py`, `run.py` |
-| REST API with validation (FastAPI, Pydantic) | `src/docqa/api.py` |
-| CI/CD (GitHub Actions), cloud dev environment | `.github/workflows/ci.yml`, `.devcontainer/` |
-| Cloud storage (S3 via fsspec) | `src/docpipe/storage.py` |
-| Evaluation with held-out labels, honest reporting | `src/evalkit/` |
+`DATA_ROOT=s3://bucket/prefix` writes the same layout to S3 (`pip install -e ".[aws]"`), where Athena can read the parquet files.
 
-### Skills, tier 2: what LLM / GenAI teams ask for
-| Skill | Where |
-|---|---|
-| RAG: chunking, BM25, metadata filtering, hybrid (RRF) | `src/docpipe/chunk.py`, `src/docqa/retrieve.py` |
-| Grounded answers with citations (source tags; Claude citations API) | `src/docqa/answer.py` |
-| Provider-agnostic LLM layer (open-source local models, hosted APIs) | `src/docqa/llm.py` |
-| LLM-as-judge plus deterministic metrics | `src/evalkit/metrics.py` |
-| Ablation studies, retrieval metrics (hit@k, MRR) | `src/evalkit/run.py` |
-| Eval regression gates in CI | `src/evalkit/gate.py` |
-| Cost and latency tracking per request | `Answer.cost_usd`, `answers_summary.json` |
-| Refusal and fallback handling | `answer.py` (refusal stop reason, server-side fallback) |
+## CI
 
-**Resume keywords:** Python, RAG, BM25, hybrid retrieval, reciprocal rank fusion, Ollama, open-source LLMs (Qwen, Llama), Claude API, citations, LLM evaluation, LLM-as-judge, FastAPI, Pydantic, parquet, medallion architecture, data-quality checks, GitHub Actions, Codespaces, AWS S3, Athena, pytest.
+- `ci.yml`: lint, unit tests, then the pipeline and retrieval eval on the real filings. The build fails if hit@5, hit@10 or MRR drops more than 0.02 below `evals/baseline/financebench.json`.
+- `free-llm-eval.yml`: answers and grades all 150 questions with the local models, split across 10 parallel jobs, then commits the results. Starts from the Actions tab or when `evals/run-request.txt` changes.
 
-## How to explain this in an interview
+## Layout
 
-1. **Problem:** "Analysts need answers from 100-page SEC filings, and a wrong number is worse than no answer. I built the pipeline, the Q&A, and the evaluation that proves how good it is."
-2. **Data:** "I used FinanceBench, real filings with 150 expert questions and the evidence page for each. Before trusting any score, I checked that all 189 evidence snippets land on the page number my extractor assigns."
-3. **Ablation:** "Plain BM25 found the evidence page in the top 5 only 11% of the time. Detecting the company and fiscal year and filtering on them doubled that. A small finance glossary got it to 31%. Each change was measured separately."
-4. **Honesty:** "The glossary was evaluated on the same questions, so I say that number is optimistic. And the gap to the 43% you get when the right filing is known tells me where the next gain is: picking the right filing."
-5. **Don't trust the judge blindly:** "My LLM judge said 94%. When I audited it, I found it was marking 'I don't know' answers as correct. I added rule-based refusal detection and a numeric cross-check that override it, and the real number was 19%. That's the most important thing this platform did."
-6. **Where to improve:** "Accuracy was 46% when retrieval found the right page and 8% when it didn't, so retrieval is the bottleneck, not the model."
-7. **Production:** "The eval runs in CI and fails the build if retrieval drops more than 2 points, so a 'small refactor' can't quietly make answers worse."
-
-## Repo layout
 ```
-src/docpipe/     pipeline: sources/, extract.py, chunk.py, quality.py, storage.py, run.py
-src/docqa/       retrieve.py (BM25, filters, hybrid), llm.py (Ollama / Groq / Claude), answer.py (cited answers), api.py
-src/evalkit/     dataset.py (common eval format), metrics.py, run.py, gate.py
-evals/           baseline/ (committed gate thresholds), results/ (latest measured numbers)
-tests/           unit tests
+src/docpipe/   sources/, extract.py, chunk.py, quality.py, storage.py, run.py
+src/docqa/     retrieve.py, llm.py, answer.py, api.py
+src/evalkit/   dataset.py, metrics.py, run.py, gate.py
+evals/         baseline/, results/
+tests/
 ```
-
-## Data and license notes
-FinanceBench files are downloaded at run time from the authors' GitHub repo and are not stored in this repo. Cite: Islam et al., *FinanceBench: A New Benchmark for Financial Question Answering*, 2023.

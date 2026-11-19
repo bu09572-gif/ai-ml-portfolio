@@ -1,9 +1,9 @@
 """Silver pages -> gold chunks.
 
 Chunks never cross a page boundary, so every answer can cite an exact page.
-Long pages are split into overlapping word windows. Each chunk carries a short
-header (company, filing, period, page) because a bare paragraph like "Net sales
-increased 9%" is useless to retrieval without knowing whose sales they are.
+Long pages are split into overlapping word windows. Each chunk gets a short
+header (company, filing, period, page) so a paragraph like "Net sales increased 9%"
+can still be matched to the right company and year.
 """
 from __future__ import annotations
 
