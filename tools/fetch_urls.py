@@ -25,6 +25,16 @@ URLS = {
     "elliptic_txs_features.csv.zip": "https://data.pyg.org/datasets/elliptic/elliptic_txs_features.csv.zip",
     "elliptic_txs_classes.csv.zip": "https://data.pyg.org/datasets/elliptic/elliptic_txs_classes.csv.zip",
     "elliptic_txs_edgelist.csv.zip": "https://data.pyg.org/datasets/elliptic/elliptic_txs_edgelist.csv.zip",
+    # State AI rules for insurers. A list means: try each URL until one works.
+    "naic_ai_model_bulletin.pdf": [
+        "https://content.naic.org/sites/default/files/2023-12-4%20Model%20Bulletin_Adopted_0.pdf",
+        "https://content.naic.org/sites/default/files/inline-files/AI%20Model%20Bulletin%20-%20April%202024.pdf",
+        "https://content.naic.org/sites/default/files/call_materials/Model%20Bulletin%2010.23%20Clean.pdf"],
+    "naic_ai_bulletin_adoption_map.pdf": "https://content.naic.org/sites/default/files/legal-adoption-map-ai-model-bulletin.pdf",
+    "nydfs_circular_letter_2024_07.html": "https://www.dfs.ny.gov/industry-guidance/circular-letters/cl2024-07",
+    "colorado_reg_10_1_1_amended.pdf": [
+        "https://www.insurereinsure.com/wp-content/uploads/sites/919/2025/08/Amended-Regulation-10-1-1.pdf"],
+    "colorado_reg_10_1_1_notice.html": "https://doi.colorado.gov/announcements/notice-of-adoption-amended-regulation-10-1-1-governance-and-risk-management-framework",
 }
 # Files that change upstream (the weekly CMS export) must not be re-mirrored over the pinned copy.
 # If tools/fetch-only.txt lists names, only those are fetched, into their own manifest.
@@ -35,8 +45,14 @@ HF = {  # Hugging Face datasets: every parquet file of the default config
 }
 
 
-def get(url: str, dest: Path) -> dict:
-    r = requests.get(url, timeout=600, headers={"User-Agent": "portfolio-data-mirror"})
+def get(url, dest: Path) -> dict:
+    urls = url if isinstance(url, list) else [url]
+    for u in urls:
+        r = requests.get(u, timeout=600, headers={"User-Agent": "Mozilla/5.0 (portfolio-data-mirror)"})
+        if r.ok:
+            url = u
+            break
+        print("failed", r.status_code, u, flush=True)
     r.raise_for_status()
     dest.write_bytes(r.content)
     return {"url": url, "bytes": len(r.content), "sha256": hashlib.sha256(r.content).hexdigest()}
@@ -48,8 +64,11 @@ def main(out: Path) -> None:
     only = ONLY.read_text().split() if ONLY.exists() else []
     if only:
         for name in only:
-            manifest[name] = get(URLS[name], out / name)
-            print(name, manifest[name]["bytes"], manifest[name]["sha256"], flush=True)
+            try:
+                manifest[name] = get(URLS[name], out / name)
+                print(name, manifest[name]["bytes"], manifest[name]["sha256"], flush=True)
+            except requests.RequestException as e:
+                print("FAILED", name, e, flush=True)
         (out / f"manifest_{only[0].split('.')[0].split('_')[0]}.json").write_text(json.dumps(manifest, indent=2))
         return
     for name, url in URLS.items():
