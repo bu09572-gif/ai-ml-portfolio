@@ -1,0 +1,79 @@
+{
+  "model": "qwen2.5:3b",
+  "notes": 39,
+  "policies": {
+    "blepharoplasty": {
+      "lcd": "L34411",
+      "passages": 2,
+      "criteria_extracted": 7,
+      "criteria_quote_verified": 6
+    },
+    "botulinum toxin": {
+      "lcd": "L35170",
+      "passages": 36,
+      "criteria_extracted": 122,
+      "criteria_quote_verified": 114
+    },
+    "varicose vein treatment": {
+      "lcd": "L33575",
+      "passages": 2,
+      "criteria_extracted": 30,
+      "criteria_quote_verified": 26
+    },
+    "cervical fusion": {
+      "lcd": "L39741",
+      "passages": 6,
+      "criteria_extracted": 38,
+      "criteria_quote_verified": 34
+    },
+    "facet joint injection": {
+      "lcd": "L33930",
+      "passages": 6,
+      "criteria_extracted": 32,
+      "criteria_quote_verified": 25
+    },
+    "sleep testing": {
+      "lcd": "L33405",
+      "passages": 16,
+      "criteria_extracted": 77,
+      "criteria_quote_verified": 60
+    }
+  },
+  "criteria_quote_verified_rate": 0.866,
+  "control": {
+    "requests": 39,
+    "criteria_checked": 296,
+    "model_status_share": {
+      "not_met": 0.676,
+      "not_documented": 0.324
+    },
+    "final_status_share": {
+      "not_documented": 1.0
+    },
+    "met_or_not_met_with_verified_quote": 0.0,
+    "decisions": {
+      "missing documentation": 39
+    },
+    "median_latency_s": 13.95
+  },
+  "matched": {
+    "requests": 39,
+    "criteria_checked": 296,
+    "model_status_share": {
+      "not_met": 0.841,
+      "not_documented": 0.149,
+      "met": 0.01
+    },
+    "final_status_share": {
+      "not_documented": 0.99,
+      "met": 0.007,
+      "not_met": 0.003
+    },
+    "met_or_not_met_with_verified_quote": 0.012,
+    "decisions": {
+      "missing documentation": 38,
+      "criterion not met": 1
+    },
+    "median_latency_s": 9.8
+  }
+}

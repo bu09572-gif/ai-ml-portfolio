@@ -1,0 +1,1580 @@
+{
+  "blepharoplasty": {
+    "lcd_id": 34411,
+    "display_id": "L34411",
+    "title": "Blepharoplasty, Eyelid Surgery, and Brow Lift",
+    "passages": 2,
+    "criteria": [
+      {
+        "passage": 0,
+        "criterion": "Surgeries performed solely for cosmetic reasons are not considered reasonable and necessary and therefore, not covered by Medicare.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "Upper blepharoplasty (removal of upper eyelid skin) and/or repair of blepharoptosis (drooping of the upper eyelid, which relates to the position of the eyelid margin with respect to the eyeball and visual axis) is considered functional in nature when the upper lid position or overhanging skin is sufficiently low to produce a functional deficit related to visual field impairment or brow fatigue.",
+        "verified": false
+      },
+      {
+        "passage": 0,
+        "criterion": "Other functional indications for upper blepharoplasty include: - Dermatochalasis: excess skin with loss of elasticity that is usually the result of the aging process",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "Chronic dermatitis due to blepharochalasis (excess skin associated with chronic recurrent eyelid edema that physically stretches the skin) due to severe allergy or thyroid eye disease",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "Significant/extreme difficulty fitting spectacles due to excessive eyelid tissue",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "Primary essential idiopathic blepharospasm (uncontrollable spasms of the periorbital muscles) that is debilitating for which all other treatments have failed or are contraindicated",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "Anophthalmic socket with ptosis contributing to difficulty fitting a prosthesis",
+        "verified": true
+      }
+    ]
+  },
+  "botulinum toxin": {
+    "lcd_id": 35170,
+    "display_id": "L35170",
+    "title": "Botulinum Toxin Injections",
+    "passages": 36,
+    "criteria": [
+      {
+        "passage": 0,
+        "criterion": "- Botulinum toxin dosing must be used in accordance with the United States Food and Drug Administration (FDA) approved labeling.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "- For off-label botulinum toxin use without an FDA approved dosing indication, the qualified healthcare professional must provide robust published clinical evidence to support the dosing use.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "- For off-label botulinum toxin use without an FDA approved serotype indication, the qualified healthcare professional must provide robust published clinical evidence to support the serotype use.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "- For new FDA approved indications for botulinum toxin serotype or dosing recommendations after the effective date of this policy, the qualified healthcare professional must provide the updated published FDA prescribing information to support the use of the botulinum toxin serotype or dose.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "- Botulinum toxin administration must not be given more frequently than every 12 weeks, regardless of diagnosis, unless specifically addressed in the policy.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "- The use of botulinum toxin for all cosmetic procedures is not a covered benefit under Medicare.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "- When botulinum toxin is used for an approved diagnosis, but the botulinum is also being used with cosmetic intent, the entire claim for the botulinum is not considered reasonable and necessary.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "- The potency of each of the botulinum toxin serotypes are not interchangeable with other botulinum toxin serotypes and, therefore, units of biological activity of any 1 serotype cannot be compared to or converted into units of any other botulinum toxin serotype.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "- Botulinum toxin injections (BTIs) are not considered reasonable and necessary for patients with a contraindication to botulinum toxin.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "- BTIs are not considered reasonable and necessary for patients with existing medical conditions which could affect the neuromuscular function.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "- BTIs are not considered reasonable and necessary for patients with hypersensitivity to any botulinum toxin preparation or to any of the components in the formulation of the serotype.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "- BTIs are not considered reasonable and necessary for patients with severe clotting disorders.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "- BTIs are not considered reasonable and necessary for patients with an infection at the injection site.",
+        "verified": true
+      },
+      {
+        "passage": 4,
+        "criterion": "To diagnose a patient with blepharospasm, clinicians should observe for involuntary contraction of the orbicularis oculi and other muscles involved in eyelid closure, which can range from sporadic and mildly irritating to functionally blinding.",
+        "verified": true
+      },
+      {
+        "passage": 5,
+        "criterion": "Objective documentation of the clinical features consistent with the diagnosis of blepharospasm;",
+        "verified": true
+      },
+      {
+        "passage": 5,
+        "criterion": "Chronic blepharospasm of at least 30 days duration measured using an objective clinical scale*;",
+        "verified": true
+      },
+      {
+        "passage": 5,
+        "criterion": "BTI therapy is accepted first line treatment for patients with blepharospasm.",
+        "verified": true
+      },
+      {
+        "passage": 6,
+        "criterion": "- Objective documentation of the clinical features consistent with the diagnosis of blepharospasm associated with orofacial dystonia; AND",
+        "verified": true
+      },
+      {
+        "passage": 6,
+        "criterion": "- Moderate to severe chronic blepharospasm associated with orofacial dystonia measured on objective clinical scale\\*",
+        "verified": true
+      },
+      {
+        "passage": 6,
+        "criterion": "- OnabotulinumtoxinA injection therapy is accepted first line treatment for patients with blepharospasm associated with orofacial dystonia.",
+        "verified": true
+      },
+      {
+        "passage": 8,
+        "criterion": "The patients with primary CD have no evidence by history, physical examination or laboratory studies (except primary dystonia gene) of any secondary cause for the dystonic symptoms.",
+        "verified": true
+      },
+      {
+        "passage": 8,
+        "criterion": "CD is a part of either generalized or focal dystonic syndrome which may have a genetic basis, with an identifiable genetic association.",
+        "verified": true
+      },
+      {
+        "passage": 8,
+        "criterion": "CD is not the only cause of neck rotation and torticollis may be caused by orthopedic, musculofibrotic, infectious and other neurological conditions that affect the anatomy of the neck.",
+        "verified": true
+      },
+      {
+        "passage": 8,
+        "criterion": "The clinical diagnosis must be associated with excessive pulling of the muscles of the neck and shoulder.",
+        "verified": false
+      },
+      {
+        "passage": 8,
+        "criterion": "The dystonic movements, which may be twisting, sustained, jerking, or tremulous, are the hallmark symptoms.",
+        "verified": false
+      },
+      {
+        "passage": 8,
+        "criterion": "The abnormal postures or movements, often exacerbated by voluntary actions, can lead to significant neck pain or discomfort.",
+        "verified": true
+      },
+      {
+        "passage": 8,
+        "criterion": "The presence of such symptoms, alongside the use of specific maneuvers like gestes antagonistes, which can temporarily alleviate dystonic postures confirms the clinical diagnosis.",
+        "verified": true
+      },
+      {
+        "passage": 9,
+        "criterion": "The documentation supports a diagnosis of CD;",
+        "verified": true
+      },
+      {
+        "passage": 9,
+        "criterion": "The etiology of the central nervous system impairment which is causing the CD is documented;",
+        "verified": true
+      },
+      {
+        "passage": 9,
+        "criterion": "Beneficiary has a history of recurrent clonic or tonic involuntary contractions of 1 or more of the following muscles: sternocleidomastoid, splenius, trapezius and/or posterior cervical muscles;",
+        "verified": true
+      },
+      {
+        "passage": 9,
+        "criterion": "There is moderate to severe CD assessed by an objective scale\\*;",
+        "verified": true
+      },
+      {
+        "passage": 9,
+        "criterion": "There are objective measurements of abnormal posturing, with limited range of motion in the neck, or sustained head tilt;",
+        "verified": true
+      },
+      {
+        "passage": 9,
+        "criterion": "The duration of the CD is greater than 6 months;",
+        "verified": true
+      },
+      {
+        "passage": 9,
+        "criterion": "* The objective assessment must be performed and documented at baseline, after each diagnostic procedure, and at each follow-up assessment using the same scale during each assessment.",
+        "verified": true
+      },
+      {
+        "passage": 12,
+        "criterion": "- The BTI is being used only for the indication of chronic migraine prophylaxis, AND",
+        "verified": true
+      },
+      {
+        "passage": 12,
+        "criterion": "- The monthly headache days have occurred \u226515headaches days per month, AND",
+        "verified": true
+      },
+      {
+        "passage": 12,
+        "criterion": "- The monthly migraine headache days have occurred \u2265\u20098 migraine headache days per month, AND",
+        "verified": true
+      },
+      {
+        "passage": 12,
+        "criterion": "- The migraine headaches are documented to be lasting for a duration \u22654 hours on a migraine day, AND",
+        "verified": true
+      },
+      {
+        "passage": 12,
+        "criterion": "- The chronic headaches have been present for a period of at least 3 months, AND",
+        "verified": true
+      },
+      {
+        "passage": 12,
+        "criterion": "- The beneficiary has had a trial of and inadequate response to a 2-month trial of at least 1 agent in any 2 of the following classes or has contraindication to the following medications; AND",
+        "verified": true
+      },
+      {
+        "passage": 12,
+        "criterion": "- Antidepressant class: amitriptyline, venlafaxine, nortriptyline, duloxetine; OR",
+        "verified": true
+      },
+      {
+        "passage": 12,
+        "criterion": "- Beta blocker class: metoprolol, propranolol, timolol (oral), nadolol, atenolol, nebivolol; OR",
+        "verified": true
+      },
+      {
+        "passage": 12,
+        "criterion": "- Calcium channel blocker class: verapamil; OR",
+        "verified": true
+      },
+      {
+        "passage": 12,
+        "criterion": "- Antiepileptic class: valproate sodium, divalproex sodium, topiramate, gabapentin.",
+        "verified": true
+      },
+      {
+        "passage": 13,
+        "criterion": "The 2-month trial of the oral pharmacologic classes above for chronic migraine prophylaxis must have been at the target dose of the usual effective dose or an intolerance to the 2 agents in each class.",
+        "verified": true
+      },
+      {
+        "passage": 13,
+        "criterion": "If the beneficiary also currently using a calcitonin gene-related peptide (CGRP) agent for chronic migraine prophylaxis and is going to be using CGRP and botulinum toxin together the following must apply:",
+        "verified": true
+      },
+      {
+        "passage": 13,
+        "criterion": "The beneficiary had a reduction in the overall number of migraine days or reduction in number of severe migraine days per month with CGRP use, but still has chronic migraines requiring additional therapy for chronic migraine prevention.",
+        "verified": true
+      },
+      {
+        "passage": 13,
+        "criterion": "The headaches are causing an objective significant functional disability.",
+        "verified": true
+      },
+      {
+        "passage": 13,
+        "criterion": "The headaches are moderate to severe intensity with typical migraine headache characteristics.",
+        "verified": true
+      },
+      {
+        "passage": 13,
+        "criterion": "The botulinum toxin serotype is approved by the FDA for chronic migraine prophylaxis.",
+        "verified": true
+      },
+      {
+        "passage": 13,
+        "criterion": "The number of the total chronic migraine headache days have demonstrated \u226550% reduction in migraine headache days per month.",
+        "verified": true
+      },
+      {
+        "passage": 13,
+        "criterion": "The frequency of the total chronic migraine headache episodes has demonstrated \u226550% reduction in migraine headache episodes per month.",
+        "verified": true
+      },
+      {
+        "passage": 13,
+        "criterion": "There is a minimal important change (MIC) and significant reduction of headache-related disability and objective improvement in functioning.",
+        "verified": true
+      },
+      {
+        "passage": 15,
+        "criterion": "Objective documentation of the clinical features consistent with the diagnosis of FHD;",
+        "verified": true
+      },
+      {
+        "passage": 15,
+        "criterion": "Moderate to severe chronic FHDs measured on objective clinical scale*;",
+        "verified": true
+      },
+      {
+        "passage": 15,
+        "criterion": "The injections are used with guidance either by ultrasound or by electromyography (EMG) with or without electrostimulation.",
+        "verified": true
+      },
+      {
+        "passage": 17,
+        "criterion": "- BTI therapy is accepted as first line treatment for patients with primary or secondary HFS; AND",
+        "verified": true
+      },
+      {
+        "passage": 17,
+        "criterion": "- Objective documentation of the clinical features consistent with the diagnosis of primary or secondary HFS; AND",
+        "verified": true
+      },
+      {
+        "passage": 17,
+        "criterion": "- Moderate to severe primary or secondary HFS measured on objective clinical scale to measure severity, complexity and psychosocial aspects of HFS.*",
+        "verified": true
+      },
+      {
+        "passage": 18,
+        "criterion": "Documentation of informed clinical decision regarding repeat botulinum injections;",
+        "verified": true
+      },
+      {
+        "passage": 18,
+        "criterion": "Reassessment of the degree of persistent moderate to severe HFS;",
+        "verified": true
+      },
+      {
+        "passage": 19,
+        "criterion": "- Beneficiary has a diagnosis of primary or secondary axillary hyperhidrosis; AND",
+        "verified": true
+      },
+      {
+        "passage": 19,
+        "criterion": "- Excessive sweating in the axilla lasting 6 months or more; AND",
+        "verified": true
+      },
+      {
+        "passage": 19,
+        "criterion": "- Bilateral symmetric sweating in the axilla; AND",
+        "verified": true
+      },
+      {
+        "passage": 19,
+        "criterion": "- Cessation of focal sweating while asleep; AND",
+        "verified": true
+      },
+      {
+        "passage": 19,
+        "criterion": "- The failure of a 6-month trial to respond to other noninvasive conservative management for axillary hyperhidrosis (systemic anticholinergics, tranquilizers, topical dermatologics such as aluminum chloride, tannic acid, or glutaraldehyde, or non-steroid anti-inflammatory drugs); AND",
+        "verified": true
+      },
+      {
+        "passage": 19,
+        "criterion": "- Severe chronic hyperhidrosis measured on objective clinical scale\\*; AND",
+        "verified": true
+      },
+      {
+        "passage": 19,
+        "criterion": "- There is severe chronic axillary hyperhidrosis manifested by medical complications or skin maceration with secondary infection; AND",
+        "verified": true
+      },
+      {
+        "passage": 19,
+        "criterion": "- There is severe chronic axillary hyperhidrosis associated with and impairment of daily activities; AND",
+        "verified": true
+      },
+      {
+        "passage": 19,
+        "criterion": "- Significant functional impairment due to the hyperhidrosis",
+        "verified": true
+      },
+      {
+        "passage": 19,
+        "criterion": "\\* The objective assessment must be performed and documented at baseline, after each diagnostic procedure, and at each follow-up assessment using the same scale during each assessment, such as the Hyperhidrosis Disease Severity Scale (HDSS). 61,62",
+        "verified": true
+      },
+      {
+        "passage": 19,
+        "criterion": "- The initial administration of onabotulinumtoxinA is up to a total 50 Units per axilla. 27",
+        "verified": true
+      },
+      {
+        "passage": 19,
+        "criterion": "- Documentation of informed clinical decision regarding repeat botulinum toxin injections",
+        "verified": true
+      },
+      {
+        "passage": 21,
+        "criterion": "- Objective documentation of the clinical features consistent with the diagnosis of adductor type, ADSD; AND",
+        "verified": true
+      },
+      {
+        "passage": 21,
+        "criterion": "- Objective assessment and documentation to rule out non-organic voice disorders; AND",
+        "verified": true
+      },
+      {
+        "passage": 21,
+        "criterion": "- Moderate to severe chronic ADSD measured on objective clinical scale*; 64 AND",
+        "verified": true
+      },
+      {
+        "passage": 21,
+        "criterion": "- BTI therapy is an accepted FDA off-label use first line treatment for patients with ADSD.",
+        "verified": true
+      },
+      {
+        "passage": 21,
+        "criterion": "- Documentation of informed clinical decision regarding repeat botulinum toxin injections; AND",
+        "verified": true
+      },
+      {
+        "passage": 21,
+        "criterion": "- Reassessment of the degree of persistent LD and assessment of previous response to botulinum toxin.",
+        "verified": true
+      },
+      {
+        "passage": 21,
+        "criterion": "- A second injection of onabotulinumtoxinA in contralateral side at separate time (typically 2 to 4 weeks later); titrate to response for patients who require bilateral injections for ADSD.",
+        "verified": true
+      },
+      {
+        "passage": 21,
+        "criterion": "- Subsequent injections are usually given 12-week intervals (a maximum of 7 Units).",
+        "verified": true
+      },
+      {
+        "passage": 22,
+        "criterion": "- The documentation supports a diagnosis of neurogenic detrusor overactivity; AND",
+        "verified": true
+      },
+      {
+        "passage": 23,
+        "criterion": "- The etiology of the central nervous system impairment which is causing the neurogenic detrusor overactivity is documented; AND",
+        "verified": true
+      },
+      {
+        "passage": 23,
+        "criterion": "- There is moderate to severe neurogenic detrusor overactivity and/or detrusor sphincter dyssynergia assessed by an objective diagnostic testing; AND",
+        "verified": true
+      },
+      {
+        "passage": 23,
+        "criterion": "- The voiding dysfunction has failed or become refractory to conservative measures such as lifestyle interventions, bladder training, intermittent catheterizations, pelvic floor muscle exercises and anticholinergic drugs or beta-3 adrenergic agonists (in absence of absolute contraindication to the medications) for a minimum of 12 weeks.",
+        "verified": true
+      },
+      {
+        "passage": 23,
+        "criterion": "- Documentation of informed clinical decisions regarding repeat botulinum injections; AND",
+        "verified": true
+      },
+      {
+        "passage": 23,
+        "criterion": "- Reassessment of the degree of persistent neurogenic detrusor overactivity and assessment of previous response to botulinum toxin.",
+        "verified": true
+      },
+      {
+        "passage": 24,
+        "criterion": "The documentation supports a diagnosis of refractory overactive bladder; AND",
+        "verified": true
+      },
+      {
+        "passage": 24,
+        "criterion": "The OAB has been diagnosed by a history and physical exam and a urine analysis to rule out infection or blood in the urine; AND",
+        "verified": true
+      },
+      {
+        "passage": 24,
+        "criterion": "There is moderate to severe OAB assessed by an objective scale*; AND",
+        "verified": true
+      },
+      {
+        "passage": 24,
+        "criterion": "Conservative treatment for OAB has been tried but the OAB symptoms are refractory to a minimum of 12 weeks of standard of care treatment; AND",
+        "verified": false
+      },
+      {
+        "passage": 24,
+        "criterion": "Conservative management which may consist of education of normal bladder function, self-care practices, behavioral modifications, stress management practices, manual physical therapy, and combination therapy; AND",
+        "verified": true
+      },
+      {
+        "passage": 24,
+        "criterion": "Pharmacological therapy: anticholinergic or beta-3 adrenergic agonists (in absence of absolute contraindication to the medications); AND",
+        "verified": false
+      },
+      {
+        "passage": 24,
+        "criterion": "* The objective assessment must be performed and documented at baseline, after each diagnostic procedure, and at each follow-up assessment using the same scale during each assessment, such as the Overactive Bladder Symptom Score (OABSS), International Prostate Symptom Score\u2013Storage Subscore (IPSS-S), the modified Urgency Severity Scale (USS), and hypersensitive bladder (HSB).",
+        "verified": true
+      },
+      {
+        "passage": 25,
+        "criterion": "Interstitial cystitis/bladder pain syndrome (IC/BPS) is diagnosed based on characteristic symptoms that persist over time without evidence of infection or other disorders that could explain the symptoms.",
+        "verified": false
+      },
+      {
+        "passage": 25,
+        "criterion": "The patient should have bothersome bladder sensations perceived to be related to the urinary bladder, typically described as pain, pressure or discomfort.",
+        "verified": true
+      },
+      {
+        "passage": 25,
+        "criterion": "These sensations should be associated with lower urinary tract symptoms such as urinary frequency and urgency that have lasted for at least 6 weeks.",
+        "verified": true
+      },
+      {
+        "passage": 26,
+        "criterion": "- Diagnosis of IC/BPS established based on symptoms, frequency and cystoscopic findings consistent with IC/BPS.",
+        "verified": true
+      },
+      {
+        "passage": 26,
+        "criterion": "- IC/BPS are refractory or failed all other management options for a minimum of 6 months including:",
+        "verified": true
+      },
+      {
+        "passage": 26,
+        "criterion": "- Conservative management/standard of care which may consist of education of normal bladder function, self-care practices, behavioral modifications, stress management practices, manual physical therapy, and combination therapy",
+        "verified": true
+      },
+      {
+        "passage": 26,
+        "criterion": "- Pharmacological therapy (at least 1 agent)",
+        "verified": true
+      },
+      {
+        "passage": 26,
+        "criterion": "- Bladder instillations",
+        "verified": false
+      },
+      {
+        "passage": 26,
+        "criterion": "- Hydrodistention",
+        "verified": false
+      },
+      {
+        "passage": 29,
+        "criterion": "- Objective documentation of the clinical features consistent with the diagnosis of spasticity; AND",
+        "verified": true
+      },
+      {
+        "passage": 29,
+        "criterion": "- Moderate to severe chronic spasticity; AND",
+        "verified": true
+      },
+      {
+        "passage": 29,
+        "criterion": "- The clinical treatment goals are documented; AND",
+        "verified": true
+      },
+      {
+        "passage": 29,
+        "criterion": "*An objective assessment must be performed and documented at baseline, after each diagnostic procedure, and at each follow-up assessment using the same scale during each assessment.",
+        "verified": true
+      },
+      {
+        "passage": 30,
+        "criterion": "The initial dose of onabotulinumtoxinA is indicated for upper limb spasticity and lower limb spasticity in a pediatric beneficiary is based on the muscles affected and severity of muscle spasticity.",
+        "verified": true
+      },
+      {
+        "passage": 30,
+        "criterion": "The dose is divided among selected muscles at a given treatment session.",
+        "verified": true
+      },
+      {
+        "passage": 30,
+        "criterion": "The total initial dose of onabotulinumtoxinA for upper limb spasticity must not exceed a dose of 3-6 Units/kg up to a maximum 200 Units per upper limb.",
+        "verified": true
+      },
+      {
+        "passage": 30,
+        "criterion": "The total initial dose of onabotulinumtoxinA for lower limb spasticity must not exceed a dose of 4-8 Units/kg up to a maximum 300 Units per lower limb.",
+        "verified": true
+      },
+      {
+        "passage": 30,
+        "criterion": "The initial dose of abobotulinumtoxinA is indicated for upper limb spasticity and lower limb spasticity in a pediatric beneficiary is based on the muscles affected and severity of muscle spasticity.",
+        "verified": false
+      },
+      {
+        "passage": 30,
+        "criterion": "The total initial dose of abobotulinumtoxinA for upper limb spasticity must not exceed a dose of 8-15 Units/kg per upper limb up to a maximum 1500 Units per upper limb.",
+        "verified": true
+      },
+      {
+        "passage": 30,
+        "criterion": "The total initial dose of abobotulinumtoxinA for lower limb spasticity must not exceed a dose of 10-15 Units/kg per lower limb up to a maximum 1000 Units per lower limbs, or a total dose of 1500 Units per treatment session of multiple limbs.",
+        "verified": true
+      },
+      {
+        "passage": 31,
+        "criterion": "Reassessment of the degree of persistent spasticity and assessment of the previous response to botulinum toxin;",
+        "verified": true
+      },
+      {
+        "passage": 31,
+        "criterion": "Electromyography, electrical stimulation, and/or ultrasonography rather than site pain or tenderness, is required to determine injection site(s) for botulinum toxin especially for spastic conditions of the face, neck and upper extremity.",
+        "verified": true
+      },
+      {
+        "passage": 33,
+        "criterion": "Objective documentation of the clinical features consistent with the diagnosis of strabismus;",
+        "verified": true
+      },
+      {
+        "passage": 33,
+        "criterion": "Moderate to severe strabismus*",
+        "verified": true
+      },
+      {
+        "passage": 33,
+        "criterion": "The clinical objective treatment goals are documented.",
+        "verified": true
+      },
+      {
+        "passage": 35,
+        "criterion": "All aspects of care must be within the provider's medical licensure and scope of practice.",
+        "verified": true
+      },
+      {
+        "passage": 35,
+        "criterion": "Reimbursement for procedures utilizing imaging techniques may be made to providers who meet training requirements for the procedures in this policy only if their respective state allows such in their practice act and formally licenses or certifies the practitioner to use and interpret these imaging modalities (ionizing radiation and associated contrast material, magnetic resonance imaging, ultrasound).",
+        "verified": true
+      },
+      {
+        "passage": 35,
+        "criterion": "At a minimum, training must cover and develop an understanding of anatomy and drug pharmacodynamics and kinetics as well as proficiency in diagnosis and management of disease, the technical performance of the procedure, and utilization of the required associated imaging modalities.",
+        "verified": true
+      }
+    ]
+  },
+  "varicose vein treatment": {
+    "lcd_id": 33575,
+    "display_id": "L33575",
+    "title": "Varicose Veins of the Lower Extremity, Treatment of",
+    "passages": 2,
+    "criteria": [
+      {
+        "passage": 0,
+        "criterion": "Varicose veins are caused by venous insufficiency as a result of valve reflux (incompetence).",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "The venous insufficiency results in dilated, tortuous, superficial vessels that protrude from the skin of the lower extremities.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "Veins are most often treated for cosmetic purposes.",
+        "verified": false
+      },
+      {
+        "passage": 0,
+        "criterion": "The accepted treatments for eliminating saphenous (great saphenous vein (GSV), anterior accessory GSV (AAGSV), small saphenous vein (SSV)) reflux (saphenofemoral or saphenopopliteal) are radiofrequency ablation (RFA), laser ablation (EVLA), polidocanol microfoam (PEM), cyanoacrylate embolization (CAE) ablation, and mechanochemical ablation (MOCA).",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "Coverage is only for devices with FDA approval or clearance consistent with saphenous ablation and used according to its approved instructions for use (IFU).",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "RFA and EVLA are classified as thermal tumescent (TT) techniques; PEM, CAE and MOCA are non-thermal non-tumescent (NTNT) techniques.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "Each endovenous ablation approach has advantages and disadvantages; which one is best depends on the unique clinical/anatomical scenario.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "While saphenous vein ligation and stripping remains an important option in selected cases, it has been largely supplanted by endovenous ablation therapy as primary treatment of saphenous (axial/truncal) vein incompetence.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "The treatments to eliminate the saphenous vein reflux will be considered medically necessary if the patient remains symptomatic after a six-week trial of conservative therapy and has reflux in a saphenous vein.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "The treatments for symptomatic varicose tributaries are either compressive sclerotherapy or microphlebectomy.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "The treatments of the tributary veins will be considered medically necessary if saphenous reflux is not present or already successfully eliminated, the veins are > than 4 mm in diameter and if the patient remains symptomatic after a six-week trial of conservative therapy.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "The components of the conservative therapy include, but are not limited to: weight reduction, a daily exercise plan, periodic leg elevation, and the use of graduated compression stockings.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "Inability to tolerate compressive bandages or stockings and the reason for such intolerance must be documented in the medical record.",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "- stasis ulcer of the lower leg",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "- significant pain and significant edema that interferes with activities of daily living",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "- bleeding associated with the diseased vessels of the lower extremities",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "- recurrent episodes of superficial phlebitis",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "- stasis dermatitis",
+        "verified": false
+      },
+      {
+        "passage": 1,
+        "criterion": "- refractory dependent edema",
+        "verified": false
+      },
+      {
+        "passage": 1,
+        "criterion": "- a maximum vein diameter of 12 mm for CAE, PEM and MOCA",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "- absence of thrombosis or vein tortuosity",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "- ultrasound guidance in the payment for endovenous ablation procedures",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "- Coil embolization is non-covered for any varicose vein procedure",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "- Surgery, endovenous ablation, or sclerotherapy are typically not performed for varicose veins that develop or worsen during pregnancy",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "- Reinjection following recanalization or failure of vein closure without recurrent signs or symptoms",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "- Sclerotherapy of the saphenous vein at its junction with the deep system",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "- Noncompressive sclerotherapy",
+        "verified": false
+      },
+      {
+        "passage": 1,
+        "criterion": "- Compressive sclerotherapy for large, extensive or truncal varicosities",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "- Sclerotherapy, ligation and/or stripping of varicose veins, or endovenous ablation therapy are generally not covered for patients with severe distal arterial occlusive disease; obliteration of deep venous system; an allergy to the sclerosant; or a hypercoaguable state",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "- Any interventional treatment that uses equipment or sclerosants not approved for such purposes by the FDA",
+        "verified": true
+      }
+    ]
+  },
+  "cervical fusion": {
+    "lcd_id": 39741,
+    "display_id": "L39741",
+    "title": "Cervical Fusion",
+    "passages": 6,
+    "criteria": [
+      {
+        "passage": 0,
+        "criterion": "- Persistent or recurrent moderate or severe arm pain (4 or more on the visual analog scale or equivalent) present for a minimum of 12 weeks within the current episode of arm pain with documented failure to respond to multimodal conservative management (as tolerated) in the absence of exceptional circumstances (below) AND",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "- Nerve compression negatively impacts activities of daily living AND",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "- All other potential sources of pain/neurological deficit have been excluded AND",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "- Imaging (MRI or CT) evidence of central, lateral recess or foraminal stenosis at the level corresponding with clinical myotome signs or symptoms and including at least one of the following:",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "- Cervical degenerative disc disease as indicated by the presence of one or more of the following findings: herniated nucleus pulposus, narrowing of the intervertebral disc, disc osteophytes, facet hypertrophy, or synovial cysts.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "- Tumors (primary or metastatic)",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "- Post infection radiographic findings",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "- Spinal instability as defined by subluxation or translation more than 3.5 mm on static lateral views or dynamic radiographs OR sagittal plane angulation of more than 11 degrees between adjacent segments.",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "Severe radicular pain defined as pain limiting ability to perform activities of daily living (AOLs) and \u22657/10 on VAS or equivalent scale2 AND associated with confirmatory imaging (computed tomography, magnetic resonance imaging) and clinical-radiological correlation",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "Loss of bowel or bladder control due to cervical spinal cord compression.",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "- Persistent or recurrent moderate or severe arm pain (4 or more on the visual analog scale or equivalent) present for a minimum of 12 weeks within the episode of arm pain with documented failure to respond to multimodal conservative management (as tolerated) in the absence of exceptional circumstances (below) OR",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "- Nerve compression negatively impacts activities of daily living OR",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "- Spastic gait, loss of manual dexterity, problems with sphincter control AND",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "- Imaging (MRI or CT) evidence of central stenosis at the level corresponding with clinical signs or symptoms and including at least one of the following:",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "- Congenital short pedicles",
+        "verified": false
+      },
+      {
+        "passage": 1,
+        "criterion": "- Ossification of the posterior longitudinal ligament.",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "- Cord compression with or without increased cord signal.",
+        "verified": true
+      },
+      {
+        "passage": 2,
+        "criterion": "- Significant motor weakness interfering with ADLs OR",
+        "verified": true
+      },
+      {
+        "passage": 2,
+        "criterion": "- Severe radicular pain defined as pain limiting ability to perform activities of daily living (AOLs) and \u22657/10 on Visual Analog Scale (VAS) or equivalent scale 2 and associated with confirmatory imaging (computed tomography, magnetic resonance imaging) and clinical-radiological correlation.",
+        "verified": true
+      },
+      {
+        "passage": 2,
+        "criterion": "- Loss of bladder or bowel function due to cervical spinal cord compression.",
+        "verified": true
+      },
+      {
+        "passage": 2,
+        "criterion": "- Cervical fusion surgery is considered reasonable and necessary for the decompression or stabilization of the cervical spine for the following indications:",
+        "verified": true
+      },
+      {
+        "passage": 2,
+        "criterion": "- Fractures or dislocations which are likely to result spinal instability without neurological defects OR",
+        "verified": true
+      },
+      {
+        "passage": 2,
+        "criterion": "- Fractures or dislocations associated with neurological defects at the affected level OR",
+        "verified": true
+      },
+      {
+        "passage": 2,
+        "criterion": "- Instability is present.",
+        "verified": false
+      },
+      {
+        "passage": 2,
+        "criterion": "- Spinal tumors involving the spine or spinal canal when:",
+        "verified": true
+      },
+      {
+        "passage": 2,
+        "criterion": "- Malignant or benign tumors which have caused instability or neurologic deficit where treatment of the tumor will likely require stabilization of the spine. OR",
+        "verified": false
+      },
+      {
+        "passage": 2,
+        "criterion": "- Expected treatment of the tumor whether by chemotherapy or radiation therapy or surgery will likely cause spinal instability or neurologic deficits. OR",
+        "verified": false
+      },
+      {
+        "passage": 2,
+        "criterion": "- Infection involving the spine in the form of discitis, osteomyelitis, or epidural abscess when:",
+        "verified": true
+      },
+      {
+        "passage": 2,
+        "criterion": "- Imaging or other studies (MRI, biopsy, bone aspirate) demonstrating infection AND",
+        "verified": true
+      },
+      {
+        "passage": 2,
+        "criterion": "- Imaging evidence of vertebral body destruction OR documentation that spinal debridement will cause vertebral instability 5,6 OR",
+        "verified": true
+      },
+      {
+        "passage": 2,
+        "criterion": "- Deformities that include the cervical spine including when:",
+        "verified": true
+      },
+      {
+        "passage": 2,
+        "criterion": "- Cervical kyphosis associated with cord compression or Atlantoaxial (C1-C2) subluxation or Basilar invagination of the odontoid process into the foramen magnum; or Subaxial (C2-T1) instability kyphosis, head drop syndrome, post-laminectomy deformity OR",
+        "verified": true
+      },
+      {
+        "passage": 2,
+        "criterion": "- Symptomatic pseudarthrosis (non-union of prior fusion) with radiological (e.g., CT or MRI) demonstration of non-union of prior fusion (lack of bridging bone or abnormal motion at fused segment) after 12 months since fusion surgery or with radiographic evidence of hardware failure (fracture or displacement). OR",
+        "verified": true
+      },
+      {
+        "passage": 2,
+        "criterion": "- Spinal instability after laminectomy OR",
+        "verified": true
+      },
+      {
+        "passage": 2,
+        "criterion": "- Rheumatoid arthritis with associated instability",
+        "verified": true
+      },
+      {
+        "passage": 3,
+        "criterion": "- Cervical degenerative spondylolisthesis with spinal instability (Anterolisthesis/Posterolisthesis)",
+        "verified": true
+      },
+      {
+        "passage": 3,
+        "criterion": "f. Substantial functional limitation is present such as severe neck pain or difficulty ambulating or decrease ability to perform ADLs or ability to maintain forward gaze.",
+        "verified": true
+      },
+      {
+        "passage": 3,
+        "criterion": "g. Progression of deformity",
+        "verified": true
+      }
+    ]
+  },
+  "facet joint injection": {
+    "lcd_id": 33930,
+    "display_id": "L33930",
+    "title": "Facet Joint Interventions for Pain Management",
+    "passages": 6,
+    "criteria": [
+      {
+        "passage": 0,
+        "criterion": "- Moderate to severe chronic neck or low back pain, predominantly axial, that causes functional deficit measured on pain or disability scale 6 ; AND",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "- Pain that has been present for a minimum of three months with documented failure to respond to noninvasive conservative care management (as tolerated) 4,7 ; AND",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "- Absence of untreated radiculopathy or neurogenic claudication (except for radulopathy caused by facet joint synovial cyst) 4,8 ; AND",
+        "verified": false
+      },
+      {
+        "passage": 0,
+        "criterion": "- There is no non-facet pathology per clinical assessment or radiology studies that could explain the source of the patient\u2019s pain, including but not limited to fracture, tumor, infection, or significant deformity. 6",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "The patient meets the criteria for the first diagnostic injection;",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "After the first diagnostic facet joint injection, there must be a consistent positive response of at least 80% relief of primary (index) pain (with the duration of relief being consistent with the agent used).",
+        "verified": true
+      },
+      {
+        "passage": 2,
+        "criterion": "The thermal radiofrequency destruction of cervical, thoracic, or lumbar paravertebral facet joint (medial branch) nerves is considered medically reasonable and necessary for patients who meet the following criteria:",
+        "verified": true
+      },
+      {
+        "passage": 2,
+        "criterion": "- Initial RFA: After the patient has had at least two medically reasonable and necessary diagnostic MBBs, with each one providing a consistent minimum of 80% sustained relief of primary (index) pain (with the duration of relief being consistent with the agent used).",
+        "verified": true
+      },
+      {
+        "passage": 2,
+        "criterion": "- Repeat 6 facet joint RFA at the same anatomic site is considered medically reasonable and necessary provided the patient had a minimum of consistent 50% improvement in pain for at least six months or at least 50% consistent improvement in the ability to perform previously painful movements and ADLs as compared to baseline measurement using the same scale.",
+        "verified": true
+      },
+      {
+        "passage": 3,
+        "criterion": "The use of Moderate or Deep Sedation, General Anesthesia, and Monitored Anesthesia Care (MAC) is not considered medically reasonable and necessary during facet injections.",
+        "verified": true
+      },
+      {
+        "passage": 3,
+        "criterion": "The use of Moderate Sedation for RFA or cyst rupture/aspiration will be considered in individual cases with documentation of medical necessity such as a longstanding well-documented history of inability to cooperate, medical conditions that would prohibit performance of the procedure, or inability to remain motionless.",
+        "verified": true
+      },
+      {
+        "passage": 3,
+        "criterion": "It is not expected that patients will routinely present with pain in both cervical/thoracic and lumbar spinal regions. Therefore, facet joint interventions (both diagnostic and therapeutic) are limited to one spinal region per session.",
+        "verified": true
+      },
+      {
+        "passage": 3,
+        "criterion": "It is not routinely necessary for multiple blocks (e.g., epidural injections, sympathetic blocks, trigger point injections, etc.) to be provided to a patient on the same day as facet joint procedures.",
+        "verified": true
+      },
+      {
+        "passage": 3,
+        "criterion": "Facet joint intraarticular injections and medial branch blocks may involve the use of anesthetics, corticosteroids, anti-inflammatories and/or contrast agents and does not include injections of biologicals or other substances not U.S. Food and Drug Administration (FDA) designated for this use.",
+        "verified": true
+      },
+      {
+        "passage": 4,
+        "criterion": "- One to two levels, either unilateral or bilateral, are allowed per session per spine region.",
+        "verified": true
+      },
+      {
+        "passage": 4,
+        "criterion": "- Three or four level procedures are not medically necessary and therefore are non-covered.",
+        "verified": true
+      },
+      {
+        "passage": 4,
+        "criterion": "- A session is a time period, which includes all procedures (i.e., MBB, IA, facet cyst ruptures, and RFA ablations) that are performed during the same day.",
+        "verified": true
+      },
+      {
+        "passage": 4,
+        "criterion": "- If there is a question as to the source of the recurrent pain then diagnostic procedures must be repeated.",
+        "verified": true
+      },
+      {
+        "passage": 4,
+        "criterion": "- Therapeutic facet injections are not covered unless there is justification in the medical documentation on why RFA cannot be performed.",
+        "verified": true
+      },
+      {
+        "passage": 4,
+        "criterion": "- Facet joint procedures in patients for the indication of generalized pain conditions (such as fibromyalgia) or chronic centralized pain syndromes are considered not medically reasonable and necessary.",
+        "verified": true
+      },
+      {
+        "passage": 4,
+        "criterion": "- In patients with implanted electrical devices, providers must follow manufacturer instructions and extra planning as indicated to ensure safety of procedure.",
+        "verified": true
+      },
+      {
+        "passage": 4,
+        "criterion": "- Intraarticular and extraarticular facet joint prolotherapy are considered not medically reasonable and necessary.",
+        "verified": false
+      },
+      {
+        "passage": 4,
+        "criterion": "- Non-thermal modalities for facet joint denervation including chemical, low-grade thermal energy (less than 80 degrees Celsius), laser neurolysis, and cryoablation are considered not medically reasonable and necessary.",
+        "verified": false
+      },
+      {
+        "passage": 4,
+        "criterion": "- Intra-facet implants are considered not medically reasonable and necessary.",
+        "verified": false
+      },
+      {
+        "passage": 4,
+        "criterion": "- Facet joint procedure performed after anterior lumbar interbody fusion (ALIF) is considered not medically reasonable and necessary.",
+        "verified": false
+      },
+      {
+        "passage": 4,
+        "criterion": "- Definitive clinical and/or imaging findings pointing to a specific diagnosis other than facet joint syndrome is considered not medically reasonable and necessary.",
+        "verified": false
+      },
+      {
+        "passage": 4,
+        "criterion": "- The scales used for measurement of pain and/or disability must be documented in the medical record.",
+        "verified": true
+      },
+      {
+        "passage": 5,
+        "criterion": "Notice: Services performed for any given diagnosis must meet all the indications and limitations stated in this policy, the general requirements for medical necessity as stated in CMS payment policy manuals, all existing CMS national coverage determinations, and all Medicare payment rules.",
+        "verified": true
+      },
+      {
+        "passage": 5,
+        "criterion": "Provider Qualifications",
+        "verified": false
+      },
+      {
+        "passage": 5,
+        "criterion": "- The Medicare Program Integrity Manual states services will be considered medically reasonable and necessary only if performed by appropriately trained providers.",
+        "verified": true
+      },
+      {
+        "passage": 5,
+        "criterion": "- The practitioner must be credentialed to perform the same procedure in the outpatient setting.",
+        "verified": true
+      },
+      {
+        "passage": 5,
+        "criterion": "- Training must cover and develop an understanding of anatomy and drug pharmacodynamics and kinetics as well as proficiency in diagnosis and management of disease, the technical performance of the procedure, and utilization of the required associated imaging modalities.",
+        "verified": true
+      }
+    ]
+  },
+  "sleep testing": {
+    "lcd_id": 33405,
+    "display_id": "L33405",
+    "title": "Polysomnography and Sleep Testing",
+    "passages": 16,
+    "criteria": [
+      {
+        "passage": 0,
+        "criterion": "History/Background and/or General Information",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "Polysomnography (PSG) refers to the continuous and simultaneous monitoring and recording of various physiological and pathophysiological parameters of sleep furnished in a sleep laboratory facility that includes physician review, interpretation and report.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "Additional parameters that may be monitored include, but are not limited to, the following:",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "- At minimum, a 3 lead electroencephalogram (EEG) to measure global neural encephalographic activity using electrodes placed on the scalp.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "- Electrooculogram (EOG) to measure eye movements using electrodes placed near the outer canthus of each eye.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "- A submental electromyogram (EMG) to measure submental electromyographic activity using electrodes placed over the mentalis, submentalis muscle, and/or masseter regions.",
+        "verified": true
+      },
+      {
+        "passage": 0,
+        "criterion": "- Rhythm electrocardiogram (ECG).",
+        "verified": false
+      },
+      {
+        "passage": 1,
+        "criterion": "Type I PSG is covered when used to aid the diagnosis of obstructive sleep apnea (OSA) in beneficiaries who have clinical signs and symptoms indicative of OSA if performed attended in a sleep lab facility.",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "Minimal requirements include recording of EEG, EOG, chin EMG, anterior tibialis EMG, ECG, airflow, respiratory effort and oxygen saturation.",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "Body position must be documented or objectively measured.",
+        "verified": true
+      },
+      {
+        "passage": 1,
+        "criterion": "Trained personnel must be in constant attendance and able to intervene.",
+        "verified": true
+      },
+      {
+        "passage": 2,
+        "criterion": "A Type II sleep testing device is covered when used to aid the diagnosis of OSA in beneficiaries who have clinical signs and symptoms indicative of OSA",
+        "verified": true
+      },
+      {
+        "passage": 2,
+        "criterion": "A Type III sleep testing device is covered when used to aid the diagnosis of OSA in beneficiaries who have clinical signs and symptoms indicative of OSA",
+        "verified": true
+      },
+      {
+        "passage": 2,
+        "criterion": "A Type IV sleep testing device measuring three or more channels, one of which is airflow, is covered when used to aid the diagnosis of OSA in beneficiaries who have signs and symptoms indicative of OSA",
+        "verified": true
+      },
+      {
+        "passage": 4,
+        "criterion": "A. Prior to sleep testing, the patient has a face-to-face clinical evaluation by the treating physician to assess the patient for OSA which must include, at a minimum, the following:",
+        "verified": true
+      },
+      {
+        "passage": 4,
+        "criterion": "Sleep history and symptoms including, but not limited to, snoring, daytime sleepiness, observed apneas, choking or gasping during sleep, morning headaches; and,",
+        "verified": true
+      },
+      {
+        "passage": 4,
+        "criterion": "Epworth Sleepiness Scale; and,",
+        "verified": true
+      },
+      {
+        "passage": 4,
+        "criterion": "Physical examination that documents body mass index, neck circumference and a focused cardiopulmonary and upper airway system evaluation.",
+        "verified": true
+      },
+      {
+        "passage": 4,
+        "criterion": "B. The patient has a covered sleep test that meets either of the following criteria:",
+        "verified": true
+      },
+      {
+        "passage": 4,
+        "criterion": "The apnea-hypopnea index (AHI) or Respiratory Disturbance Index (RDI) is greater than or equal to 15 events per hour with a minimum of 30 events; or,",
+        "verified": true
+      },
+      {
+        "passage": 5,
+        "criterion": "The AHI or RDI is greater than or equal to 5 and less than or equal to 14 events per hour with a minimum of 10 events and documentation of:",
+        "verified": true
+      },
+      {
+        "passage": 5,
+        "criterion": "Excessive daytime sleepiness, impaired cognition, mood disorders, or insomnia;",
+        "verified": true
+      },
+      {
+        "passage": 5,
+        "criterion": "Hypertension, ischemic heart disease, or history of stroke",
+        "verified": true
+      },
+      {
+        "passage": 6,
+        "criterion": "OSA",
+        "verified": false
+      },
+      {
+        "passage": 6,
+        "criterion": "moderate to severe OSA without significant co-morbidities such as congestive heart failure, chronic obstructive pulmonary disease, central sleep apnea syndromes and hypoventilation syndromes",
+        "verified": true
+      },
+      {
+        "passage": 7,
+        "criterion": "AHI or RDI greater than or equal to 15 events per hour,",
+        "verified": true
+      },
+      {
+        "passage": 7,
+        "criterion": "A positive test for OSA is established if either of the following criteria using the Apnea-Hypopnea Index (AHI) or Respiratory Disturbance Index (RDI) is met:",
+        "verified": true
+      },
+      {
+        "passage": 7,
+        "criterion": "a positive diagnosis (described below) of sleep apnea (obstructive, central or mixed) can be made within the first 4 hours of polysomnography.",
+        "verified": true
+      },
+      {
+        "passage": 7,
+        "criterion": "In patients with a prior history of OSA who need an updated polysomnography and PAP titration.",
+        "verified": true
+      },
+      {
+        "passage": 8,
+        "criterion": "AHI or RDI greater than or equal to 5 and less than or equal to 14 events per hour with documented symptoms of excessive daytime sleepiness, impaired cognition, mood disorders or insomnia, or documented hypertension, ischemic heart disease, or history of",
+        "verified": true
+      },
+      {
+        "passage": 8,
+        "criterion": "There are at least three hours for PAP titration prior to the end of the test.",
+        "verified": true
+      },
+      {
+        "passage": 8,
+        "criterion": "Narcolepsy: A clinical history, sleep diaries, PSG, and MSLT are key items in the evaluation of narcolepsy.",
+        "verified": false
+      },
+      {
+        "passage": 8,
+        "criterion": "The following measurements are normally required to diagnose narcolepsy: PSG assessment of the quality and quantity of nighttime sleep and to exclude alternate pathology such as OSA; MSLT derived mean sleep latency; The number of REM onset sleep episodes on the PSG and MSLT.",
+        "verified": true
+      },
+      {
+        "passage": 8,
+        "criterion": "Initial PSG and MSLT occasionally fail to identify narcolepsy. Repeat PSG may be indicated if: The first study is technically inadequate due to equipment failure; The subject could not sleep or slept for an insufficient amount of time to allow a clinical diagnosis; Initiation of therapy or confirmation of the efficacy of prescribed therapy is needed; or The results were inconclusive or ambiguous.",
+        "verified": true
+      },
+      {
+        "passage": 9,
+        "criterion": "To assist with the diagnosis of paroxysmal arousals or other sleep disruptions that are thought to be seizure related when the initial clinical evaluation and results of a standard EEG are inconclusive.",
+        "verified": true
+      },
+      {
+        "passage": 9,
+        "criterion": "In evaluating sleep-related behaviors that are violent or otherwise potentially injurious to the patient.",
+        "verified": true
+      },
+      {
+        "passage": 9,
+        "criterion": "When evaluating patients with sleep behaviors suggestive of parasomnias that are unusual or atypical because of the patient's age at onset; the time, duration, or frequency of occurrence of the behavior; or the specifics of the particular motor patterns in question (e.g. stereotypical, repetitive, or focal).",
+        "verified": true
+      },
+      {
+        "passage": 10,
+        "criterion": "Restless legs syndrome",
+        "verified": false
+      },
+      {
+        "passage": 10,
+        "criterion": "Periodic limb movements during sleep",
+        "verified": true
+      },
+      {
+        "passage": 10,
+        "criterion": "Periodic limb movement disorder",
+        "verified": true
+      },
+      {
+        "passage": 10,
+        "criterion": "PSG studies show prolonged sleep latencies",
+        "verified": false
+      },
+      {
+        "passage": 10,
+        "criterion": "PSG studies show decreased sleep efficiency",
+        "verified": false
+      },
+      {
+        "passage": 10,
+        "criterion": "PSG studies show increased number of awakenings",
+        "verified": false
+      },
+      {
+        "passage": 10,
+        "criterion": "PSG studies show significant reductions in total sleep time",
+        "verified": false
+      },
+      {
+        "passage": 10,
+        "criterion": "PSG studies show decreased amounts of slow-wave sleep",
+        "verified": false
+      },
+      {
+        "passage": 10,
+        "criterion": "Patient complains of repetitive limb movements during sleep",
+        "verified": false
+      },
+      {
+        "passage": 10,
+        "criterion": "Patient complains of frequent awakenings",
+        "verified": false
+      },
+      {
+        "passage": 10,
+        "criterion": "Patient complains of fragmented sleep",
+        "verified": false
+      },
+      {
+        "passage": 10,
+        "criterion": "Patient complains of difficulty maintaining sleep",
+        "verified": false
+      },
+      {
+        "passage": 10,
+        "criterion": "Patient complains of excessive daytime sleepiness",
+        "verified": false
+      },
+      {
+        "passage": 11,
+        "criterion": "MLST is not routinely indicated for most patients with sleep apnea.",
+        "verified": true
+      },
+      {
+        "passage": 11,
+        "criterion": "Similarly, a repeat Polysomnography (PSG) must meet the indications in the LCD and must be clearly supported in the medical record.",
+        "verified": true
+      },
+      {
+        "passage": 11,
+        "criterion": "Testing for Circadian rhythm sleep disorders is not covered.",
+        "verified": true
+      },
+      {
+        "passage": 11,
+        "criterion": "There is limited durable medical equipment (DME) coverage for oral appliances for OSA.",
+        "verified": true
+      },
+      {
+        "passage": 11,
+        "criterion": "Polysomnography and/or Home Sleep Testing for evaluation or titration of a noncovered oral appliance are not covered services.",
+        "verified": true
+      },
+      {
+        "passage": 11,
+        "criterion": "As noted, there is limited coverage of a custom fabricated mandibular advancement oral appliance used to treat obstructive sleep apnea (OSA) assuming all DME criteria and limitations are met.",
+        "verified": true
+      },
+      {
+        "passage": 12,
+        "criterion": "Repeat PSG or PSG with CPAP titration may be indicated in the following circumstances:",
+        "verified": true
+      },
+      {
+        "passage": 12,
+        "criterion": "After surgical treatment of patients with OSA, to ensure satisfactory response; or",
+        "verified": true
+      },
+      {
+        "passage": 12,
+        "criterion": "After surgical treatment of patients with OSA whose symptoms return despite a good initial response to treatment.",
+        "verified": true
+      },
+      {
+        "passage": 12,
+        "criterion": "After substantial weight loss has occurred in patients on PAP for treatment of OSA to ascertain whether PAP is still needed at the previously titrated pressure;",
+        "verified": true
+      },
+      {
+        "passage": 12,
+        "criterion": "After substantial weight gain has occurred in patients previously treated with PAP successfully, who are again symptomatic despite the continued use of PAP, to ascertain whether pressure adjustments are needed;",
+        "verified": true
+      },
+      {
+        "passage": 12,
+        "criterion": "When clinical response is insufficient or when symptoms return despite a good initial response to treatment with PAP",
+        "verified": true
+      },
+      {
+        "passage": 12,
+        "criterion": "Initial CPAP was not tolerated and BPAP is to be used in lieu of CPAP",
+        "verified": true
+      },
+      {
+        "passage": 14,
+        "criterion": "- American Board of Sleep Medicine (ABSM) that provides credentialing in sleep technology; OR",
+        "verified": true
+      },
+      {
+        "passage": 14,
+        "criterion": "- National Board for Respiratory Care, Inc. (NBRC) that provides specialty examination for respiratory therapists performing sleep disorders testing and therapeutic intervention (CRT-SDS and RRT-SDS)",
+        "verified": true
+      },
+      {
+        "passage": 14,
+        "criterion": "- Performed in a sleep center or laboratory accredited by the American Academy of Sleep Medicine (AASM), or Accreditation Commission for Health Care (ACHC), or Joint Commission; OR",
+        "verified": true
+      },
+      {
+        "passage": 14,
+        "criterion": "- All technologists and technicians conducting sleep testing who are not registered by the BRPT, ABRET, ABSM, NBRC or other accepted certification body, must be affiliated with an AASM or ACHC accredited sleep facility or Joint Commission accredited sleep facility (a Joint Commission accredited sleep laboratory). Unregistered technologists and technicians must maintain appropriate training and supervision, and, be supervised by a registered and licensed technologist, where license is required by state law.",
+        "verified": true
+      },
+      {
+        "passage": 14,
+        "criterion": "- Technologist staffing must be adequate to address the workload of the sleep facility and assure the safety of patients.",
+        "verified": true
+      },
+      {
+        "passage": 15,
+        "criterion": "The technical component (TC) of PSG and sleep testing (including HST) must be provided by an accredited sleep center or laboratory as noted above and meet the requirements of the LCD for coverage.",
+        "verified": false
+      },
+      {
+        "passage": 15,
+        "criterion": "The only exception would be the global billing (professional/technical components [PC/TC]) of HST by an office based physician who meets the requirements under the Physician Training/Certification as noted earlier.",
+        "verified": true
+      },
+      {
+        "passage": 15,
+        "criterion": "For the purpose of testing a patient for the diagnosis of OSA, the home sleep testing (HST) can be covered if the home sleep testing is reasonable and necessary for the diagnosis of the patient\u2019s condition as outlined in the LCD.",
+        "verified": false
+      },
+      {
+        "passage": 15,
+        "criterion": "The office based technician doing the patient instruction and HST scoring must meet the training/credentialing requirements as outlined above.",
+        "verified": false
+      },
+      {
+        "passage": 15,
+        "criterion": "The physician would be the interpreter of the test and bill globally.",
+        "verified": true
+      },
+      {
+        "passage": 15,
+        "criterion": "In order to perform the technical component (TC) of PSG and sleep testing (including HST), the following must be met: The sleep center or laboratory must maintain documentation on file that indicates it is accredited by the American Academy of Sleep Medicine (AASM), Accreditation Commission for Health Care (ACHC), or that it is accredited as a sleep laboratory by the Joint Commission.",
+        "verified": true
+      },
+      {
+        "passage": 15,
+        "criterion": "If the Joint Commission survey of the general hospital accreditation includes the hospital-based sleep lab, an additional accreditation is not needed.",
+        "verified": true
+      },
+      {
+        "passage": 15,
+        "criterion": "This documentation must be available on request.",
+        "verified": true
+      },
+      {
+        "passage": 15,
+        "criterion": "The AASM, ACHC, or Joint Commission accreditation applies to the hospital and freestanding facilities (including sleep clinics that are part of a physician\u2019s office, and all other non-hospital-based facilities where sleep studies are performed).",
+        "verified": true
+      }
+    ]
+  }
+}
