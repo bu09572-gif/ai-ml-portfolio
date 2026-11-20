@@ -26,10 +26,10 @@ NOTE_WORDS = 2500
 
 def policy_lcds() -> dict:
     """One active LCD per service (the lowest id among contractors publishing that policy)."""
-    l = data.lcds()
+    lc = data.lcds()
     out = {}
     for svc, (title, _) in data.SERVICES.items():
-        x = l[(l.title == title) & (l.status == "A")].sort_values("lcd_id").iloc[0]
+        x = lc[(lc.title == title) & (lc.status == "A")].sort_values("lcd_id").iloc[0]
         out[svc] = {"lcd_id": int(x.lcd_id), "display_id": f"L{int(x.lcd_id)}", "title": title, "text": x.indication}
     return out
 

@@ -100,9 +100,9 @@ def service_notes(per_service: int = 8) -> pd.DataFrame:
 
 
 if __name__ == "__main__":
-    l = lcds()
-    print(len(l), "LCDs;", l.title.nunique(), "titles;", len(hcpcs_links()), "HCPCS codes linked")
+    lc = lcds()
+    print(len(lc), "LCDs;", lc.title.nunique(), "titles;", len(hcpcs_links()), "HCPCS codes linked")
     s = service_notes()
     print(s.service.value_counts().to_dict())
     for svc, (title, _) in SERVICES.items():
-        print(svc, "->", l[l.title.str.strip() == title].lcd_id.tolist())
+        print(svc, "->", lc[lc.title.str.strip() == title].lcd_id.tolist())
