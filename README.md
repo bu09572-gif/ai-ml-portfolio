@@ -15,6 +15,7 @@ Projects built on real public data with free, open-source tools. Each one report
 | Text-to-SQL Assistant with Safe Execution and Self-Repair | Read-only SQL from plain English, with error-driven repair; 42.1% execution accuracy on all 1,534 BIRD dev questions with a free 3B model | [text-to-sql](projects/tech/text-to-sql) |
 | PII Redaction Pipeline on Real Court Cases | Masks personal identifiers in ECHR judgments; 97.7% of direct identifiers fully masked | [pii-redaction](projects/core/pii-redaction) |
 | Motor Insurance Pricing with Discrimination-Free Premiums | Frequency and severity models on 678k French motor policies, with an age-fairness check; GBM Gini 0.361 | [motor-pricing-fairness](projects/insurance/motor-pricing-fairness) |
+| Motor Claim Severity Model with Extreme-Value Large-Loss Analysis | 26k real claims: fixed-fee mix, GPD tail (shape 1.07), capped severity models and a large-loss load | [claims-severity-large-loss](projects/insurance/claims-severity-large-loss) |
 | Flight Operations Warehouse (dbt + DuckDB) | Star schema over 336,776 real flights, with dbt tests | [flight-ops-dbt-warehouse](projects/data-engineering/flight-ops-dbt-warehouse) |
 | Flight Data Quality Monitor | Daily anomaly checks, tested by breaking the data on purpose | [flight-data-quality-monitor](projects/data-engineering/flight-data-quality-monitor) |
 | Flight Status CDC Pipeline with SCD2 History | Change capture from an ops database into current and history tables | [flight-status-cdc](projects/data-engineering/flight-status-cdc) |

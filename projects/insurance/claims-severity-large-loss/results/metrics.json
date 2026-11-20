@@ -1,0 +1,95 @@
+{
+  "data": {
+    "train_claims": 21146,
+    "test_claims": 5298,
+    "cap_eur": 10000
+  },
+  "composition": {
+    "claims": 26444,
+    "total_eur": 59909216,
+    "fixed_fee_amounts": [
+      556.14,
+      602.0,
+      1128.0,
+      1128.12,
+      1172.0,
+      1204.0,
+      1320.0
+    ],
+    "fixed_fee_share_of_claims": 0.435,
+    "fixed_fee_share_of_cost": 0.22,
+    "share_of_claims_above_cap": 0.0181,
+    "share_of_cost_above_cap": 0.345,
+    "share_of_cost_from_top_5_claims": 0.133,
+    "top_5_claims_eur": [
+      4075401,
+      1403057,
+      1301173,
+      774412,
+      390742
+    ],
+    "median_claim": 1172.0,
+    "mean_claim": 2265.5
+  },
+  "tail": {
+    "threshold_eur": 9963,
+    "exceedances": 423,
+    "shape_xi": 1.073,
+    "shape_xi_95ci": [
+      0.878,
+      1.296
+    ],
+    "scale_sigma": 6882,
+    "mean_is_finite": false,
+    "one_in_1000_claims_eur": {
+      "gpd": 163229,
+      "empirical": 181927
+    },
+    "one_in_10000_claims_eur": {
+      "gpd": 1892738,
+      "empirical": 730481
+    }
+  },
+  "capped_severity_models": {
+    "constant": {
+      "gamma_deviance": 0.9066,
+      "mae_eur": 928.6,
+      "gini": 0.029,
+      "predicted_over_actual": 1.024
+    },
+    "gamma_glm": {
+      "gamma_deviance": 0.8961,
+      "mae_eur": 920.8,
+      "gini": 0.132,
+      "predicted_over_actual": 1.021
+    },
+    "gbm_gamma": {
+      "gamma_deviance": 0.8973,
+      "mae_eur": 915.8,
+      "gini": 0.116,
+      "predicted_over_actual": 1.015
+    },
+    "composite": {
+      "gamma_deviance": 0.8954,
+      "mae_eur": 907.1,
+      "gini": 0.13,
+      "predicted_over_actual": 1.007
+    },
+    "fixed_fee_classifier_test_auc": 0.656,
+    "large_claim_classifier": {
+      "test_auc": 0.534,
+      "test_average_precision": 0.017,
+      "base_rate": 0.0151
+    }
+  },
+  "large_loss_load": {
+    "excess_per_claim_train_eur": 685.5,
+    "excess_per_claim_95ci_eur": [
+      487.8,
+      924.1
+    ],
+    "excess_per_claim_test_eur": 1170.1,
+    "load_on_capped_severity": 0.46,
+    "excess_per_claim_train_without_largest_claim_eur": 619.7
+  }
+}
