@@ -7,7 +7,7 @@ Applied AI, machine learning and data engineering projects. Every project uses r
 ## Contents
 
 - [Core AI platform](#core-ai-platform): 3 projects
-- [Healthcare](#healthcare): 2 projects
+- [Healthcare](#healthcare): 3 projects
 - [Finance](#finance): 5 projects
 - [Insurance](#insurance): 5 projects
 - [Tech / LLM](#tech--llm): 2 projects
@@ -31,8 +31,9 @@ Folder: [`projects/healthcare`](projects/healthcare)
 |---|---|---|
 | [ICD-10 Diagnosis Coding Assistant for Clinical Notes](projects/healthcare/icd10-coding-assistant) | Ranks ICD-10 codes for a clinical note, with the sentence that supports each code | MAP 0.326 on 250 expert-coded cases; 53% of top-5 suggestions correct |
 | [Clinical LLM Evaluation: Accuracy, Robustness and Bias Checks](projects/healthcare/clinical-llm-safety-eval) | Two free 3B models on MedQA and PubMedQA, with option-order, patient-sex-swap and abstention checks | Llama 3.2 3B: 54.9% MedQA; 29% of answers change when options are reordered vs 5% when patient sex is swapped |
+| [Clinical Note Summarizer with De-identification](projects/healthcare/clinical-note-summarizer) | Removes identifiers before a free local model summarizes 300 real clinical notes; checks leaks, invented numbers and an LLM judge | Identifier repeats fall from 22% to 4% of notes; the 3B judge's flags are wrong 81% of the time |
 
-In progress: Clinical note summarizer with de-identification; Prior authorization assistant over CMS coverage policies; Claim denial predictor and appeal drafter.
+In progress: Prior authorization assistant over CMS coverage policies; Claim denial predictor and appeal drafter.
 
 ## Finance
 
