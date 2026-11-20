@@ -1,0 +1,74 @@
+{
+  "n": 150,
+  "config": "agent",
+  "k": 5,
+  "provider": "ollama",
+  "model": "qwen2.5:3b",
+  "judge_model": "llama3.2:3b",
+  "accuracy": 0.207,
+  "accuracy_when_answered": 0.408,
+  "accuracy_llm_judge_alone": 0.913,
+  "judge_called_refusals_correct": 0.919,
+  "incorrect_rate": 0.3,
+  "refusal_rate": 0.493,
+  "unparsed_grades": 0,
+  "numeric_match_when_answered": 0.246,
+  "numeric_answers_checked": 57,
+  "refusal_rate_when_retrieval_hit_vs_miss": {
+    "miss": 0.513,
+    "hit": 0.429
+  },
+  "answers_with_citations": 0.527,
+  "citation_page_precision": 0.148,
+  "accuracy_by_question_type": {
+    "domain-relevant": 0.34,
+    "metrics-generated": 0.04,
+    "novel-generated": 0.24
+  },
+  "accuracy_when_retrieval_hit_vs_miss": {
+    "miss": 0.183,
+    "hit": 0.286
+  },
+  "cost_usd_total": 0,
+  "latency_s_p50": 131.0,
+  "latency_s_p95": 301.47,
+  "agent": {
+    "steps_mean": 7.85,
+    "actions_total": {
+      "read": 582,
+      "calculate": 234,
+      "search": 206,
+      "answer": 152,
+      "invalid": 3
+    },
+    "read_an_evidence_page": 0.233,
+    "answers_sent_back_by_guardrail": 4,
+    "citations_added_by_code": 48,
+    "refused_by_guardrail": {
+      "it cites no pages; cite the pages you read like [P2]": 19,
+      "these numbers are not on any page you read and did not come from calculate": 18,
+      "model error": 2,
+      "it cites P1, P2 which you did not read": 1,
+      "it cites P4 which you did not read": 1,
+      "it cites P5 which you did not read": 1,
+      "it cites P1, P2, P4 which you did not read": 1
+    },
+    "accuracy_by_question_type": {
+      "domain-relevant": 0.34,
+      "metrics-generated": 0.04,
+      "novel-generated": 0.24
+    }
+  },
+  "plain_qa_same_questions": {
+    "n": 150,
+    "accuracy": 0.193,
+    "refusal_rate": 0.673,
+    "incorrect_rate": 0.133,
+    "citation_page_precision": 0.355,
+    "accuracy_by_question_type": {
+      "domain-relevant": 0.14,
+      "metrics-generated": 0.2,
+      "novel-generated": 0.24
+    }
+  }
+}
