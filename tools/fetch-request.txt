@@ -3,3 +3,4 @@ retry with liac-arff parser
 v2 healthcare mirror, 2026-11-20
 v2 elliptic only, 2026-11-20
 v2 state AI rules only, 2026-11-20
+v2 NAIC bulletin retry
