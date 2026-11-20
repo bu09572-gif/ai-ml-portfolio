@@ -1,0 +1,192 @@
+{
+  "data": {
+    "people": 9670,
+    "deaths_8y": 1124,
+    "train": 6049,
+    "test": 3621,
+    "test_death_rate": 0.1072,
+    "ages": "40-79 at exam"
+  },
+  "models": {
+    "age only": {
+      "auc": 0.7327,
+      "brier": 0.0893,
+      "deaths_in_riskiest_10pct": 0.285,
+      "deaths_in_safest_50pct": 0.045,
+      "predicted_over_actual": 1.098
+    },
+    "rules class + age": {
+      "auc": 0.7593,
+      "brier": 0.0872,
+      "deaths_in_riskiest_10pct": 0.312,
+      "deaths_in_safest_50pct": 0.039,
+      "predicted_over_actual": 1.094
+    },
+    "application, logistic": {
+      "auc": 0.7963,
+      "brier": 0.0818,
+      "deaths_in_riskiest_10pct": 0.381,
+      "deaths_in_safest_50pct": 0.029,
+      "predicted_over_actual": 1.058
+    },
+    "application, gbm": {
+      "auc": 0.7977,
+      "brier": 0.0824,
+      "deaths_in_riskiest_10pct": 0.381,
+      "deaths_in_safest_50pct": 0.028,
+      "predicted_over_actual": 1.06
+    },
+    "paramedical, logistic": {
+      "auc": 0.8027,
+      "brier": 0.081,
+      "deaths_in_riskiest_10pct": 0.401,
+      "deaths_in_safest_50pct": 0.028,
+      "predicted_over_actual": 1.059
+    },
+    "paramedical, gbm": {
+      "auc": 0.8085,
+      "brier": 0.0819,
+      "deaths_in_riskiest_10pct": 0.401,
+      "deaths_in_safest_50pct": 0.026,
+      "predicted_over_actual": 1.062
+    },
+    "full_labs, logistic": {
+      "auc": 0.8275,
+      "brier": 0.0765,
+      "deaths_in_riskiest_10pct": 0.483,
+      "deaths_in_safest_50pct": 0.027,
+      "predicted_over_actual": 1.111
+    },
+    "full_labs, gbm": {
+      "auc": 0.8323,
+      "brier": 0.0777,
+      "deaths_in_riskiest_10pct": 0.439,
+      "deaths_in_safest_50pct": 0.023,
+      "predicted_over_actual": 1.066
+    }
+  },
+  "rules_classes_test": {
+    "preferred": {
+      "people": 1093,
+      "death_rate": 0.0384
+    },
+    "standard": {
+      "people": 1781,
+      "death_rate": 0.1331
+    },
+    "smoker": {
+      "people": 747,
+      "death_rate": 0.1459
+    }
+  },
+  "auc_gain_labs_over_application_95ci": [
+    0.0198,
+    0.0425
+  ],
+  "auc_gain_paramedical_over_application_95ci": [
+    0.0,
+    0.0127
+  ],
+  "fast_track": {
+    "20pct": {
+      "death_rate_picked_by_application": 0.018,
+      "death_rate_picked_with_labs": 0.0152,
+      "overlap": 0.751
+    },
+    "30pct": {
+      "death_rate_picked_by_application": 0.0221,
+      "death_rate_picked_with_labs": 0.0147,
+      "overlap": 0.829
+    },
+    "40pct": {
+      "death_rate_picked_by_application": 0.0269,
+      "death_rate_picked_with_labs": 0.02,
+      "overlap": 0.86
+    },
+    "50pct": {
+      "death_rate_picked_by_application": 0.0287,
+      "death_rate_picked_with_labs": 0.0271,
+      "overlap": 0.878
+    },
+    "60pct": {
+      "death_rate_picked_by_application": 0.0355,
+      "death_rate_picked_with_labs": 0.0313,
+      "overlap": 0.91
+    }
+  },
+  "top_features_full_labs_gbm": {
+    "age": 0.0961,
+    "rdw": 0.0101,
+    "alt": 0.007,
+    "albumin": 0.0061,
+    "waist_cm": 0.0058,
+    "current_smoker": 0.0055,
+    "bmi": 0.0051,
+    "emphysema": 0.005,
+    "platelets": 0.0048,
+    "sbp": 0.0041
+  },
+  "actual_to_expected_full_labs_logistic": {
+    "by_race_ethnicity": {
+      "Mexican American": {
+        "people": 664,
+        "deaths": 48,
+        "actual_to_expected": 0.808
+      },
+      "Non-Hispanic Black": {
+        "people": 697,
+        "deaths": 91,
+        "actual_to_expected": 0.915
+      },
+      "Non-Hispanic White": {
+        "people": 1710,
+        "deaths": 213,
+        "actual_to_expected": 0.971
+      },
+      "Other Hispanic": {
+        "people": 375,
+        "deaths": 24,
+        "actual_to_expected": 0.648
+      },
+      "Other or multiracial": {
+        "people": 175,
+        "deaths": 12,
+        "actual_to_expected": 0.762
+      }
+    },
+    "by_income_to_poverty": {
+      "1-2x": {
+        "people": 872,
+        "deaths": 122,
+        "actual_to_expected": 1.064
+      },
+      "2-4x": {
+        "people": 828,
+        "deaths": 88,
+        "actual_to_expected": 0.904
+      },
+      "4x and above": {
+        "people": 910,
+        "deaths": 55,
+        "actual_to_expected": 0.656
+      },
+      "below poverty line": {
+        "people": 644,
+        "deaths": 85,
+        "actual_to_expected": 0.941
+      }
+    },
+    "by_sex": {
+      "female": {
+        "people": 1839,
+        "deaths": 154,
+        "actual_to_expected": 0.848
+      },
+      "male": {
+        "people": 1782,
+        "deaths": 234,
+        "actual_to_expected": 0.938
+      }
+    }
+  }
+}
