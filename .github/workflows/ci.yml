@@ -50,6 +50,7 @@ jobs:
           cd ../claims-severity-large-loss && python -m pytest -q test_severity.py
           cd ../ai-governance-report && python -m pytest -q test_governance.py
           cd ../life-underwriting-risk && python -m pytest -q test_underwriting.py
+          cd ../subrogation-detection && python -m pytest -q test_subro.py
 
   real-data-eval:
     needs: test

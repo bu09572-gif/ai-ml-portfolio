@@ -1,0 +1,101 @@
+{
+  "data": {
+    "two_vehicle_crashes": 73645,
+    "claims": 147290,
+    "labelled_claims": 105790,
+    "train": 79692,
+    "test": 26098,
+    "recovery_rate_labelled": 0.431
+  },
+  "rule": {
+    "referred_share": 0.18,
+    "precision": 0.892,
+    "recall": 0.371
+  },
+  "model": {
+    "auc": 0.9193,
+    "average_precision": 0.8979
+  },
+  "model_at_share": {
+    "18pct": {
+      "referred_share": 0.18,
+      "precision": 0.962,
+      "recall": 0.401
+    },
+    "30pct": {
+      "referred_share": 0.3,
+      "precision": 0.909,
+      "recall": 0.632
+    },
+    "40pct": {
+      "referred_share": 0.4,
+      "precision": 0.833,
+      "recall": 0.772
+    }
+  },
+  "top_features": {
+    "our_pre_crash": 0.1253,
+    "other_pre_crash": 0.0709,
+    "other_vehicle_age": 0.0254,
+    "other_impact": 0.0212,
+    "our_impact": 0.0211,
+    "our_occupants": 0.0186,
+    "other_type": 0.0153,
+    "our_vehicle_age": 0.0141
+  },
+  "recovery_rate_by_our_maneuver": {
+    "Stopped in Traffic": {
+      "size": 3522,
+      "mean": 0.913
+    },
+    "Parked": {
+      "size": 15530,
+      "mean": 0.888
+    },
+    "Slowing or Stopping": {
+      "size": 2118,
+      "mean": 0.609
+    },
+    "Going Straight Ahead": {
+      "size": 56049,
+      "mean": 0.378
+    },
+    "Making Left Turn": {
+      "size": 6699,
+      "mean": 0.274
+    },
+    "Making Right Turn": {
+      "size": 5253,
+      "mean": 0.271
+    },
+    "Starting from Parking": {
+      "size": 1258,
+      "mean": 0.13
+    },
+    "Merging": {
+      "size": 1592,
+      "mean": 0.129
+    },
+    "Making U Turn": {
+      "size": 1285,
+      "mean": 0.072
+    },
+    "Changing Lanes": {
+      "size": 2768,
+      "mean": 0.062
+    },
+    "Backing": {
+      "size": 2720,
+      "mean": 0.056
+    },
+    "Passing": {
+      "size": 1153,
+      "mean": 0.054
+    }
+  },
+  "unlabelled_claims": {
+    "claims": 41500,
+    "model_score_above_0.9": 5347,
+    "rule_flags": 10145
+  }
+}

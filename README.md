@@ -9,7 +9,7 @@ Applied AI, machine learning and data engineering projects. Every project uses r
 - [Core AI platform](#core-ai-platform): 3 projects
 - [Healthcare](#healthcare): 2 projects
 - [Finance](#finance): 5 projects
-- [Insurance](#insurance): 4 projects
+- [Insurance](#insurance): 5 projects
 - [Tech / LLM](#tech--llm): 1 project
 - [Data engineering](#data-engineering): 5 projects
 
@@ -56,8 +56,7 @@ Folder: [`projects/insurance`](projects/insurance)
 | [Motor Claim Severity Model with Extreme-Value Large-Loss Analysis](projects/insurance/claims-severity-large-loss) | Claim size models below a cap, a Pareto tail fit above it, and a large-loss load | 1.8% of claims carry 34.5% of cost; tail shape 1.07 |
 | [AI Governance Report for Insurance Models under State AI Rules](projects/insurance/ai-governance-report) | Requirements register from the NAIC bulletin, New York CL 7 and Colorado Reg. 10-1-1, and an evidence check of my models against it | 118 requirements, 34 of 40 theme tags right; 30 jurisdictions adopted the NAIC bulletin |
 | [Life Underwriting Mortality Model on Real Health Exams](projects/insurance/life-underwriting-risk) | 8-year death risk from the application, a nurse visit or a blood test, on NHANES with National Death Index records; what fast-tracking without labs costs | AUC 0.80 application only vs 0.83 with labs; calibration checked by race and income |
-
-In progress: Subrogation detection.
+| [Subrogation Opportunity Detection from Crash Reports](projects/insurance/subrogation-detection) | Flags recoverable auto claims at first notice of loss, on 147,290 claims built from 2023 NYPD crash reports, against the classic parked/rear-ended rule | 96% vs 89% precision at the rule's volume; 63% of recoverable claims found at 30% referred vs 37% |
 
 ## Tech / LLM
 
