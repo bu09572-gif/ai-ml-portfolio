@@ -49,6 +49,8 @@ for _years, _sfx in [("2005-2006", "D"), ("2007-2008", "E"), ("2009-2010", "F")]
 _Q = "%24where=crash_date%20between%20%272023-01-01T00:00:00%27%20and%20%272023-12-31T23:59:59%27&%24limit=2000000"
 URLS["nyc_collisions_crashes_2023.csv"] = f"https://data.cityofnewyork.us/resource/h9gi-nx95.csv?{_Q}"
 URLS["nyc_collisions_vehicles_2023.csv"] = f"https://data.cityofnewyork.us/resource/bm4k-52h4.csv?{_Q}"
+# MovieLens 1M (GroupLens, F. M. Harper and J. A. Konstan 2015): 1,000,209 ratings by 6,040 users
+URLS["movielens_ml-1m.zip"] = "https://files.grouplens.org/datasets/movielens/ml-1m.zip"
 # Files that change upstream (the weekly CMS export) must not be re-mirrored over the pinned copy.
 # If tools/fetch-only.txt lists names, only those are fetched, into their own manifest.
 ONLY = Path(__file__).with_name("fetch-only.txt")
