@@ -1,4 +1,4 @@
-# Flights warehouse (dbt + DuckDB)
+# Flight Operations Warehouse (dbt + DuckDB)
 
 A small star-schema warehouse over every flight that left New York (JFK, LGA, EWR) in 2013, built with dbt on DuckDB, with tests on the staging and mart layers.
 

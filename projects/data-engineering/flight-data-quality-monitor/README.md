@@ -1,4 +1,4 @@
-# Data quality monitor for a daily flights feed
+# Flight Data Quality Monitor
 
 Every day of the 2013 NYC flights data (336,776 flights, 26,115 hourly weather rows) gets seven metrics. Each metric is compared with its own recent history, and a day is flagged when it is far outside what is normal.
 
@@ -62,7 +62,7 @@ What this tells me:
 
 ## Running it
 
-Needs the raw CSVs from `src/flightsdata` (see the dbt warehouse README).
+Needs the raw CSVs from `src/flightsdata` (see [Flight Operations Warehouse](../flight-ops-dbt-warehouse/README.md)).
 
 ```bash
 pip install duckdb pandas numpy pytest

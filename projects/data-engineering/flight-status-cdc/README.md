@@ -1,4 +1,4 @@
-# Change data capture: ops database to warehouse history
+# Flight Status CDC Pipeline with SCD2 History
 
 An airline's operations database keeps one row per flight and overwrites it as the flight moves along: scheduled, then departed, then arrived (or cancelled). Analysts need more than the latest value. They need to ask what the board looked like at 7 pm on a given evening. This project captures every change from the ops database and builds both a current table and a full history (SCD type 2) in a warehouse.
 
@@ -64,7 +64,7 @@ For flights scheduled to leave NYC that day: 429 had arrived, 342 were cancelled
 
 ## Running it
 
-Needs the raw CSVs from `src/flightsdata` (see the dbt warehouse README).
+Needs the raw CSVs from `src/flightsdata` (see [Flight Operations Warehouse](../flight-ops-dbt-warehouse/README.md)).
 
 ```bash
 pip install duckdb pandas numpy pytest
