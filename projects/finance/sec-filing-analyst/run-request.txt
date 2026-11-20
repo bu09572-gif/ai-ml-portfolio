@@ -1,1 +1,1 @@
-v2: table scale read from the page, unit conversions removed from formulas
+v3: also read '(Millions)' style scale labels

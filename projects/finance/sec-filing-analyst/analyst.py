@@ -52,8 +52,8 @@ Return JSON only: {"value": <number as printed, no commas, or null>, "source": "
 - "value" is the number exactly as printed for the requested year. Numbers in parentheses are negative.
 - If the line item is not on any page, return {"value": null, "source": null}."""
 
-# "(In millions, except per share data)", "($ in thousands)", "Dollars in millions"
-SCALE_RE = re.compile(r"\bin\s+(thousands|millions|billions)\b", re.I)
+# "(In millions, except per share data)", "($ in thousands)", "Dollars in millions", "(Millions)"
+SCALE_RE = re.compile(r"\bin\s+(thousands|millions|billions)\b|\(\s*\$?\s*(thousands|millions|billions)\b", re.I)
 # a formula may only combine the items; unit conversion is done in code
 CONVERSION_RE = re.compile(r"\s*[*/]\s*(?:1000000000|1000000|1000|100|1e9|1e6|1e3|1e2)\b(?!\.)")
 
@@ -228,7 +228,7 @@ class Analyst:
 def page_scale(text: str) -> str:
     """The scale a financial table states for its numbers; 'units' if the page doesn't say."""
     m = SCALE_RE.search(text)
-    return m.group(1).lower() if m else "units"
+    return (m.group(1) or m.group(2)).lower() if m else "units"
 
 
 def _year(y) -> int | None:

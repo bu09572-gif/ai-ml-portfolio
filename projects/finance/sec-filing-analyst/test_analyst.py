@@ -77,6 +77,7 @@ def test_number_not_on_page_falls_back(monkeypatch):
 def test_scale_comes_from_the_page():
     assert A.page_scale("CONSOLIDATED BALANCE SHEETS (In millions, except per share data)") == "millions"
     assert A.page_scale("($ in thousands)") == "thousands"
+    assert A.page_scale("Consolidated Statement of Cash Flows (Millions)") == "millions"
     assert A.page_scale("Revenue 1,000") == "units"
 
 
