@@ -22,7 +22,7 @@ def main(out: Path) -> None:
     out.mkdir(parents=True, exist_ok=True)
     manifest = {}
     for key, spec in OPENML.items():
-        b = fetch_openml(**spec, as_frame=True, parser="auto")
+        b = fetch_openml(**spec, as_frame=True, parser="liac-arff")
         df = b.frame
         p = out / f"{key}.parquet"
         df.to_parquet(p, index=False)
