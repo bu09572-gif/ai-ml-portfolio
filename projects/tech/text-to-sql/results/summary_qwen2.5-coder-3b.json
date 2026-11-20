@@ -1,0 +1,81 @@
+{
+  "model": "qwen2.5-coder:3b",
+  "questions": 1534,
+  "scored": 1533,
+  "reference_sql_failed": 1,
+  "configs": {
+    "with_hint": {
+      "execution_accuracy": 0.4025,
+      "execution_accuracy_first_try": 0.3692,
+      "by_difficulty": {
+        "challenging": 0.2639,
+        "moderate": 0.2823,
+        "simple": 0.4843
+      },
+      "by_difficulty_first_try": {
+        "challenging": 0.2222,
+        "moderate": 0.2435,
+        "simple": 0.4551
+      },
+      "by_database": {
+        "california_schools": 0.169,
+        "card_games": 0.435,
+        "codebase_community": 0.519,
+        "debit_card_specializing": 0.359,
+        "european_football_2": 0.558,
+        "financial": 0.0,
+        "formula_1": 0.333,
+        "student_club": 0.639,
+        "superhero": 0.574,
+        "thrombosis_prediction": 0.19,
+        "toxicology": 0.441
+      },
+      "first_query_errored": 0.2916,
+      "final_query_errored": 0.2211,
+      "repaired_questions": 447,
+      "fixed_by_repair": 51,
+      "model_errors": 106,
+      "median_latency_s": 7.6,
+      "mean_input_tokens": 2297
+    },
+    "no_hint": {
+      "execution_accuracy": 0.304,
+      "execution_accuracy_first_try": 0.287,
+      "by_difficulty": {
+        "challenging": 0.1875,
+        "moderate": 0.2134,
+        "simple": 0.3676
+      },
+      "by_difficulty_first_try": {
+        "challenging": 0.1806,
+        "moderate": 0.194,
+        "simple": 0.3503
+      },
+      "by_database": {
+        "california_schools": 0.135,
+        "card_games": 0.262,
+        "codebase_community": 0.405,
+        "debit_card_specializing": 0.203,
+        "european_football_2": 0.442,
+        "financial": 0.0,
+        "formula_1": 0.236,
+        "student_club": 0.5,
+        "superhero": 0.543,
+        "thrombosis_prediction": 0.086,
+        "toxicology": 0.379
+      },
+      "first_query_errored": 0.2655,
+      "final_query_errored": 0.2127,
+      "repaired_questions": 407,
+      "fixed_by_repair": 26,
+      "model_errors": 106,
+      "median_latency_s": 5.8,
+      "mean_input_tokens": 2261
+    }
+  },
+  "counts_by_difficulty": {
+    "simple": 925,
+    "moderate": 464,
+    "challenging": 144
+  }
+}
