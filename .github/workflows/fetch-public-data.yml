@@ -1,0 +1,27 @@
+# Fetch datasets hosted outside GitHub (OpenML) and attach them to the "data-v1" release,
+# so projects can download one fixed copy. Start it by changing tools/fetch-request.txt.
+name: fetch-public-data
+
+on:
+  workflow_dispatch:
+  push:
+    paths: ["tools/fetch-request.txt"]
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install scikit-learn pandas pyarrow
+      - run: python tools/fetch_public_data.py out
+      - name: Attach to release data-v1
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          gh release view data-v1 >/dev/null 2>&1 || gh release create data-v1 --title "Public datasets (v1)" \
+            --notes "Copies of public datasets used by the projects. Sources and licenses are in manifest.json."
+          gh release upload data-v1 out/* --clobber
