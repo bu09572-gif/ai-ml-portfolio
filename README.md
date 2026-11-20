@@ -11,6 +11,7 @@ Projects built on real public data with free, open-source tools. Each one report
 | Real-Time Card Fraud Scoring with SHAP Explanations | XGBoost fraud API with top-3 reasons; 73% of fraud caught at 80% precision, 9 ms p50 | [realtime-fraud-scoring](projects/finance/realtime-fraud-scoring) |
 | Explainable Credit Default Model with Fairness Checks | Monotone XGBoost on 30k real card holders, decline reasons from SHAP, four-fifths rule by sex/age/marriage; AUC 0.776 | [explainable-credit-risk](projects/finance/explainable-credit-risk) |
 | Agentic RAG Copilot for SEC Filings | Agent that searches, reads and calculates, with code-enforced guardrails | [agentic-rag-copilot](projects/core/agentic-rag-copilot) |
+| Text-to-SQL Assistant with Safe Execution and Self-Repair | Read-only SQL from plain English, with error-driven repair; 42.1% execution accuracy on all 1,534 BIRD dev questions with a free 3B model | [text-to-sql](projects/tech/text-to-sql) |
 | PII Redaction Pipeline on Real Court Cases | Masks personal identifiers in ECHR judgments; 97.7% of direct identifiers fully masked | [pii-redaction](projects/core/pii-redaction) |
 | Motor Insurance Pricing with Discrimination-Free Premiums | Frequency and severity models on 678k French motor policies, with an age-fairness check; GBM Gini 0.361 | [motor-pricing-fairness](projects/insurance/motor-pricing-fairness) |
 | Flight Operations Warehouse (dbt + DuckDB) | Star schema over 336,776 real flights, with dbt tests | [flight-ops-dbt-warehouse](projects/data-engineering/flight-ops-dbt-warehouse) |
