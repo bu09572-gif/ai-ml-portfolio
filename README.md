@@ -8,7 +8,7 @@ Applied AI, machine learning and data engineering projects. Every project uses r
 
 - [Core AI platform](#core-ai-platform): 3 projects
 - [Healthcare](#healthcare): 1 project
-- [Finance](#finance): 4 projects
+- [Finance](#finance): 5 projects
 - [Insurance](#insurance): 2 projects
 - [Tech / LLM](#tech--llm): 1 project
 - [Data engineering](#data-engineering): 5 projects
@@ -43,8 +43,7 @@ Folder: [`projects/finance`](projects/finance)
 | [Explainable Credit Default Model with Fairness Checks](projects/finance/explainable-credit-risk) | Monotone XGBoost with plain-language decline reasons and four-fifths rule checks | AUC 0.776; every adverse impact ratio at or above 0.90 |
 | [Model Risk Validation Toolkit](projects/finance/model-risk-checker) | SR 11-7 style validation: leakage, challenger, calibration, drift, monotonicity, fairness | Caught 6 of 6 injected faults and 2 real issues in the fraud model |
 | [SEC Filing Analyst](projects/finance/sec-filing-analyst) | Finds each input number on its page and does the math in Python, never in the model | 40% of calculator answers within 1%; 18% overall vs 20% for plain Q&A, with the reasons |
-
-In progress: Anti-money-laundering with graph ML.
+| [Anti-Money-Laundering Detection on a Real Bitcoin Transaction Graph](projects/finance/graph-aml) | Flags illicit transactions with graph features, a GCN, and a test of what happens when criminal behaviour changes | F1 0.826 (precision 0.96); recall falls from 86% to 2% after a dark market shutdown |
 
 ## Insurance
 
