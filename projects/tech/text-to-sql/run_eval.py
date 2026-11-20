@@ -108,9 +108,11 @@ def summarize(df: pd.DataFrame) -> dict:
 
 
 def merge() -> dict:
-    files = sorted(OUT.glob(f"bird_dev_{tag()}_shard*.jsonl")) or [OUT / f"bird_dev_{tag()}.jsonl"]
-    df = pd.concat([pd.read_json(f, lines=True, dtype=False) for f in files], ignore_index=True)
-    df = df.drop_duplicates("question_id").sort_values("question_id")
+    # earlier full results first, then new shards; a question that was run again keeps the new row
+    full = OUT / f"bird_dev_{tag()}.jsonl"
+    files = ([full] if full.exists() else []) + sorted(OUT.glob(f"bird_dev_{tag()}_shard*.jsonl"))
+    df = pd.concat([pd.read_json(f, lines=True, dtype=False) for f in files if f.stat().st_size], ignore_index=True)
+    df = df.drop_duplicates("question_id", keep="last").sort_values("question_id")
     s = summarize(df)
     (OUT / f"summary_{tag()}.json").write_text(json.dumps(s, indent=2))
     df.to_json(OUT / f"bird_dev_{tag()}.jsonl", orient="records", lines=True)
@@ -124,12 +126,13 @@ def main(argv=None):
     ap.add_argument("--shard")
     ap.add_argument("--limit", type=int)
     ap.add_argument("--merge", action="store_true")
+    ap.add_argument("--db", default="", help="only questions on this database (to re-run one)")
     a = ap.parse_args(argv)
     OUT.mkdir(exist_ok=True)
     if a.merge:
         print(json.dumps(merge(), indent=2))
         return
-    qs, name = items(), f"bird_dev_{tag()}.jsonl"
+    qs, name = [q for q in items() if not a.db or q["db_id"] == a.db], f"bird_dev_{tag()}.jsonl"
     if a.shard:   # contiguous slices, so each shard sees only one or two databases
         i, n = map(int, a.shard.split("/"))
         size = -(-len(qs) // n)

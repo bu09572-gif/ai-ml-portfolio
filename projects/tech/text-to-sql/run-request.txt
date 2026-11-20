@@ -1,1 +1,2 @@
-v1 full BIRD dev run, 2026-11-20
+v2: re-run the financial database after quoting keyword table names, 2026-11-20
+db=financial

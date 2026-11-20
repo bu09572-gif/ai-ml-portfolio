@@ -55,8 +55,15 @@ def execute(path: Path, sql: str, time_limit: float = TIME_LIMIT_S) -> list[tupl
         con.close()
 
 
+KEYWORDS = {"order", "group", "table", "select", "where", "from", "index", "key", "values", "check", "default",
+            "limit", "join", "union", "case", "when", "to", "transaction", "references", "primary", "unique"}
+
+
 def _q(name: str) -> str:
-    return f'"{name}"' if not re.fullmatch(r"[A-Za-z_]\w*", name) else name
+    """Quote a name when SQLite needs it: spaces, symbols, or a keyword such as the table 'order'."""
+    if re.fullmatch(r"[A-Za-z_]\w*", name) and name.lower() not in KEYWORDS:
+        return name
+    return '"' + name.replace('"', '""') + '"'
 
 
 @lru_cache(maxsize=32)

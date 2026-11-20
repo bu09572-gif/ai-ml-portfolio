@@ -61,12 +61,14 @@ jobs:
           ollama pull "$LLM_MODEL"
       - name: Answer and score this shard
         working-directory: projects/tech/text-to-sql
-        run: python run_eval.py --shard "${{ matrix.shard }}/$SHARDS"
+        # a line "db=<name>" in run-request.txt re-runs only that database
+        run: python run_eval.py --shard "${{ matrix.shard }}/$SHARDS" --db "$(sed -n 's/^db=//p' run-request.txt)"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: sql-shard-${{ matrix.shard }}
           path: projects/tech/text-to-sql/results/bird_dev_*_shard*.jsonl
+          if-no-files-found: ignore
 
   merge:
     needs: answer

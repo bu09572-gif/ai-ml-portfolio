@@ -17,6 +17,8 @@ def db(tmp_path):
         create table score (school_id integer references school(id), "Avg Math" real);
         insert into school values (1, 'Lincoln High', 'Alameda'), (2, 'Grant High', 'Fresno');
         insert into score values (1, 520.5), (2, 480.0);
+        create table "order" (order_id integer primary key, amount real);
+        insert into "order" values (1, 9.5);
     """)
     con.commit()
     con.close()
@@ -64,6 +66,7 @@ def test_schema_shows_keys_quotes_and_examples(db):
     assert '"Avg Math" REAL' in s
     assert "FOREIGN KEY (school_id) REFERENCES school(id)" in s
     assert "'Lincoln High'" in s
+    assert 'CREATE TABLE "order"' in s          # a keyword as a table name must be quoted
 
 
 def test_extract_sql():
