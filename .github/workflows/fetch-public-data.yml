@@ -5,7 +5,7 @@ name: fetch-public-data
 on:
   workflow_dispatch:
   push:
-    paths: ["tools/fetch-request.txt"]
+    paths: ["tools/fetch-request.txt", "tools/fetch_urls.py"]
 
 permissions:
   contents: write
@@ -19,9 +19,17 @@ jobs:
         with: { python-version: "3.12" }
       - run: pip install scikit-learn pandas pyarrow
       - run: python tools/fetch_public_data.py out
+        if: ${{ !contains(github.event.head_commit.message, '[v2]') }}
+      - run: python tools/fetch_urls.py out2
+        if: ${{ contains(github.event.head_commit.message, '[v2]') }}
       - name: Attach to release data-v1
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
           gh release view data-v1 >/dev/null 2>&1 || gh release create data-v1 --title "Public datasets (v1)" \
             --notes "Copies of public datasets used by the projects. Sources and licenses are in manifest.json."
-          gh release upload data-v1 out/* --clobber
+          if [ -d out ]; then gh release upload data-v1 out/* --clobber; fi
+          if [ -d out2 ]; then
+            gh release view data-v2 >/dev/null 2>&1 || gh release create data-v2 --title "Public datasets (v2: healthcare)" \
+              --notes "Mirrors of public healthcare and CMS files. Sources, licenses and SHA-256 are in manifest_v2.json."
+            gh release upload data-v2 out2/* --clobber
+          fi
