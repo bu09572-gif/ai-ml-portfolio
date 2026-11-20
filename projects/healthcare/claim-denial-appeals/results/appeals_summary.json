@@ -1,0 +1,25 @@
+{
+  "model": "qwen2.5:3b",
+  "matched_requests": 39,
+  "requests_with_evidence": 39,
+  "modes": {
+    "grounded": {
+      "letters": 39,
+      "quotes": 123,
+      "quote_verified_rate": 0.976,
+      "letters_with_an_unverified_quote": 2,
+      "letters_with_unsupported_numbers": 2,
+      "evidence_used_mean": 0.712,
+      "median_words": 285.0
+    },
+    "free": {
+      "letters": 39,
+      "quotes": 65,
+      "quote_verified_rate": 0.754,
+      "letters_with_an_unverified_quote": 4,
+      "letters_with_unsupported_numbers": 5,
+      "evidence_used_mean": 0.101,
+      "median_words": 322.0
+    }
+  }
+}
