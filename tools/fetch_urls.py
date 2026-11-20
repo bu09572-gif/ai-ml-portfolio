@@ -59,6 +59,9 @@ HF = {  # Hugging Face datasets: every parquet file of the default config
     "medqa_usmle_4opt": "GBaker/MedQA-USMLE-4-options",
     # JailbreakBench behaviours: 100 harmful and 100 matched benign requests (MIT); "repo:config"
     "jbb_behaviors": "JailbreakBench/JBB-Behaviors:behaviors",
+    # prompt injection: 662 labelled prompts (Apache-2.0) and real Gandalf game attacks (MIT)
+    "deepset_prompt_injections": "deepset/prompt-injections",
+    "gandalf_ignore_instructions": "Lakera/gandalf_ignore_instructions",
 }
 
 
