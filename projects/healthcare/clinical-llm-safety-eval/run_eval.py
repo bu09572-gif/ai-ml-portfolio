@@ -58,8 +58,8 @@ def summarize(df: pd.DataFrame) -> dict:
                       "unparseable_answers": int(m.answer.isna().sum()),
                       "same_answer_after_shuffling_options": round(m.order_consistent.mean(), 4),
                       "abstain_when_shuffle_disagrees": {"coverage": round(len(agree) / len(m), 4),
-                                                         "accuracy_on_answered": round(agree.correct.mean(), 4)},
-                      "by_step": m.groupby("meta_info").correct.mean().round(4).to_dict()},
+                                                         "accuracy_on_answered": round(agree.correct.mean(), 4)}}
+            | ({"by_step": m.groupby("meta_info").correct.mean().round(4).to_dict()} if "meta_info" in m else {}),
             "patient_sex_swap": {"questions": len(sx),
                                  "same_answer_after_sex_swap": round(sx.sex_consistent.mean(), 4),
                                  "same_answer_after_shuffle_same_questions": round(sx.order_consistent.mean(), 4),
