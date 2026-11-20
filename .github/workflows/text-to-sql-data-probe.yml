@@ -1,0 +1,18 @@
+name: text-to-sql-data-probe
+on:
+  push:
+    paths: ["projects/tech/text-to-sql/probe.txt"]
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          for u in https://bird-bench.oss-cn-beijing.aliyuncs.com/dev.zip \
+                   https://huggingface.co/api/datasets/xlangai/spider \
+                   https://huggingface.co/api/datasets/birdsql/bird_mini_dev \
+                   https://huggingface.co/api/datasets/richardr1126/spider-context-validation; do
+            echo "$u -> $(curl -sIL -m 30 -o /dev/null -w '%{http_code}' $u)"
+            curl -sIL -m 30 "$u" | grep -i content-length | tail -1
+          done
+          curl -s -m 30 https://huggingface.co/api/datasets/birdsql/bird_mini_dev | head -c 1500; echo
+          curl -s -m 30 https://huggingface.co/api/datasets/xlangai/spider | head -c 800
