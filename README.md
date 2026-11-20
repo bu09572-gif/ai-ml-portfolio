@@ -7,13 +7,15 @@ Projects built on real public data with free, open-source tools. Each one report
 | Filing Ingestion Pipeline | Downloads SEC filings, extracts page text, chunks it, runs data checks | `src/docpipe` |
 | SEC Filing Q&A with Page Citations | BM25 search with company/year filters, LLM answers that cite the page | `src/docqa` |
 | LLM Evaluation Harness | Scores retrieval and answers, fails CI when quality drops | `src/evalkit` |
+| SEC Filing Analyst | Finds each input number on its page, does the math in Python | [sec-filing-analyst](projects/finance/sec-filing-analyst) |
+| Agentic RAG Copilot for SEC Filings | Agent that searches, reads and calculates, with code-enforced guardrails | [agentic-rag-copilot](projects/core/agentic-rag-copilot) |
 | Flight Operations Warehouse (dbt + DuckDB) | Star schema over 336,776 real flights, with dbt tests | [flight-ops-dbt-warehouse](projects/data-engineering/flight-ops-dbt-warehouse) |
 | Flight Data Quality Monitor | Daily anomaly checks, tested by breaking the data on purpose | [flight-data-quality-monitor](projects/data-engineering/flight-data-quality-monitor) |
 | Flight Status CDC Pipeline with SCD2 History | Change capture from an ops database into current and history tables | [flight-status-cdc](projects/data-engineering/flight-status-cdc) |
 | Streaming Flight Lakehouse (Kafka, Spark, Delta Lake) | Bronze, silver and gold tables from a Kafka stream | [flight-streaming-lakehouse](projects/data-engineering/flight-streaming-lakehouse) |
 | Daily Flight Pipeline on Airflow | Extract, check, then publish or quarantine each day | [flight-pipeline-airflow](projects/data-engineering/flight-pipeline-airflow) |
 
-The first three work together, and the rest of this page covers them. Each data engineering project has its own README.
+The first three work together, and the rest of this page covers them. Each project under `projects/` has its own README.
 
 ## Foundations: document Q&A over SEC filings
 
