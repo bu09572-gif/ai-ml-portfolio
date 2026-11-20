@@ -25,6 +25,10 @@ jobs:
         run: |
           pip install spacy
           cd projects/core/pii-redaction && python -m pytest -q test_redact.py
+      - name: Fraud scoring tests (real ULB data, committed model)
+        run: |
+          pip install xgboost
+          cd projects/finance/realtime-fraud-scoring && python -m pytest -q test_fraud.py
       - name: Motor pricing tests (real freMTPL2 data)
         run: |
           pip install pyreadr

@@ -8,6 +8,7 @@ Projects built on real public data with free, open-source tools. Each one report
 | SEC Filing Q&A with Page Citations | BM25 search with company/year filters, LLM answers that cite the page | `src/docqa` |
 | LLM Evaluation Harness | Scores retrieval and answers, fails CI when quality drops | `src/evalkit` |
 | SEC Filing Analyst | Finds each input number on its page, does the math in Python | [sec-filing-analyst](projects/finance/sec-filing-analyst) |
+| Real-Time Card Fraud Scoring with SHAP Explanations | XGBoost fraud API with top-3 reasons; 73% of fraud caught at 80% precision, 9 ms p50 | [realtime-fraud-scoring](projects/finance/realtime-fraud-scoring) |
 | Agentic RAG Copilot for SEC Filings | Agent that searches, reads and calculates, with code-enforced guardrails | [agentic-rag-copilot](projects/core/agentic-rag-copilot) |
 | PII Redaction Pipeline on Real Court Cases | Masks personal identifiers in ECHR judgments; 97.7% of direct identifiers fully masked | [pii-redaction](projects/core/pii-redaction) |
 | Motor Insurance Pricing with Discrimination-Free Premiums | Frequency and severity models on 678k French motor policies, with an age-fairness check; GBM Gini 0.361 | [motor-pricing-fairness](projects/insurance/motor-pricing-fairness) |
