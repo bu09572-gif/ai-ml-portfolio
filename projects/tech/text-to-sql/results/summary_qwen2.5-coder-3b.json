@@ -5,17 +5,17 @@
   "reference_sql_failed": 1,
   "configs": {
     "with_hint": {
-      "execution_accuracy": 0.4025,
-      "execution_accuracy_first_try": 0.3692,
+      "execution_accuracy": 0.4214,
+      "execution_accuracy_first_try": 0.3875,
       "by_difficulty": {
         "challenging": 0.2639,
-        "moderate": 0.2823,
-        "simple": 0.4843
+        "moderate": 0.2953,
+        "simple": 0.5092
       },
       "by_difficulty_first_try": {
         "challenging": 0.2222,
-        "moderate": 0.2435,
-        "simple": 0.4551
+        "moderate": 0.2543,
+        "simple": 0.48
       },
       "by_database": {
         "california_schools": 0.169,
@@ -23,33 +23,33 @@
         "codebase_community": 0.519,
         "debit_card_specializing": 0.359,
         "european_football_2": 0.558,
-        "financial": 0.0,
+        "financial": 0.274,
         "formula_1": 0.333,
         "student_club": 0.639,
         "superhero": 0.574,
         "thrombosis_prediction": 0.19,
         "toxicology": 0.441
       },
-      "first_query_errored": 0.2916,
-      "final_query_errored": 0.2211,
-      "repaired_questions": 447,
-      "fixed_by_repair": 51,
-      "model_errors": 106,
-      "median_latency_s": 7.6,
-      "mean_input_tokens": 2297
+      "first_query_errored": 0.3229,
+      "final_query_errored": 0.2498,
+      "repaired_questions": 495,
+      "fixed_by_repair": 52,
+      "model_errors": 0,
+      "median_latency_s": 7.8,
+      "mean_input_tokens": 2254
     },
     "no_hint": {
-      "execution_accuracy": 0.304,
-      "execution_accuracy_first_try": 0.287,
+      "execution_accuracy": 0.317,
+      "execution_accuracy_first_try": 0.3001,
       "by_difficulty": {
         "challenging": 0.1875,
-        "moderate": 0.2134,
-        "simple": 0.3676
+        "moderate": 0.2155,
+        "simple": 0.3881
       },
       "by_difficulty_first_try": {
         "challenging": 0.1806,
-        "moderate": 0.194,
-        "simple": 0.3503
+        "moderate": 0.1961,
+        "simple": 0.3708
       },
       "by_database": {
         "california_schools": 0.135,
@@ -57,20 +57,20 @@
         "codebase_community": 0.405,
         "debit_card_specializing": 0.203,
         "european_football_2": 0.442,
-        "financial": 0.0,
+        "financial": 0.189,
         "formula_1": 0.236,
         "student_club": 0.5,
         "superhero": 0.543,
         "thrombosis_prediction": 0.086,
         "toxicology": 0.379
       },
-      "first_query_errored": 0.2655,
-      "final_query_errored": 0.2127,
-      "repaired_questions": 407,
+      "first_query_errored": 0.2988,
+      "final_query_errored": 0.2433,
+      "repaired_questions": 458,
       "fixed_by_repair": 26,
-      "model_errors": 106,
-      "median_latency_s": 5.8,
-      "mean_input_tokens": 2261
+      "model_errors": 0,
+      "median_latency_s": 5.9,
+      "mean_input_tokens": 2221
     }
   },
   "counts_by_difficulty": {
