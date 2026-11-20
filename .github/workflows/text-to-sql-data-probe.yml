@@ -7,12 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          for u in https://bird-bench.oss-cn-beijing.aliyuncs.com/dev.zip \
-                   https://huggingface.co/api/datasets/xlangai/spider \
-                   https://huggingface.co/api/datasets/birdsql/bird_mini_dev \
-                   https://huggingface.co/api/datasets/richardr1126/spider-context-validation; do
-            echo "$u -> $(curl -sIL -m 30 -o /dev/null -w '%{http_code}' $u)"
-            curl -sIL -m 30 "$u" | grep -i content-length | tail -1
-          done
-          curl -s -m 30 https://huggingface.co/api/datasets/birdsql/bird_mini_dev | head -c 1500; echo
-          curl -s -m 30 https://huggingface.co/api/datasets/xlangai/spider | head -c 800
+          curl -sL -m 60 https://huggingface.co/datasets/birdsql/bird_mini_dev/resolve/main/data/mini_dev_sqlite.jsonl -o mini.jsonl
+          wc -l mini.jsonl; head -c 1500 mini.jsonl; echo
+          python3 -c "import json,collections;r=[json.loads(l) for l in open('mini.jsonl')];print(r[0].keys());print(collections.Counter(x.get('db_id') for x in r));print(collections.Counter(x.get('difficulty') for x in r))"
+          curl -sL -m 600 https://bird-bench.oss-cn-beijing.aliyuncs.com/dev.zip -o dev.zip && sha256sum dev.zip
+          unzip -l dev.zip | head -30
+          unzip -q dev.zip && ls -R | head -40
+          find . -name "*.zip" | head; for z in $(find . -name "dev_databases.zip"); do unzip -l "$z" | grep -c sqlite; unzip -l "$z" | grep sqlite | head -20; done
