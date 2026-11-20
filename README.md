@@ -1,10 +1,27 @@
-# Document Q&A over SEC filings: pipeline, retrieval and evaluation
+# AI/ML and data engineering projects
 
-This repo has three pieces that I plan to reuse across later projects:
+Projects built on real public data with free, open-source tools. Each one reports numbers I measured, and each has tests.
 
-- `src/docpipe`: downloads filings, extracts page text, chunks it, and runs data checks
-- `src/docqa`: retrieval (BM25 with metadata filters) and LLM answers with page citations
-- `src/evalkit`: evaluation of retrieval and answers, plus a regression check that runs in CI
+| Project | What it does | Where |
+|---|---|---|
+| Filing Ingestion Pipeline | Downloads SEC filings, extracts page text, chunks it, runs data checks | `src/docpipe` |
+| SEC Filing Q&A with Page Citations | BM25 search with company/year filters, LLM answers that cite the page | `src/docqa` |
+| LLM Evaluation Harness | Scores retrieval and answers, fails CI when quality drops | `src/evalkit` |
+| Flight Operations Warehouse (dbt + DuckDB) | Star schema over 336,776 real flights, with dbt tests | [flight-ops-dbt-warehouse](projects/data-engineering/flight-ops-dbt-warehouse) |
+| Flight Data Quality Monitor | Daily anomaly checks, tested by breaking the data on purpose | [flight-data-quality-monitor](projects/data-engineering/flight-data-quality-monitor) |
+| Flight Status CDC Pipeline with SCD2 History | Change capture from an ops database into current and history tables | [flight-status-cdc](projects/data-engineering/flight-status-cdc) |
+| Streaming Flight Lakehouse (Kafka, Spark, Delta Lake) | Bronze, silver and gold tables from a Kafka stream | [flight-streaming-lakehouse](projects/data-engineering/flight-streaming-lakehouse) |
+| Daily Flight Pipeline on Airflow | Extract, check, then publish or quarantine each day | [flight-pipeline-airflow](projects/data-engineering/flight-pipeline-airflow) |
+
+The first three work together, and the rest of this page covers them. Each data engineering project has its own README.
+
+## Foundations: document Q&A over SEC filings
+
+The three foundation projects:
+
+- **Filing Ingestion Pipeline** (`src/docpipe`): downloads filings, extracts page text, chunks it, and runs data checks
+- **SEC Filing Q&A with Page Citations** (`src/docqa`): retrieval (BM25 with metadata filters) and LLM answers with page citations
+- **LLM Evaluation Harness** (`src/evalkit`): evaluation of retrieval and answers, plus a regression check that runs in CI
 
 Everything runs on free tools. The default LLM is Qwen2.5-3B through Ollama, so no API key is needed. Groq and Claude are optional backends.
 
@@ -116,6 +133,7 @@ LLM backend, set with `LLM_PROVIDER`:
 ## CI
 
 - `ci.yml`: lint, unit tests, then the pipeline and retrieval eval on the real filings. The build fails if hit@5, hit@10 or MRR drops more than 0.02 below `evals/baseline/financebench.json`.
+- `data-engineering.yml`: dbt build and tests, the quality monitor, the CDC replay, the Kafka/Spark lakehouse with a crash test, and an Airflow backfill.
 - `free-llm-eval.yml`: answers and grades all 150 questions with the local models, split across 10 parallel jobs, then commits the results. Starts from the Actions tab or when `evals/run-request.txt` changes.
 
 ## Layout
@@ -124,6 +142,8 @@ LLM backend, set with `LLM_PROVIDER`:
 src/docpipe/   sources/, extract.py, chunk.py, quality.py, storage.py, run.py
 src/docqa/     retrieve.py, llm.py, answer.py, api.py
 src/evalkit/   dataset.py, metrics.py, run.py, gate.py
+src/flightsdata/  NYC flights download, change events, quality metrics (shared by the projects below)
+projects/data-engineering/   one folder per project
 evals/         baseline/, results/
 tests/
 ```

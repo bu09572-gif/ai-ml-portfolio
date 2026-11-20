@@ -1,0 +1,84 @@
+name: data-engineering
+
+on:
+  push:
+    paths: ["projects/data-engineering/**", "src/flightsdata/**", ".github/workflows/data-engineering.yml"]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  PYTHONPATH: ${{ github.workspace }}/src
+
+jobs:
+  warehouse-quality-cdc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.13", cache: pip }
+      - run: pip install "duckdb==2.0.0" "dbt-duckdb==1.11.1" pandas numpy requests pytest
+      - name: Download NYC flights 2013 (BTS / FAA / NOAA, via PyPI)
+        run: python -m flightsdata.source
+      - name: dbt build (models + tests)
+        working-directory: projects/data-engineering/flight-ops-dbt-warehouse
+        run: dbt build --profiles-dir .
+      - name: Data quality monitor + fault injection
+        working-directory: projects/data-engineering/flight-data-quality-monitor
+        run: |
+          python monitor.py > /dev/null
+          python faults.py
+          pytest -q test_monitor.py
+      - name: CDC pipeline (February replay + tests)
+        working-directory: projects/data-engineering/flight-status-cdc
+        run: |
+          pytest -q test_cdc.py
+          python pipeline.py --month 2
+
+  lakehouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.13", cache: pip }
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: "21" }
+      - run: pip install "pyspark==4.0.1" "delta-spark==4.0.0" confluent-kafka pandas numpy requests
+      - run: python -m flightsdata.source
+      - name: Start Kafka 4 (KRaft)
+        run: |
+          curl -fsSL https://archive.apache.org/dist/kafka/4.2.1/kafka_2.13-4.2.1.tgz | tar xz -C "$HOME"
+          K="$HOME/kafka_2.13-4.2.1"
+          "$K/bin/kafka-storage.sh" format --standalone -t "$("$K/bin/kafka-storage.sh" random-uuid)" -c "$K/config/server.properties"
+          nohup "$K/bin/kafka-server-start.sh" "$K/config/server.properties" > /tmp/kafka.log 2>&1 &
+          for i in $(seq 30); do "$K/bin/kafka-topics.sh" --bootstrap-server localhost:9092 --list && break; sleep 2; done
+          echo "KAFKA_BIN=$K/bin" >> "$GITHUB_ENV"
+      - name: Produce, stream, validate, crash, restart, validate (February)
+        working-directory: projects/data-engineering/flight-streaming-lakehouse
+        run: CRASH_BATCH=3000 ./run_demo.sh 2
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: lakehouse-results, path: projects/data-engineering/flight-streaming-lakehouse/results/ }
+
+  airflow:
+    runs-on: ubuntu-latest
+    env:
+      AIRFLOW_HOME: /tmp/airflow
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+      AIRFLOW__CORE__DAGS_FOLDER: ${{ github.workspace }}/projects/data-engineering/flight-pipeline-airflow/dags
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.13", cache: pip }
+      - run: |
+          pip install "apache-airflow==3.4.0" duckdb pandas numpy requests pytest \
+            --constraint https://raw.githubusercontent.com/apache/airflow/constraints-3.4.0/constraints-3.13.txt
+      - run: python -m flightsdata.source
+      - name: DAG integrity tests
+        working-directory: projects/data-engineering/flight-pipeline-airflow
+        run: PYTHONPATH="$PYTHONPATH:$PWD/dags" pytest -q tests
+      - name: Backfill January to March and compare with the quality monitor
+        working-directory: projects/data-engineering/flight-pipeline-airflow
+        run: |
+          airflow db migrate
+          airflow dags reserialize
+          PYTHONPATH="$PYTHONPATH:$PWD/dags" python backfill.py 2013-01-01 2013-03-31
