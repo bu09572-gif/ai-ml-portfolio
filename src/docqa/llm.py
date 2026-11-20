@@ -41,15 +41,16 @@ def model_name(provider: str | None = None) -> str:
 
 
 def chat(system: str, user: str, provider: str | None = None, model: str | None = None,
-         max_tokens: int = 1024, timeout: int = 300) -> Completion:
-    """One system + user turn, plain text out. Temperature 0 where supported, for repeatable evals."""
+         max_tokens: int = 1024, timeout: int = 300, json_mode: bool = False) -> Completion:
+    """One system + user turn. Temperature 0 where supported, for repeatable evals.
+    json_mode asks Ollama / Groq to return a single JSON object."""
     provider = provider or PROVIDER
     model = model or model_name(provider)
     t0 = time.perf_counter()
     if provider == "ollama":
         host = os.environ.get("OLLAMA_HOST", "http://localhost:11434")
         r = requests.post(f"{host}/api/chat", timeout=timeout, json={
-            "model": model, "stream": False,
+            "model": model, "stream": False, **({"format": "json"} if json_mode else {}),
             "options": {"temperature": 0, "num_predict": max_tokens, "num_ctx": 8192},
             "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]})
         r.raise_for_status()
@@ -60,10 +61,11 @@ def chat(system: str, user: str, provider: str | None = None, model: str | None 
         r = requests.post("https://api.groq.com/openai/v1/chat/completions", timeout=timeout,
                           headers={"Authorization": f"Bearer {os.environ['GROQ_API_KEY']}"},
                           json={"model": model, "temperature": 0, "max_tokens": max_tokens,
+                                **({"response_format": {"type": "json_object"}} if json_mode else {}),
                                 "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]})
         if r.status_code == 429:                     # free tier is rate limited: wait and retry once
             time.sleep(float(r.headers.get("retry-after", 10)))
-            return chat(system, user, provider, model, max_tokens, timeout)
+            return chat(system, user, provider, model, max_tokens, timeout, json_mode)
         r.raise_for_status()
         d = r.json()
         return Completion(d["choices"][0]["message"]["content"], d["usage"]["prompt_tokens"],

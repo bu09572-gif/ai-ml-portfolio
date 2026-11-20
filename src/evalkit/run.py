@@ -132,8 +132,11 @@ def summarize(df: pd.DataFrame) -> dict:
     from docqa.answer import Answer
     df = df.copy()
     df["refused"] = df.answer.map(lambda t: Answer(str(t)).refused)
+    # numeric_text (optional): the part of the answer that holds the result, when the answer
+    # also lists its inputs (the SEC filing analyst does this)
+    num_src = df.numeric_text.fillna(df.answer) if "numeric_text" in df else df.answer
     df["numeric_match"] = [M.numeric_match(str(a), str(g)) if not r else None
-                           for a, g, r in zip(df.answer, df.gold_answer, df.refused)]
+                           for a, g, r in zip(num_src, df.gold_answer, df.refused)]
     df["judge_grade"] = df.grade
     df["grade"] = [M.final_grade(j, r, n if pd.notna(n) else None)
                    for j, r, n in zip(df.judge_grade, df.refused, df.numeric_match)]
