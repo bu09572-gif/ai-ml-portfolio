@@ -1,0 +1,46 @@
+{
+  "n": 50,
+  "config": "analyst",
+  "k": 3,
+  "provider": "ollama",
+  "model": "qwen2.5:3b",
+  "judge_model": "llama3.2:3b",
+  "accuracy": 0.18,
+  "accuracy_when_answered": 0.45,
+  "accuracy_llm_judge_alone": 0.88,
+  "judge_called_refusals_correct": 0.867,
+  "incorrect_rate": 0.22,
+  "refusal_rate": 0.6,
+  "unparsed_grades": 0,
+  "numeric_match_when_answered": 0.45,
+  "numeric_answers_checked": 20,
+  "refusal_rate_when_retrieval_hit_vs_miss": {
+    "miss": 0.811,
+    "hit": 0.0
+  },
+  "answers_with_citations": 0.42,
+  "citation_page_precision": 0.571,
+  "accuracy_by_question_type": {
+    "metrics-generated": 0.18
+  },
+  "accuracy_when_retrieval_hit_vs_miss": {
+    "miss": 0.081,
+    "hit": 0.462
+  },
+  "cost_usd_total": 0,
+  "latency_s_p50": 175.08,
+  "latency_s_p95": 346.58,
+  "analyst": {
+    "answered_by_calculator": 10,
+    "fell_back_to_plain_qa": 40,
+    "calculator_numeric_match": 0.4,
+    "llm_calls_mean": 3.84
+  },
+  "plain_qa_same_questions": {
+    "n": 50,
+    "accuracy": 0.2,
+    "refusal_rate": 0.62,
+    "incorrect_rate": 0.18,
+    "citation_page_precision": 0.539
+  }
+}
