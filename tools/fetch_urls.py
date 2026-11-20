@@ -29,6 +29,8 @@ URLS = {
     "naic_ai_model_bulletin.pdf": [   # the adopted file's name itself contains "%20", hence %2520
         "https://content.naic.org/sites/default/files/2023-12-4%2520Model%2520Bulletin_Adopted_0.pdf",
         "https://content.naic.org/sites/default/files/call_materials/Model%20Bulletin%2010.23%20Clean.pdf"],
+    # Wisconsin's bulletin adopting the NAIC model text as final (March 2025)
+    "wisconsin_ai_bulletin_2025.html": "https://oci.wi.gov/Pages/Regulation/Bulletin20250318AI.aspx",
     "naic_ai_bulletin_adoption_map.pdf": "https://content.naic.org/sites/default/files/legal-adoption-map-ai-model-bulletin.pdf",
     "nydfs_circular_letter_2024_07.html": "https://www.dfs.ny.gov/industry-guidance/circular-letters/cl2024-07",
     "colorado_reg_10_1_1_amended.pdf": [
