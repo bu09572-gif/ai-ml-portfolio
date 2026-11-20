@@ -1,8 +1,8 @@
 import json
 
+import copilot as C
 import pandas as pd
 
-import copilot as C
 from docqa import llm
 from docqa.retrieve import Retriever
 
