@@ -21,7 +21,9 @@ jobs:
         run: python -m flightsdata.source
       - name: dbt build (models + tests)
         working-directory: projects/data-engineering/flight-ops-dbt-warehouse
-        run: dbt build --profiles-dir .
+        run: |
+          mkdir -p ../../../data/warehouse
+          dbt build --profiles-dir .
       - name: Data quality monitor + fault injection
         working-directory: projects/data-engineering/flight-data-quality-monitor
         run: |
@@ -75,10 +77,11 @@ jobs:
       - run: python -m flightsdata.source
       - name: DAG integrity tests
         working-directory: projects/data-engineering/flight-pipeline-airflow
-        run: PYTHONPATH="$PYTHONPATH:$PWD/dags" pytest -q tests
-      - name: Backfill January to March and compare with the quality monitor
-        working-directory: projects/data-engineering/flight-pipeline-airflow
         run: |
           airflow db migrate
           airflow dags reserialize
+          PYTHONPATH="$PYTHONPATH:$PWD/dags" pytest -q tests
+      - name: Backfill January to March and compare with the quality monitor
+        working-directory: projects/data-engineering/flight-pipeline-airflow
+        run: |
           PYTHONPATH="$PYTHONPATH:$PWD/dags" python backfill.py 2013-01-01 2013-03-31
