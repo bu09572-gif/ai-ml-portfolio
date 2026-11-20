@@ -72,3 +72,14 @@ def test_number_not_on_page_falls_back(monkeypatch):
     monkeypatch.setattr(A, "plain_answer", lambda q, hits: A.Answer("Not enough information in the provided filings."))
     res = A.Analyst(r, pages).ask("What is Acme's FY2019 revenue?")
     assert res.route == "fallback" and not res.inputs[0].grounded
+
+
+def test_scale_comes_from_the_page():
+    assert A.page_scale("CONSOLIDATED BALANCE SHEETS (In millions, except per share data)") == "millions"
+    assert A.page_scale("($ in thousands)") == "thousands"
+    assert A.page_scale("Revenue 1,000") == "units"
+
+
+def test_unit_conversions_are_removed_from_formulas():
+    assert A.CONVERSION_RE.sub("", "(a - b) / 1000000") == "(a - b)"
+    assert A.CONVERSION_RE.sub("", "(a + b) / 2") == "(a + b) / 2"

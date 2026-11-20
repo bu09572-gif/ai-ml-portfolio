@@ -43,15 +43,19 @@ Rules:
 - One item per number you need. Use names a, b, c, ... A value in two different years is two items.
 - For an average of two years, list both years and write (a + b) / 2.
 - For a percent, the formula gives the plain ratio. Do not multiply by 100.
+- Never put unit conversions (like / 1000) in the formula.
 - If the answer needs no calculation and is a single number, the formula is just "a".
 - If the question is not about numbers from the statements, return {"items": [], "formula": ""}."""
 
 FIND_SYSTEM = """You read pages from a company filing and pull out one number.
-Return JSON only: {"value": <number as printed, no commas, or null>, "source": "S1" | "S2" | "S3" | null,
-                   "scale": "units" | "thousands" | "millions" | "billions"}
+Return JSON only: {"value": <number as printed, no commas, or null>, "source": "S1" | "S2" | "S3" | null}
 - "value" is the number exactly as printed for the requested year. Numbers in parentheses are negative.
-- "scale" is what the table says its numbers are in (for example "in millions"). If it doesn't say, use "units".
-- If the line item is not on any page, return {"value": null, "source": null, "scale": "units"}."""
+- If the line item is not on any page, return {"value": null, "source": null}."""
+
+# "(In millions, except per share data)", "($ in thousands)", "Dollars in millions"
+SCALE_RE = re.compile(r"\bin\s+(thousands|millions|billions)\b", re.I)
+# a formula may only combine the items; unit conversion is done in code
+CONVERSION_RE = re.compile(r"\s*[*/]\s*(?:1000000000|1000000|1000|100|1e9|1e6|1e3|1e2)\b(?!\.)")
 
 OPS = {ast.Add: operator.add, ast.Sub: operator.sub, ast.Mult: operator.mul, ast.Div: operator.truediv,
        ast.USub: operator.neg, ast.UAdd: operator.pos}
@@ -162,7 +166,7 @@ class Analyst:
             item.pages_tried += 1
             if appears_on_page(v, texts[j]):
                 item.value, item.doc_id, item.page_num, item.grounded = v, *pages[j], True
-                item.scale = d.get("scale") if d.get("scale") in SCALE else "units"
+                item.scale = page_scale(texts[j])
                 return
 
     def ask(self, question: str) -> Result:
@@ -183,11 +187,15 @@ class Analyst:
             self._find(question, it, res)
         if not all(it.grounded for it in items):
             return self._fallback(question, res, t0)
+        formula = CONVERSION_RE.sub("", str(plan["formula"]))
+        res.plan["formula_used"] = formula
         try:
-            raw = safe_eval(str(plan["formula"]), {it.name: it.value * SCALE[it.scale] for it in items})
+            raw = safe_eval(formula, {it.name: it.value * SCALE[it.scale] for it in items})
         except (ValueError, ZeroDivisionError, SyntaxError):
             return self._fallback(question, res, t0)
         unit = str(plan.get("unit", "ratio")).lower()
+        if unit.startswith("usd") and re.search(r"/\s*\(?\s*[a-z]", formula):
+            unit = "ratio"            # one dollar amount divided by another is a ratio, not dollars
         decimals = int(plan.get("decimals", 2)) if str(plan.get("decimals", "")).lstrip("-").isdigit() else 2
         if unit in OUT_SCALE:
             value, shown = raw / OUT_SCALE[unit], unit.replace("usd", "USD")
@@ -201,7 +209,7 @@ class Analyst:
             cites.append(Citation(f"S{n}", it.doc_id, it.page_num))
             lines.append(f"- {it.name} = {it.line_item}, FY{it.fiscal_year}: {it.value:g} ({it.scale}) [S{n}]")
         res.answer.text = (f"{res.value:,.{max(decimals, 0)}f}{'%' if shown == '%' else (' ' + shown if shown else '')}\n"
-                           f"Formula: {plan['formula']}\n" + "\n".join(lines))
+                           f"Formula: {formula}\n" + "\n".join(lines))
         res.answer.citations = cites
         res.answer.latency_s = time.perf_counter() - t0
         return res
@@ -215,6 +223,12 @@ class Analyst:
         res.answer, res.route = a, "fallback"
         res.llm_calls += 1
         return res
+
+
+def page_scale(text: str) -> str:
+    """The scale a financial table states for its numbers; 'units' if the page doesn't say."""
+    m = SCALE_RE.search(text)
+    return m.group(1).lower() if m else "units"
 
 
 def _year(y) -> int | None:

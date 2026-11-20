@@ -1,1 +1,1 @@
-first run
+v2: table scale read from the page, unit conversions removed from formulas
