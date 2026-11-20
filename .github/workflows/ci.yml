@@ -31,6 +31,8 @@ jobs:
           cd projects/finance/realtime-fraud-scoring && python -m pytest -q test_fraud.py
           cd ../explainable-credit-risk && python -m pytest -q test_credit.py
           cd ../model-risk-checker && python -m pytest -q test_checks.py
+      - name: ICD-10 coding tests (real CodiEsp data)
+        run: cd projects/healthcare/icd10-coding-assistant && python -m pytest -q test_coder.py
       - name: Motor pricing tests (real freMTPL2 data)
         run: |
           pip install pyreadr

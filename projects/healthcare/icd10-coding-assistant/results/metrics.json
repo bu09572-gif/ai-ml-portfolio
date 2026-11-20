@@ -1,0 +1,47 @@
+{
+  "data": {
+    "train_and_dev_cases": 750,
+    "test_cases": 250,
+    "test_codes_per_case": 11.37,
+    "test_codes_seen_in_training": 0.858,
+    "candidate_codes": 44826
+  },
+  "ensemble_weights": {
+    "frequency": 0,
+    "classifier": 0.5,
+    "neighbours": 0,
+    "dictionary": 0.25
+  },
+  "test": {
+    "frequency": {
+      "MAP": 0.0799,
+      "precision_at_5": 0.1912,
+      "recall_at_10": 0.1263,
+      "recall_at_20": 0.1878
+    },
+    "classifier": {
+      "MAP": 0.2752,
+      "precision_at_5": 0.456,
+      "recall_at_10": 0.3244,
+      "recall_at_20": 0.4211
+    },
+    "neighbours": {
+      "MAP": 0.2298,
+      "precision_at_5": 0.3904,
+      "recall_at_10": 0.2955,
+      "recall_at_20": 0.3908
+    },
+    "dictionary": {
+      "MAP": 0.0722,
+      "precision_at_5": 0.1728,
+      "recall_at_10": 0.1154,
+      "recall_at_20": 0.1504
+    },
+    "ensemble": {
+      "MAP": 0.3259,
+      "precision_at_5": 0.5288,
+      "recall_at_10": 0.3757,
+      "recall_at_20": 0.4697
+    }
+  }
+}

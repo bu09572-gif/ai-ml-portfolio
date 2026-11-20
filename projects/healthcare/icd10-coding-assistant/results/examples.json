@@ -1,0 +1,201 @@
+[
+  {
+    "doc": "S0004-06142005000500011-1",
+    "gold": [
+      "C67.9",
+      "D29.1",
+      "E11.9",
+      "E78.00",
+      "E79.0",
+      "F10.20",
+      "F17.200",
+      "F17.210",
+      "M47.816",
+      "M48.30",
+      "M72.0",
+      "N28.1",
+      "N28.89",
+      "N32.89",
+      "R31.0",
+      "R31.29",
+      "R31.9",
+      "R69",
+      "S22.49XA"
+    ],
+    "suggested": [
+      {
+        "code": "R31.9",
+        "description": "Hematuria, unspecified",
+        "correct": true,
+        "evidence": "It is derived from Primary Care because it presents macroscopic post-voiding hematuria on one occasion and persistent microhematuria later, with normal voiding."
+      },
+      {
+        "code": "N28.9",
+        "description": "Disorder of kidney and ureter, unspecified",
+        "correct": false,
+        "evidence": "normal liver and kidney function."
+      },
+      {
+        "code": "E11.9",
+        "description": "Type 2 diabetes mellitus without complications",
+        "correct": true,
+        "evidence": "intervened of Dupuytren's disease by cigarette smoking in right hand type II"
+      },
+      {
+        "code": "I10",
+        "description": "Essential (primary) hypertension",
+        "correct": false,
+        "evidence": "It is derived from Primary Care because it presents macroscopic post-voiding hematuria on one occasion and persistent microhematuria later, with normal voiding."
+      },
+      {
+        "code": "N28.1",
+        "description": "Cyst of kidney, acquired",
+        "correct": true,
+        "evidence": "normal liver and kidney function."
+      },
+      {
+        "code": "N32.9",
+        "description": "Bladder disorder, unspecified",
+        "correct": false,
+        "evidence": "The cystogram showed a bladder with good capacity, but trabeculated walls in relation to stress bladder."
+      },
+      {
+        "code": "C67.9",
+        "description": "Malignant neoplasm of bladder, unspecified",
+        "correct": true,
+        "evidence": "The cystogram showed a bladder with good capacity, but trabeculated walls in relation to stress bladder."
+      },
+      {
+        "code": "F17.290",
+        "description": "Nicotine dependence, other tobacco product, uncomplicated",
+        "correct": false,
+        "evidence": ""
+      }
+    ]
+  },
+  {
+    "doc": "S0004-06142005000900014-1",
+    "gold": [
+      "D30.3",
+      "I96",
+      "N32.9",
+      "R30.0",
+      "R31.9",
+      "R35.0"
+    ],
+    "suggested": [
+      {
+        "code": "R31.9",
+        "description": "Hematuria, unspecified",
+        "correct": true,
+        "evidence": "A seventeen-year-old male with no history of interest presented with pollakiuria, voiding, tenesmus and self-limiting hematuria."
+      },
+      {
+        "code": "N32.9",
+        "description": "Bladder disorder, unspecified",
+        "correct": true,
+        "evidence": "TUR of both bladder lesions was performed, the pathological report being that of bladder leiomyoma, describing the lesion as \"proliferation of fusiform cells arranged in fascicles necrosis interlaced "
+      },
+      {
+        "code": "N32.89",
+        "description": "Other specified disorders of bladder",
+        "correct": false,
+        "evidence": "TUR of both bladder lesions was performed, the pathological report being that of bladder leiomyoma, describing the lesion as \"proliferation of fusiform cells arranged in fascicles necrosis interlaced "
+      },
+      {
+        "code": "I96",
+        "description": "Gangrene, not elsewhere classified",
+        "correct": true,
+        "evidence": ""
+      },
+      {
+        "code": "R31.0",
+        "description": "Gross hematuria",
+        "correct": false,
+        "evidence": "A seventeen-year-old male with no history of interest presented with pollakiuria, voiding, tenesmus and self-limiting hematuria."
+      },
+      {
+        "code": "R58",
+        "description": "Hemorrhage, not elsewhere classified",
+        "correct": false,
+        "evidence": ""
+      },
+      {
+        "code": "F17.290",
+        "description": "Nicotine dependence, other tobacco product, uncomplicated",
+        "correct": false,
+        "evidence": ""
+      },
+      {
+        "code": "F17.210",
+        "description": "Nicotine dependence, cigarettes, uncomplicated",
+        "correct": false,
+        "evidence": ""
+      }
+    ]
+  },
+  {
+    "doc": "S0004-06142006000100010-1",
+    "gold": [
+      "D17.5",
+      "D49.7",
+      "E11.9",
+      "E27.8",
+      "E66.9",
+      "I10",
+      "M54.5",
+      "N28.89",
+      "R58"
+    ],
+    "suggested": [
+      {
+        "code": "M54.5",
+        "description": "Low back pain",
+        "correct": true,
+        "evidence": "Six months ago she complained of low intensity sporadic right lumbar pain."
+      },
+      {
+        "code": "N28.89",
+        "description": "Other specified disorders of kidney and ureter",
+        "correct": true,
+        "evidence": "Abdominal ultrasound showed a hypoechogenic right adrenal mass of 80 mm compressing the upper pole of the right kidney."
+      },
+      {
+        "code": "R52",
+        "description": "Pain, unspecified",
+        "correct": false,
+        "evidence": "Six months ago she complained of low intensity sporadic right lumbar pain."
+      },
+      {
+        "code": "R58",
+        "description": "Hemorrhage, not elsewhere classified",
+        "correct": true,
+        "evidence": "The pathologist informed the piece with a weight of 171.4 g, with dimensions of 9 x 8 x 6 cm, and the cut-off points with other areas - signs of hemorrhage and adipose tissue alternating with zones"
+      },
+      {
+        "code": "I10",
+        "description": "Essential (primary) hypertension",
+        "correct": true,
+        "evidence": "A 62-year-old female patient, obese, with diabetes and hypertension for one year."
+      },
+      {
+        "code": "C64.9",
+        "description": "Malignant neoplasm of unspecified kidney, except renal pelvis",
+        "correct": false,
+        "evidence": "Abdominal ultrasound showed a hypoechogenic right adrenal mass of 80 mm compressing the upper pole of the right kidney."
+      },
+      {
+        "code": "C74.90",
+        "description": "Malignant neoplasm of unspecified part of unspecified adrenal gland",
+        "correct": false,
+        "evidence": "myelolipoma of the adrenal gland with extensive areas of calcifications."
+      },
+      {
+        "code": "N20.0",
+        "description": "Calculus of kidney",
+        "correct": false,
+        "evidence": "Abdominal ultrasound showed a hypoechogenic right adrenal mass of 80 mm compressing the upper pole of the right kidney."
+      }
+    ]
+  }
+]
