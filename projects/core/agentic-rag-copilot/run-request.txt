@@ -1,1 +1,1 @@
-v2: bounded prompt, model errors end one question, push to answer near the step limit
+v3: add citations from pages read; one forced final answer at the step limit

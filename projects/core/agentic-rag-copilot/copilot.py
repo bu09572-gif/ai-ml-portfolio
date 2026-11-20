@@ -120,6 +120,7 @@ class Run:
     steps: list[Step] = field(default_factory=list)
     pages_read: list[tuple[str, int]] = field(default_factory=list)
     revised: bool = False
+    auto_cited: bool = False      # the agent forgot citations and code added the pages it read
     guard: str = ""               # why the answer was refused by a guardrail, if it was
 
 
@@ -148,6 +149,7 @@ class Copilot:
         t0 = time.perf_counter()
         run = Run(Answer(""))
         labels: dict[str, tuple[str, int]] = {}     # P# -> page, stable across searches
+        page_numbers: dict[str, set[float]] = {}    # P# -> numbers on that page, for pages read
         evidence: set[float] = set()
         transcript = [f"Question: {question}"]
         final = None
@@ -184,6 +186,7 @@ class Copilot:
                     if key not in run.pages_read:
                         run.pages_read.append(key)
                     evidence |= numbers_in(text)
+                    page_numbers[label] = numbers_in(text)
                     obs = f"[{label}] page {key[1] + 1} of {key[0]}:\n{text}"
                 else:
                     obs = f"There is no source {label!r}. Search first, then read a P# from the results."
@@ -199,6 +202,12 @@ class Copilot:
                 run.steps.append(Step("calculate", expr, obs))
             elif act == "answer":
                 final = str(d.get("text", "")).strip()
+                if final and not CITE.search(final) and REFUSAL_TEXT.lower().rstrip(".") not in final.lower():
+                    # small models often forget the [P#] tags: cite the pages read that hold the answer's numbers
+                    nums = numbers_in(final)
+                    used = [lb for lb, ns in page_numbers.items() if nums & ns]
+                    if used:
+                        final, run.auto_cited = final + " " + "".join(f"[{lb}]" for lb in used), True
                 problem = self._check(final, labels, run, evidence)
                 if problem and not run.revised and left > 1:
                     run.revised = True
@@ -214,6 +223,19 @@ class Copilot:
                 obs = 'Reply with one JSON object with an "action" of search, read, calculate or answer.'
                 run.steps.append(Step("invalid", json.dumps(d)[:120], obs))
             transcript.append(f"You: {json.dumps(d)[:600]}\nResult: {obs}")
+        if final is None and not run.guard:
+            # out of steps: one last call where only an answer is accepted
+            d = self._llm(_fit(transcript) + '\n\n(No steps left. Reply only with {"action": "answer", "text": ...}.)', run)
+            if str(d.get("action", "")).lower() == "answer" and str(d.get("text", "")).strip():
+                final = str(d["text"]).strip()
+                if not CITE.search(final):
+                    used = [lb for lb, ns in page_numbers.items() if numbers_in(final) & ns]
+                    if used:
+                        final, run.auto_cited = final + " " + "".join(f"[{lb}]" for lb in used), True
+                problem = self._check(final, labels, run, evidence)
+                run.steps.append(Step("answer", final[:200], problem or "accepted"))
+                if problem:
+                    run.guard, final = problem, REFUSAL_TEXT
         if final is None:
             run.guard, final = run.guard or "ran out of steps", REFUSAL_TEXT
         a = run.answer

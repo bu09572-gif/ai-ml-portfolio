@@ -85,7 +85,7 @@ def test_citing_an_unread_page_is_caught(monkeypatch):
 
 
 def test_step_limit(monkeypatch):
-    script(monkeypatch, [{"action": "search", "query": "x"}] * C.MAX_STEPS)
+    script(monkeypatch, [{"action": "search", "query": "x"}] * (C.MAX_STEPS + 1))
     run = corpus().ask("What was Acme's FY2019 capex?")
     assert run.answer.refused and run.guard == "ran out of steps"
 
@@ -103,3 +103,13 @@ def test_prompt_stays_short():
     t = ["Question: q"] + [f'You: {{"action": "read"}}\nResult: [P{i}] page {i} of doc:\n{big}' for i in range(10)]
     out = C._fit(t)
     assert len(out) <= C.PROMPT_CHARS and out.startswith("Question: q")
+
+
+def test_missing_citation_is_added_from_pages_read(monkeypatch):
+    script(monkeypatch, [
+        {"action": "search", "query": "capex"},
+        {"action": "read", "source": "P1"},
+        {"action": "answer", "text": "Capex was $1,577 million."},
+    ])
+    run = corpus().ask("What was Acme's FY2019 capex?")
+    assert run.auto_cited and not run.guard and run.answer.citations[0].page_num == 0

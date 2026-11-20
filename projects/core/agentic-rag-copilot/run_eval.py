@@ -52,7 +52,7 @@ def run(items, out_path: Path) -> None:
                    "judge_model": g["judge_model"], "config": "agent", "k": 5,
                    "n_steps": len(res.steps), "actions": [s.action for s in res.steps],
                    "pages_read": [M.page_key(d, p) for d, p in res.pages_read],
-                   "revised": res.revised, "guard": res.guard,
+                   "revised": res.revised, "guard": res.guard, "auto_cited": res.auto_cited,
                    "steps": [vars(s) for s in res.steps]}
             fh.write(json.dumps(row, default=str) + "\n")
             fh.flush()
@@ -78,6 +78,7 @@ def merge() -> dict:
         "actions_total": acts.value_counts().to_dict(),
         "read_an_evidence_page": round(float(df.retrieval_hit.mean()), 3),
         "answers_sent_back_by_guardrail": int(df.revised.sum()),
+        "citations_added_by_code": int(df.auto_cited.sum()) if "auto_cited" in df else 0,
         "refused_by_guardrail": df.guard[df.guard != ""].map(lambda g: g.split(":")[0]).value_counts().to_dict(),
         "accuracy_by_question_type": by_type(df),
     }
