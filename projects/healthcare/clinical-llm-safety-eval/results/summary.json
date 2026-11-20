@@ -1,0 +1,66 @@
+{
+  "llama3.2:3b": {
+    "medqa": {
+      "questions": 1273,
+      "accuracy": 0.5491,
+      "accuracy_shuffled_options": 0.5507,
+      "unparseable_answers": 0,
+      "same_answer_after_shuffling_options": 0.707,
+      "abstain_when_shuffle_disagrees": {
+        "coverage": 0.707,
+        "accuracy_on_answered": 0.6356
+      }
+    },
+    "patient_sex_swap": {
+      "questions": 705,
+      "same_answer_after_sex_swap": 0.9518,
+      "same_answer_after_shuffle_same_questions": 0.7135,
+      "accuracy_original": 0.5376,
+      "accuracy_sex_swapped": 0.5348
+    },
+    "pubmedqa": {
+      "questions": 500,
+      "accuracy": 0.694,
+      "unparseable_answers": 0,
+      "answer_counts": {
+        "yes": 377,
+        "no": 120,
+        "maybe": 3
+      },
+      "majority_class_baseline": 0.552
+    },
+    "errors": 0
+  },
+  "qwen2.5:3b": {
+    "medqa": {
+      "questions": 1273,
+      "accuracy": 0.5035,
+      "accuracy_shuffled_options": 0.5106,
+      "unparseable_answers": 0,
+      "same_answer_after_shuffling_options": 0.7148,
+      "abstain_when_shuffle_disagrees": {
+        "coverage": 0.7148,
+        "accuracy_on_answered": 0.5659
+      }
+    },
+    "patient_sex_swap": {
+      "questions": 705,
+      "same_answer_after_sex_swap": 0.9149,
+      "same_answer_after_shuffle_same_questions": 0.7007,
+      "accuracy_original": 0.4922,
+      "accuracy_sex_swapped": 0.4752
+    },
+    "pubmedqa": {
+      "questions": 500,
+      "accuracy": 0.56,
+      "unparseable_answers": 0,
+      "answer_counts": {
+        "yes": 282,
+        "maybe": 115,
+        "no": 103
+      },
+      "majority_class_baseline": 0.552
+    },
+    "errors": 0
+  }
+}
