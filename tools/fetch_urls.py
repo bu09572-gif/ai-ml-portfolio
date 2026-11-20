@@ -37,6 +37,14 @@ URLS = {
         "https://www.insurereinsure.com/wp-content/uploads/sites/919/2025/08/Amended-Regulation-10-1-1.pdf"],
     "colorado_reg_10_1_1_notice.html": "https://doi.colorado.gov/announcements/notice-of-adoption-amended-regulation-10-1-1-governance-and-risk-management-framework",
 }
+# NHANES exam/lab files and NCHS public-use linked mortality (follow-up to 2019), cycles 2005-2010
+for _years, _sfx in [("2005-2006", "D"), ("2007-2008", "E"), ("2009-2010", "F")]:
+    for _t in ["DEMO", "BMX", "BPX", "BPQ", "SMQ", "DIQ", "MCQ", "TCHOL", "HDL", "GHB", "BIOPRO", "CBC", "ALQ", "PAQ"]:
+        URLS[f"nhanes_{_t}_{_sfx}.xpt"] = [
+            f"https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/{_years[:4]}/DataFiles/{_t}_{_sfx}.xpt",
+            f"https://wwwn.cdc.gov/Nchs/Nhanes/{_years}/{_t}_{_sfx}.XPT"]
+    URLS[f"nhanes_mort_{_sfx}.dat"] = ("https://ftp.cdc.gov/pub/Health_Statistics/NCHS/datalinkage/linked_mortality/"
+                                       f"NHANES_{_years.replace('-', '_')}_MORT_2019_PUBLIC.dat")
 # Files that change upstream (the weekly CMS export) must not be re-mirrored over the pinned copy.
 # If tools/fetch-only.txt lists names, only those are fetched, into their own manifest.
 ONLY = Path(__file__).with_name("fetch-only.txt")
