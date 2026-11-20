@@ -13,8 +13,13 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12", cache: pip }
       - run: pip install -e ".[dev]"
-      - run: ruff check src tests
+      - run: ruff check src tests projects
       - run: python -m pytest -q
+      - name: SEC filing analyst and agentic copilot tests (scripted model, no LLM needed)
+        env: { PYTHONPATH: src }
+        run: |
+          (cd projects/finance/sec-filing-analyst && python -m pytest -q test_analyst.py)
+          (cd projects/core/agentic-rag-copilot && python -m pytest -q test_copilot.py)
 
   real-data-eval:
     needs: test
