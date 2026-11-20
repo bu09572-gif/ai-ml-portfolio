@@ -1,0 +1,124 @@
+{
+  "requirements": {
+    "naic_bulletin": 31,
+    "new_york": 54,
+    "colorado": 33
+  },
+  "untagged_requirements": 27,
+  "theme_tags": 165,
+  "crosswalk": {
+    "governance and accountability": {
+      "colorado": 6,
+      "naic_bulletin": 8,
+      "new_york": 9
+    },
+    "written program and policies": {
+      "colorado": 6,
+      "naic_bulletin": 14,
+      "new_york": 5
+    },
+    "inventory and documentation": {
+      "colorado": 1,
+      "naic_bulletin": 3,
+      "new_york": 5
+    },
+    "data quality and sources": {
+      "colorado": 9,
+      "naic_bulletin": 0,
+      "new_york": 36
+    },
+    "unfair discrimination and bias testing": {
+      "colorado": 2,
+      "naic_bulletin": 1,
+      "new_york": 7
+    },
+    "validation, testing and monitoring": {
+      "colorado": 1,
+      "naic_bulletin": 3,
+      "new_york": 7
+    },
+    "explainability and transparency": {
+      "colorado": 0,
+      "naic_bulletin": 1,
+      "new_york": 1
+    },
+    "third-party vendors": {
+      "colorado": 1,
+      "naic_bulletin": 3,
+      "new_york": 6
+    },
+    "consumer notice and adverse decisions": {
+      "colorado": 2,
+      "naic_bulletin": 5,
+      "new_york": 9
+    },
+    "regulator reporting and examination": {
+      "colorado": 9,
+      "naic_bulletin": 1,
+      "new_york": 4
+    }
+  },
+  "naic_bulletin_adoption": {
+    "status_date": "November 13, 2026",
+    "adopted": 30,
+    "states": [
+      "Alaska",
+      "Arkansas",
+      "Connecticut",
+      "Delaware",
+      "District of Columbia",
+      "Hawaii",
+      "Illinois",
+      "Iowa",
+      "Kentucky",
+      "Maryland",
+      "Massachusetts",
+      "Michigan",
+      "Mississippi",
+      "Nebraska",
+      "Nevada",
+      "New Hampshire",
+      "New Jersey",
+      "North Carolina",
+      "North Dakota",
+      "Oklahoma",
+      "Pennsylvania",
+      "Puerto Rico",
+      "Rhode Island",
+      "South Carolina",
+      "Texas",
+      "Vermont",
+      "Virginia",
+      "Washington",
+      "West Virginia",
+      "Wisconsin"
+    ],
+    "own_rules": [
+      "California",
+      "Colorado",
+      "New York"
+    ]
+  },
+  "evidence_status": {
+    "motor-pricing-fairness": {
+      "gap": 4,
+      "found": 4,
+      "partial": 2
+    },
+    "claims-severity-large-loss": {
+      "gap": 5,
+      "partial": 3,
+      "found": 2
+    },
+    "explainable-credit-risk": {
+      "gap": 2,
+      "found": 7,
+      "partial": 1
+    },
+    "realtime-fraud-scoring": {
+      "gap": 4,
+      "found": 5,
+      "partial": 1
+    }
+  }
+}

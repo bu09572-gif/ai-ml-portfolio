@@ -47,6 +47,7 @@ jobs:
           pip install pyreadr
           cd projects/insurance/motor-pricing-fairness && python -m pytest -q test_pricing.py
           cd ../claims-severity-large-loss && python -m pytest -q test_severity.py
+          cd ../ai-governance-report && python -m pytest -q test_governance.py
 
   real-data-eval:
     needs: test

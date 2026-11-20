@@ -9,7 +9,7 @@ Applied AI, machine learning and data engineering projects. Every project uses r
 - [Core AI platform](#core-ai-platform): 3 projects
 - [Healthcare](#healthcare): 1 project
 - [Finance](#finance): 5 projects
-- [Insurance](#insurance): 2 projects
+- [Insurance](#insurance): 3 projects
 - [Tech / LLM](#tech--llm): 1 project
 - [Data engineering](#data-engineering): 5 projects
 
@@ -53,8 +53,9 @@ Folder: [`projects/insurance`](projects/insurance)
 |---|---|---|
 | [Motor Insurance Pricing with Discrimination-Free Premiums](projects/insurance/motor-pricing-fairness) | Frequency and severity pricing models, and what removing driver age really changes | 678k real policies; GBM Gini 0.361 vs GLM 0.279 |
 | [Motor Claim Severity Model with Extreme-Value Large-Loss Analysis](projects/insurance/claims-severity-large-loss) | Claim size models below a cap, a Pareto tail fit above it, and a large-loss load | 1.8% of claims carry 34.5% of cost; tail shape 1.07 |
+| [AI Governance Report for Insurance Models under State AI Rules](projects/insurance/ai-governance-report) | Requirements register from the NAIC bulletin, New York CL 7 and Colorado Reg. 10-1-1, and an evidence check of my models against it | 118 requirements, 34 of 40 theme tags right; 30 jurisdictions adopted the NAIC bulletin |
 
-In progress: Underwriting assistant; AI governance report (state AI rules); Subrogation detection.
+In progress: Underwriting assistant; Subrogation detection.
 
 ## Tech / LLM
 
