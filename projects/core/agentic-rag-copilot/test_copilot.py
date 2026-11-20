@@ -88,3 +88,18 @@ def test_step_limit(monkeypatch):
     script(monkeypatch, [{"action": "search", "query": "x"}] * C.MAX_STEPS)
     run = corpus().ask("What was Acme's FY2019 capex?")
     assert run.answer.refused and run.guard == "ran out of steps"
+
+
+def test_model_error_ends_question_not_run(monkeypatch):
+    def boom(system, user, **kw):
+        raise RuntimeError("500 from ollama")
+    monkeypatch.setattr(llm, "chat", boom)
+    run = corpus().ask("What was Acme's FY2019 capex?")
+    assert run.answer.refused and run.guard.startswith("model error")
+
+
+def test_prompt_stays_short():
+    big = "x" * 4000
+    t = ["Question: q"] + [f'You: {{"action": "read"}}\nResult: [P{i}] page {i} of doc:\n{big}' for i in range(10)]
+    out = C._fit(t)
+    assert len(out) <= C.PROMPT_CHARS and out.startswith("Question: q")

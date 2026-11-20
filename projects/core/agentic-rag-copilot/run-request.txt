@@ -1,1 +1,1 @@
-first run
+v2: bounded prompt, model errors end one question, push to answer near the step limit

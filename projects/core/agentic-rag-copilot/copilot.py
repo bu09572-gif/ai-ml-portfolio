@@ -28,7 +28,9 @@ from docqa.retrieve import Retriever
 
 MAX_STEPS = 8
 PREVIEW_CHARS = 300
-PAGE_CHARS = 5000
+PAGE_CHARS = 3500
+PROMPT_CHARS = 18000      # stay well inside an 8k-token context window
+KEEP_FULL = 2             # the last 2 page reads stay in full; older ones are shortened
 
 SYSTEM = f"""You answer questions about company SEC filings. You work in steps. Each step, reply with
 one JSON object and nothing else:
@@ -93,6 +95,18 @@ def safe_calc(expr: str) -> float:
     return float(eval(compile(expr, "<calc>", "eval"), {"__builtins__": {}}, {}))  # noqa: S307 (checked above)
 
 
+def _fit(transcript: list[str]) -> str:
+    """Keep the prompt short: shorten all but the last KEEP_FULL page reads, then drop the
+    oldest middle turns if it is still too long. The question (first entry) always stays."""
+    reads = [i for i, t in enumerate(transcript) if "\nResult: [P" in t and " page " in t[:400]]
+    old = set(reads[:-KEEP_FULL]) if len(reads) > KEEP_FULL else set()
+    parts = [t[:700] + " ...(shortened; read it again if you need it)" if i in old else t
+             for i, t in enumerate(transcript)]
+    while len("\n\n".join(parts)) > PROMPT_CHARS and len(parts) > 2:
+        parts.pop(1)
+    return "\n\n".join(parts)
+
+
 @dataclass
 class Step:
     action: str
@@ -115,7 +129,11 @@ class Copilot:
         self.pages = pages.set_index(["doc_id", "page_num"]).text
 
     def _llm(self, messages: str, run: Run) -> dict:
-        c = llm.chat(SYSTEM, messages, json_mode=True, max_tokens=500)
+        try:
+            c = llm.chat(SYSTEM, messages, json_mode=True, max_tokens=500)
+        except Exception as e:  # noqa: BLE001 - a failed model call ends this question, not the whole run
+            run.guard = f"model error: {type(e).__name__}"
+            return {"action": "_error"}
         a = run.answer
         a.input_tokens += c.input_tokens
         a.output_tokens += c.output_tokens
@@ -135,9 +153,17 @@ class Copilot:
         final = None
         for step in range(MAX_STEPS):
             left = MAX_STEPS - step
-            prompt = "\n\n".join(transcript) + f"\n\n({left} step{'s' if left > 1 else ''} left. Reply with JSON.)"
+            if left == 1:
+                nudge = 'This is your last step. Reply with {"action": "answer", ...} now.'
+            elif len(run.pages_read) >= 3:
+                nudge = f"{left} steps left. You have read {len(run.pages_read)} pages; answer as soon as you can."
+            else:
+                nudge = f"{left} steps left. Reply with JSON."
+            prompt = _fit(transcript) + f"\n\n({nudge})"
             d = self._llm(prompt, run)
             act = str(d.get("action", "")).lower()
+            if act == "_error":
+                break
             if act == "search":
                 q = str(d.get("query") or question)
                 # keep the question's company and year in the query so the filters still apply
