@@ -1,0 +1,34 @@
+[
+  {
+    "applicant": 3,
+    "predicted_default": 0.476,
+    "actual_default": 1,
+    "reasons": [
+      "Late payments: 4 of the last 6 months, up to 2 months late",
+      "Credit limit is low",
+      "Amount paid is low compared with the amount owed",
+      "High balance compared with the credit limit (77% used in September)"
+    ]
+  },
+  {
+    "applicant": 7,
+    "predicted_default": 0.336,
+    "actual_default": 1,
+    "reasons": [
+      "Little or no card use in September",
+      "Amount paid is low compared with the amount owed",
+      "Late payments: 1 of the last 6 months, up to 1 month late",
+      "Credit limit is low"
+    ]
+  },
+  {
+    "applicant": 10,
+    "predicted_default": 0.476,
+    "actual_default": 0,
+    "reasons": [
+      "Late payments: 1 of the last 6 months, up to 2 months late",
+      "Little or no card use in September",
+      "Amount paid is low compared with the amount owed"
+    ]
+  }
+]

@@ -29,6 +29,7 @@ jobs:
         run: |
           pip install xgboost
           cd projects/finance/realtime-fraud-scoring && python -m pytest -q test_fraud.py
+          cd ../explainable-credit-risk && python -m pytest -q test_credit.py
       - name: Motor pricing tests (real freMTPL2 data)
         run: |
           pip install pyreadr
