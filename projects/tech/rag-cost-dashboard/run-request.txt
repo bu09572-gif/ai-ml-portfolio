@@ -1,0 +1,1 @@
+run 1: 3 models x k 3/5/10 x compression

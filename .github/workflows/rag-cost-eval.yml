@@ -1,0 +1,88 @@
+# RAG cost dashboard: 150 FinanceBench questions x 3 free models x k = 3/5/10 x compression on/off;
+# tokens, CPU seconds and numeric accuracy for every answer; commit the results.
+#
+# Start it from the Actions tab, or by changing projects/tech/rag-cost-dashboard/run-request.txt.
+name: rag-cost-eval
+
+on:
+  workflow_dispatch:
+    inputs:
+      from_run:
+        description: "Only merge: take the shard files from this earlier run id"
+        required: false
+        default: ""
+  push:
+    paths: ["projects/tech/rag-cost-dashboard/run-request.txt"]
+
+permissions:
+  contents: write
+  actions: read
+
+env:
+  PYTHONPATH: ${{ github.workspace }}/src
+  LLM_PROVIDER: ollama
+  EVAL_MODELS: qwen2.5:1.5b,qwen2.5:3b,llama3.2:3b
+  OLLAMA_MAX_LOADED_MODELS: "3"
+  OLLAMA_KEEP_ALIVE: "-1"
+  SHARDS: "20"
+
+jobs:
+  answer:
+    if: ${{ !inputs.from_run }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12", cache: pip }
+      - run: pip install -e .
+      - name: Cache filings
+        uses: actions/cache@v4
+        with: { path: data/bronze, key: bronze-financebench-v1 }
+      - uses: actions/cache@v4
+        with: { path: ~/.ollama/models, key: ollama-qwen2.5-1.5b-qwen2.5-3b-llama3.2-3b }
+      - name: Install and start Ollama
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          (ollama serve > /tmp/ollama.log 2>&1 &)
+          for i in $(seq 30); do curl -s localhost:11434/api/tags >/dev/null && break; sleep 2; done
+          for m in ${EVAL_MODELS//,/ }; do ollama pull "$m"; done
+      - run: python -m docpipe.run --scope eval
+      - name: Answer this shard with every config
+        working-directory: projects/tech/rag-cost-dashboard
+        run: python run_eval.py --shard "${{ matrix.shard }}/$SHARDS"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rc-shard-${{ matrix.shard }}
+          path: projects/tech/rag-cost-dashboard/results/answers_shard*.jsonl
+          if-no-files-found: ignore
+
+  merge:
+    needs: answer
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12", cache: pip }
+      - run: pip install -e . matplotlib
+      - uses: actions/download-artifact@v4
+        with: { path: shards, pattern: "rc-shard-*", merge-multiple: true, run-id: "${{ inputs.from_run || github.run_id }}", github-token: "${{ github.token }}" }
+      - name: Merge shards and summarize
+        working-directory: projects/tech/rag-cost-dashboard
+        run: |
+          mkdir -p results
+          cp ../../../shards/*.jsonl results/
+          python run_eval.py --merge
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add projects/tech/rag-cost-dashboard/results/
+          git commit -m "RAG cost results (${EVAL_MODELS}) [skip ci]" || echo "nothing to commit"
+          git pull --rebase && git push
