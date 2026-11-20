@@ -1,0 +1,94 @@
+# Text-to-SQL Assistant: run a free local model (Ollama on CPU) on all 1,534 BIRD dev
+# questions, with and without the hint, score by execution accuracy, commit the results.
+#
+# Start it from the Actions tab, or by changing projects/tech/text-to-sql/run-request.txt.
+name: text-to-sql-eval
+
+on:
+  workflow_dispatch:
+  push:
+    paths: ["projects/tech/text-to-sql/run-request.txt"]
+
+permissions:
+  contents: write
+
+env:
+  PYTHONPATH: ${{ github.workspace }}/src
+  LLM_PROVIDER: ollama
+  LLM_MODEL: qwen2.5-coder:3b
+  SHARDS: "20"
+
+jobs:
+  data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12", cache: pip }
+      - uses: actions/cache@v4
+        id: bird
+        with: { path: data/raw/bird, key: bird-dev-v1 }
+      - if: steps.bird.outputs.cache-hit != 'true'
+        working-directory: projects/tech/text-to-sql
+        run: |
+          pip install requests
+          python data.py
+          rm -f ../../../data/raw/bird/dev.zip
+          du -sh ../../../data/raw/bird
+
+  answer:
+    needs: data
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12", cache: pip }
+      - run: pip install -e .
+      - uses: actions/cache/restore@v4
+        with: { path: data/raw/bird, key: bird-dev-v1, fail-on-cache-miss: true }
+      - uses: actions/cache@v4
+        with: { path: ~/.ollama/models, key: ollama-qwen2.5-coder-3b }
+      - name: Install and start Ollama
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          (ollama serve > /tmp/ollama.log 2>&1 &)
+          for i in $(seq 30); do curl -s localhost:11434/api/tags >/dev/null && break; sleep 2; done
+          ollama pull "$LLM_MODEL"
+      - name: Answer and score this shard
+        working-directory: projects/tech/text-to-sql
+        run: python run_eval.py --shard "${{ matrix.shard }}/$SHARDS"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sql-shard-${{ matrix.shard }}
+          path: projects/tech/text-to-sql/results/bird_dev_*_shard*.jsonl
+
+  merge:
+    needs: answer
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12", cache: pip }
+      - run: pip install -e .
+      - uses: actions/download-artifact@v4
+        with: { path: shards, pattern: "sql-shard-*", merge-multiple: true }
+      - name: Merge shards and summarize
+        working-directory: projects/tech/text-to-sql
+        run: |
+          mkdir -p results
+          cp ../../../shards/*.jsonl results/
+          python run_eval.py --merge
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add projects/tech/text-to-sql/results/
+          git commit -m "Text-to-SQL BIRD dev results (${LLM_MODEL}) [skip ci]" || echo "nothing to commit"
+          git pull --rebase && git push

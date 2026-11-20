@@ -15,11 +15,12 @@ jobs:
       - run: pip install -e ".[dev]"
       - run: ruff check src tests projects
       - run: python -m pytest -q
-      - name: SEC filing analyst and agentic copilot tests (scripted model, no LLM needed)
+      - name: SEC analyst, agentic copilot and text-to-SQL tests (scripted model, no LLM needed)
         env: { PYTHONPATH: src }
         run: |
           (cd projects/finance/sec-filing-analyst && python -m pytest -q test_analyst.py)
           (cd projects/core/agentic-rag-copilot && python -m pytest -q test_copilot.py)
+          (cd projects/tech/text-to-sql && python -m pytest -q test_sqlagent.py)
       - name: PII redaction unit tests
         run: |
           pip install spacy
