@@ -25,6 +25,10 @@ jobs:
         run: |
           pip install spacy
           cd projects/core/pii-redaction && python -m pytest -q test_redact.py
+      - name: Motor pricing tests (real freMTPL2 data)
+        run: |
+          pip install pyreadr
+          cd projects/insurance/motor-pricing-fairness && python -m pytest -q test_pricing.py
 
   real-data-eval:
     needs: test

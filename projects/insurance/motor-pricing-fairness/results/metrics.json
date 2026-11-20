@@ -1,0 +1,149 @@
+{
+  "data": {
+    "policies": 677991,
+    "train": 542479,
+    "test": 135512,
+    "test_policy_years": 71612,
+    "test_claims": 5284
+  },
+  "models": {
+    "glm": {
+      "aware": {
+        "frequency_poisson_deviance": 0.4563069349790272,
+        "frequency_deviance_explained": 0.04102255368874008,
+        "severity_gamma_deviance": 1.3189101402203183,
+        "pure_premium_gini": 0.27900886345161435,
+        "predicted_over_actual_claims": 1.0636972035608625
+      },
+      "unaware": {
+        "frequency_poisson_deviance": 0.457796836586643,
+        "frequency_deviance_explained": 0.037891367354716654,
+        "severity_gamma_deviance": 1.3319504193569849,
+        "pure_premium_gini": 0.2570330128426376,
+        "predicted_over_actual_claims": 1.066867689645094
+      },
+      "discrimination_free": {
+        "pure_premium_gini": 0.25868115652786045,
+        "predicted_over_actual_claims": 1.064996453565512
+      },
+      "fit_seconds": 159.4
+    },
+    "gbm": {
+      "aware": {
+        "frequency_poisson_deviance": 0.4446294522720943,
+        "frequency_deviance_explained": 0.06556402279035045,
+        "severity_gamma_deviance": 1.3086736426945298,
+        "pure_premium_gini": 0.360989430683245,
+        "predicted_over_actual_claims": 1.045082235397379
+      },
+      "unaware": {
+        "frequency_poisson_deviance": 0.44617408533686,
+        "frequency_deviance_explained": 0.06231781249112511,
+        "severity_gamma_deviance": 1.3127389758836332,
+        "pure_premium_gini": 0.34307691380679384,
+        "predicted_over_actual_claims": 1.039802308659157
+      },
+      "discrimination_free": {
+        "pure_premium_gini": 0.33650171657110417,
+        "predicted_over_actual_claims": 1.0454992973530832
+      },
+      "fit_seconds": 487.3
+    }
+  },
+  "by_age_band": {
+    "glm": {
+      "18-25": {
+        "policies": 7734,
+        "actual_cost_per_year": 357.3,
+        "aware_premium": 338.7,
+        "aware_loss_ratio": 1.055,
+        "unaware_premium": 319.1,
+        "unaware_loss_ratio": 1.12,
+        "discrimination_free_premium": 332.8,
+        "discrimination_free_loss_ratio": 1.073
+      },
+      "26-64": {
+        "policies": 113324,
+        "actual_cost_per_year": 123.2,
+        "aware_premium": 138.2,
+        "aware_loss_ratio": 0.892,
+        "unaware_premium": 142.3,
+        "unaware_loss_ratio": 0.866,
+        "discrimination_free_premium": 141.9,
+        "discrimination_free_loss_ratio": 0.868
+      },
+      "65+": {
+        "policies": 14454,
+        "actual_cost_per_year": 151.7,
+        "aware_premium": 131.0,
+        "aware_loss_ratio": 1.157,
+        "unaware_premium": 113.5,
+        "unaware_loss_ratio": 1.336,
+        "discrimination_free_premium": 111.2,
+        "discrimination_free_loss_ratio": 1.364
+      }
+    },
+    "gbm": {
+      "18-25": {
+        "policies": 7734,
+        "actual_cost_per_year": 357.3,
+        "aware_premium": 333.8,
+        "aware_loss_ratio": 1.07,
+        "unaware_premium": 303.7,
+        "unaware_loss_ratio": 1.176,
+        "discrimination_free_premium": 288.5,
+        "discrimination_free_loss_ratio": 1.238
+      },
+      "26-64": {
+        "policies": 113324,
+        "actual_cost_per_year": 123.2,
+        "aware_premium": 136.6,
+        "aware_loss_ratio": 0.902,
+        "unaware_premium": 139.7,
+        "unaware_loss_ratio": 0.882,
+        "discrimination_free_premium": 141.0,
+        "discrimination_free_loss_ratio": 0.874
+      },
+      "65+": {
+        "policies": 14454,
+        "actual_cost_per_year": 151.7,
+        "aware_premium": 122.8,
+        "aware_loss_ratio": 1.235,
+        "unaware_premium": 114.2,
+        "unaware_loss_ratio": 1.328,
+        "discrimination_free_premium": 111.5,
+        "discrimination_free_loss_ratio": 1.361
+      }
+    }
+  },
+  "age_gap": {
+    "glm": {
+      "aware": {
+        "young_vs_middle_premium_gap": 1.452,
+        "share_of_aware_gap": 1.0
+      },
+      "unaware": {
+        "young_vs_middle_premium_gap": 1.243,
+        "share_of_aware_gap": 0.856
+      },
+      "discrimination_free": {
+        "young_vs_middle_premium_gap": 1.346,
+        "share_of_aware_gap": 0.927
+      }
+    },
+    "gbm": {
+      "aware": {
+        "young_vs_middle_premium_gap": 1.443,
+        "share_of_aware_gap": 1.0
+      },
+      "unaware": {
+        "young_vs_middle_premium_gap": 1.174,
+        "share_of_aware_gap": 0.814
+      },
+      "discrimination_free": {
+        "young_vs_middle_premium_gap": 1.047,
+        "share_of_aware_gap": 0.725
+      }
+    }
+  }
+}
