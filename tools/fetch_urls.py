@@ -55,6 +55,8 @@ ONLY = Path(__file__).with_name("fetch-only.txt")
 HF = {  # Hugging Face datasets: every parquet file of the default config
     "mtsamples": "harishnair04/mtsamples",
     "medqa_usmle_4opt": "GBaker/MedQA-USMLE-4-options",
+    # JailbreakBench behaviours: 100 harmful and 100 matched benign requests (MIT); "repo:config"
+    "jbb_behaviors": "JailbreakBench/JBB-Behaviors:behaviors",
 }
 
 
@@ -71,12 +73,29 @@ def get(url, dest: Path) -> dict:
     return {"url": url, "bytes": len(r.content), "sha256": hashlib.sha256(r.content).hexdigest()}
 
 
+def hf(key: str, out: Path) -> dict:
+    repo, _, want = HF[key].partition(":")
+    files = requests.get(f"https://huggingface.co/api/datasets/{repo}/parquet", timeout=60).json()
+    print(repo, json.dumps(files)[:400], flush=True)
+    configs = files if isinstance(files, dict) else {}
+    cfg = want or ("default" if "default" in configs else next(iter(configs)))
+    manifest = {}
+    for split, urls in configs[cfg].items():
+        for i, u in enumerate(urls):
+            name = f"{key}__{split}__{i}.parquet"
+            manifest[name] = get(u, out / name) | {"hf_repo": repo, "config": cfg, "split": split}
+            print(name, manifest[name]["bytes"], manifest[name]["sha256"], flush=True)
+    return manifest
+
+
 def main(out: Path) -> None:
     out.mkdir(parents=True, exist_ok=True)
     manifest = {}
     only = ONLY.read_text().split() if ONLY.exists() else []
     if only:
-        for name in only:
+        for key in [k for k in only if k in HF]:
+            manifest |= hf(key, out)
+        for name in [n for n in only if n not in HF]:
             try:
                 manifest[name] = get(URLS[name], out / name)
                 print(name, manifest[name]["bytes"], manifest[name]["sha256"], flush=True)
@@ -87,16 +106,8 @@ def main(out: Path) -> None:
     for name, url in URLS.items():
         manifest[name] = get(url, out / name)
         print(name, manifest[name]["bytes"], flush=True)
-    for key, repo in HF.items():
-        files = requests.get(f"https://huggingface.co/api/datasets/{repo}/parquet", timeout=60).json()
-        print(repo, json.dumps(files)[:400], flush=True)
-        configs = files if isinstance(files, dict) else {}
-        cfg = "default" if "default" in configs else next(iter(configs))
-        for split, urls in configs[cfg].items():
-            for i, u in enumerate(urls):
-                name = f"{key}__{split}__{i}.parquet"
-                manifest[name] = get(u, out / name) | {"hf_repo": repo, "config": cfg, "split": split}
-                print(name, manifest[name]["bytes"], flush=True)
+    for key in HF:
+        manifest |= hf(key, out)
     (out / "manifest_v2.json").write_text(json.dumps(manifest, indent=2))
 
 
