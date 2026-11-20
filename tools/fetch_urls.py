@@ -20,7 +20,15 @@ URLS = {
     "cms_current_lcd.zip": "https://downloads.cms.gov/medicare-coverage-database/downloads/exports/current_lcd.zip",
     # CMS Transparency in Coverage public use file 2024 (issuer-level claims and denials)
     "cms_tic_puf_2024.zip": "https://download.cms.gov/marketplace-puf/2024/transparency-in-coverage-puf.zip",
+    # Elliptic Bitcoin transaction graph (Weber et al. 2019): 203,769 real transactions, 234,355 payment
+    # flows, 4,545 labelled illicit; copy hosted by PyTorch Geometric
+    "elliptic_txs_features.csv.zip": "https://data.pyg.org/datasets/elliptic/elliptic_txs_features.csv.zip",
+    "elliptic_txs_classes.csv.zip": "https://data.pyg.org/datasets/elliptic/elliptic_txs_classes.csv.zip",
+    "elliptic_txs_edgelist.csv.zip": "https://data.pyg.org/datasets/elliptic/elliptic_txs_edgelist.csv.zip",
 }
+# Files that change upstream (the weekly CMS export) must not be re-mirrored over the pinned copy.
+# If tools/fetch-only.txt lists names, only those are fetched, into their own manifest.
+ONLY = Path(__file__).with_name("fetch-only.txt")
 HF = {  # Hugging Face datasets: every parquet file of the default config
     "mtsamples": "harishnair04/mtsamples",
     "medqa_usmle_4opt": "GBaker/MedQA-USMLE-4-options",
@@ -37,6 +45,13 @@ def get(url: str, dest: Path) -> dict:
 def main(out: Path) -> None:
     out.mkdir(parents=True, exist_ok=True)
     manifest = {}
+    only = ONLY.read_text().split() if ONLY.exists() else []
+    if only:
+        for name in only:
+            manifest[name] = get(URLS[name], out / name)
+            print(name, manifest[name]["bytes"], manifest[name]["sha256"], flush=True)
+        (out / f"manifest_{only[0].split('.')[0].split('_')[0]}.json").write_text(json.dumps(manifest, indent=2))
+        return
     for name, url in URLS.items():
         manifest[name] = get(url, out / name)
         print(name, manifest[name]["bytes"], flush=True)
