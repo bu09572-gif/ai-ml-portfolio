@@ -1,0 +1,65 @@
+{
+  "composition": {
+    "medical_plans": 5050,
+    "plans_with_at_least_1000_claims": 1638,
+    "states": 32,
+    "issuers": 209,
+    "issuer_claims_received": 386151728,
+    "issuer_claims_denied": 68632011,
+    "issuer_denial_rate": 0.1777,
+    "issuer_in_network_denial_rate": 0.1605,
+    "issuer_out_of_network_denial_rate": 0.4053,
+    "plan_in_network_denial_rate_p10_p50_p90": [
+      0.107,
+      0.146,
+      0.235
+    ],
+    "denial_reason_share": {
+      "other": 0.338,
+      "administrative": 0.185,
+      "service excluded": 0.171,
+      "benefit limit reached": 0.089,
+      "referral required": 0.073,
+      "out of network": 0.056,
+      "not medically necessary": 0.041,
+      "member not covered": 0.041,
+      "not medically necessary (behavioral health)": 0.004,
+      "investigational, experimental or cosmetic": 0.001
+    },
+    "internal_appeals_filed": 110084,
+    "internal_appeals_overturned": 47322,
+    "appeals_per_1000_denials": 1.6,
+    "internal_appeal_overturn_rate": 0.43,
+    "issuers_with_100_plus_appeals": 110,
+    "overturn_rate_across_those_issuers_p10_p50_p90": [
+      0.241,
+      0.438,
+      0.646
+    ],
+    "external_appeals_filed": 2336,
+    "external_appeals_overturned": 1029
+  },
+  "variance_between_issuers": 0.603,
+  "denial_rate_model": {
+    "unseen_issuers": {
+      "model": {
+        "weighted_mae_points": 4.99,
+        "weighted_r2": -0.105
+      },
+      "constant": {
+        "weighted_mae_points": 4.55,
+        "weighted_r2": -0.018
+      }
+    },
+    "known_issuers": {
+      "model": {
+        "weighted_mae_points": 2.75,
+        "weighted_r2": 0.382
+      },
+      "constant": {
+        "weighted_mae_points": 4.52,
+        "weighted_r2": -0.013
+      }
+    }
+  }
+}
