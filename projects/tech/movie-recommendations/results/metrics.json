@@ -1,0 +1,89 @@
+{
+  "data": {
+    "ratings": 1000209,
+    "users": 6040,
+    "movies": 3706,
+    "protocol": "leave-last-out by time; rank the held-out movie among all movies the user has not rated"
+  },
+  "test": {
+    "popularity": {
+      "hit_at_10": 0.0353,
+      "ndcg_at_10": 0.0174,
+      "hit_at_20": 0.0641,
+      "ndcg_at_20": 0.0246,
+      "mrr": 0.0192
+    },
+    "item_knn": {
+      "hit_at_10": 0.0699,
+      "ndcg_at_10": 0.0366,
+      "hit_at_20": 0.1179,
+      "ndcg_at_20": 0.0486,
+      "mrr": 0.0372
+    },
+    "ials": {
+      "hit_at_10": 0.0742,
+      "ndcg_at_10": 0.0356,
+      "hit_at_20": 0.1321,
+      "ndcg_at_20": 0.0501,
+      "mrr": 0.0363
+    },
+    "ease": {
+      "hit_at_10": 0.0998,
+      "ndcg_at_10": 0.0489,
+      "hit_at_20": 0.1662,
+      "ndcg_at_20": 0.0656,
+      "mrr": 0.0463
+    },
+    "ease_last_5_movies": {
+      "hit_at_10": 0.1906,
+      "ndcg_at_10": 0.1051,
+      "hit_at_20": 0.2687,
+      "ndcg_at_20": 0.1249,
+      "mrr": 0.0909
+    },
+    "two_stage_ranker": {
+      "hit_at_10": 0.1786,
+      "ndcg_at_10": 0.0954,
+      "hit_at_20": 0.2541,
+      "ndcg_at_20": 0.1145
+    },
+    "two_stage_ranker_without_recent_history": {
+      "hit_at_10": 0.0967,
+      "ndcg_at_10": 0.0482,
+      "hit_at_20": 0.1642,
+      "ndcg_at_20": 0.0652
+    }
+  },
+  "recent_history_validation_ndcg_at_10": {
+    "1": 0.0874,
+    "3": 0.1059,
+    "5": 0.1106,
+    "10": 0.1057,
+    "20": 0.0848,
+    "50": 0.0578
+  },
+  "candidate_recall_at_100": 0.4364,
+  "more_like_this": {
+    "Toy Story (1995)": [
+      "Toy Story 2 (1999)",
+      "Bug's Life, A (1998)",
+      "Aladdin (1992)",
+      "Babe (1995)",
+      "Groundhog Day (1993)"
+    ],
+    "Silence of the Lambs, The (1991)": [
+      "Fargo (1996)",
+      "Shawshank Redemption, The (1994)",
+      "Schindler's List (1993)",
+      "Sixth Sense, The (1999)",
+      "American Beauty (1999)"
+    ],
+    "Godfather, The (1972)": [
+      "Godfather: Part II, The (1974)",
+      "Godfather: Part III, The (1990)",
+      "Star Wars: Episode IV - A New Hope (1977)",
+      "One Flew Over the Cuckoo's Nest (1975)",
+      "Casablanca (1942)"
+    ]
+  }
+}
