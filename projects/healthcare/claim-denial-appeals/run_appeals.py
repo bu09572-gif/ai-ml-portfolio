@@ -1,4 +1,8 @@
-"""Draft and score appeal letters for the prior authorization requests whose checklist found evidence.
+"""Draft and score appeal letters for the 39 prior authorization requests of that project.
+
+Evidence for each request: for each policy criterion its checklist looked at (up to 6), the note
+sentence that best matches the criterion (BM25), copied word for word. The 3B model's own met / not met
+verdicts were unreliable (see that project's README), so the letters don't depend on them.
 
 Needs ../prior-auth-assistant/results/{criteria,checks}.jsonl from that project's eval.
 
@@ -41,7 +45,8 @@ def requests_with_evidence() -> tuple[list[dict], int]:
     checks = checks[checks.pairing == "matched"]
     out = []
     for _, r in checks.iterrows():
-        ev = [c for c in r.checks if c.get("status") == "met"]
+        note = " ".join(notes.loc[r.note_id].text.split()[:NOTE_WORDS])
+        ev = best_sentences(note, [x["criterion"] for x in r.checks][:6])
         if not ev:
             continue
         c = crit[r.service]
@@ -49,6 +54,25 @@ def requests_with_evidence() -> tuple[list[dict], int]:
                     "policy": lcds.loc[c["lcd_id"]].indication, "note": " ".join(notes.loc[r.note_id].text.split()[:NOTE_WORDS]),
                     "criteria": [x["criterion"] for x in r.checks], "evidence": ev})
     return out, len(checks)
+
+
+def best_sentences(note: str, criteria: list[str]) -> list[dict]:
+    import numpy as np
+    from criteria import sentences
+
+    from docqa.retrieve import BM25Index
+    sents = sentences(note)
+    if not sents:
+        return []
+    ix = BM25Index(pd.DataFrame({"header": "", "text": sents}))
+    out, used = [], set()
+    for c in criteria:
+        sc = ix.scores(c)
+        j = int(np.argmax(sc))
+        if sc[j] > 0 and j not in used:
+            used.add(j)
+            out.append({"criterion": c, "quote": sents[j]})
+    return out
 
 
 def run(shard: str) -> None:

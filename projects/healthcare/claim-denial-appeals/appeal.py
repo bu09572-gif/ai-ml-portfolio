@@ -31,8 +31,8 @@ SYSTEM = (
 def grounded_prompt(service: str, lcd: str, title: str, evidence: list[dict]) -> str:
     ev = "\n".join(f"- Criterion: {e['criterion']}\n  Record: \"{e['quote']}\"" for e in evidence)
     return (f"The health plan denied prior authorization for {service} as not medically necessary.\n"
-            f"Coverage policy: Medicare LCD {lcd}, {title}.\n\nCriteria met, with evidence from the record:\n{ev}\n\n"
-            "Write the appeal letter.")
+            f"Coverage policy: Medicare LCD {lcd}, {title}.\n\nPolicy criteria, each with the closest sentence from the medical record:\n{ev}\n\n"
+            "Use a record sentence only if it actually supports its criterion. Write the appeal letter.")
 
 
 def free_prompt(service: str, lcd: str, title: str, criteria: list[str], note: str) -> str:
