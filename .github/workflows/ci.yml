@@ -33,6 +33,12 @@ jobs:
           cd ../model-risk-checker && python -m pytest -q test_checks.py
       - name: ICD-10 coding tests (real CodiEsp data)
         run: cd projects/healthcare/icd10-coding-assistant && python -m pytest -q test_coder.py
+      - name: Clinical LLM project tests (scripted model, real data)
+        run: |
+          python -m spacy download en_core_web_md
+          (cd projects/healthcare/clinical-llm-safety-eval && python -m pytest -q test_clinical_eval.py)
+          (cd projects/healthcare/clinical-note-summarizer && python -m pytest -q test_summarizer.py)
+          (cd projects/healthcare/prior-auth-assistant && python -m pytest -q test_prior_auth.py)
       - name: Motor pricing tests (real freMTPL2 data)
         run: |
           pip install pyreadr

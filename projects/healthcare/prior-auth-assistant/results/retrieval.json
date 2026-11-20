@@ -1,0 +1,40 @@
+{
+  "lcds": 952,
+  "lcd_titles": 482,
+  "hcpcs_test": {
+    "title_only": {
+      "hit_at_1": 0.238,
+      "hit_at_5": 0.425,
+      "hit_at_10": 0.468,
+      "queries": 1789
+    },
+    "title_and_coverage_text": {
+      "hit_at_1": 0.617,
+      "hit_at_5": 0.757,
+      "hit_at_10": 0.828,
+      "queries": 1789
+    }
+  },
+  "note_test": {
+    "title_only": {
+      "hit_at_1": 0.256,
+      "hit_at_5": 0.462,
+      "hit_at_10": 0.487,
+      "queries": 39
+    },
+    "title_and_coverage_text": {
+      "hit_at_1": 0.462,
+      "hit_at_5": 0.692,
+      "hit_at_10": 0.821,
+      "queries": 39
+    },
+    "notes_per_service": {
+      "blepharoplasty": 8,
+      "varicose vein treatment": 8,
+      "cervical fusion": 8,
+      "sleep testing": 6,
+      "facet joint injection": 5,
+      "botulinum toxin": 4
+    }
+  }
+}
