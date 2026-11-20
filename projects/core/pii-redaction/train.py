@@ -9,10 +9,9 @@ import sys
 from pathlib import Path
 
 import spacy
+from data import gold_spans, load
 from spacy.tokens import DocBin
 from spacy.util import filter_spans
-
-from data import gold_spans, load
 
 HERE = Path(__file__).resolve().parent
 CORPUS = HERE / "corpus"

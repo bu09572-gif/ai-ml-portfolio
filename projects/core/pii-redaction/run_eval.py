@@ -53,7 +53,7 @@ def main(argv=None):
     a = ap.parse_args(argv)
     download()
     sys.path.insert(0, str(RAW))
-    import evaluation as tab   # the benchmark's official scorer
+    import evaluation as tab  # the benchmark's official scorer
 
     docs = load("test")
     with contextlib.redirect_stdout(io.StringIO()):
