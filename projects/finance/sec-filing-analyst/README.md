@@ -2,7 +2,7 @@
 
 Answers calculation questions about 10-K and 10-Q filings ("What is the FY2019 fixed asset turnover ratio for Activision Blizzard?") by finding each input number, checking that it is really on the page, and doing the math in Python. The model never does arithmetic.
 
-It runs on top of the [Document Q&A](../../../README.md) pipeline and retriever, and is scored by the same evaluation code, on the 50 FinanceBench questions of type "metrics-generated". Everything is free: Qwen2.5-3B answers and Llama-3.2-3B grades, both on CPU in GitHub Actions.
+It runs on top of the [Document Q&A](../../core/document-qa-platform/README.md) pipeline and retriever, and is scored by the same evaluation code, on the 50 FinanceBench questions of type "metrics-generated". Everything is free: Qwen2.5-3B answers and Llama-3.2-3B grades, both on CPU in GitHub Actions.
 
 ## How it works
 

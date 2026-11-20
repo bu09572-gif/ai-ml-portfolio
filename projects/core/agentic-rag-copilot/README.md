@@ -1,6 +1,6 @@
 # Agentic RAG Copilot for SEC Filings
 
-An agent that answers questions about SEC filings by choosing its own next step: search, read a page, calculate, or answer. Code-level guardrails decide whether an answer is allowed out. It uses the same retriever, filings and grading as the [Document Q&A](../../../README.md) project, so the two can be compared directly on all 150 FinanceBench questions. Free models only: Qwen2.5-3B runs the agent, Llama-3.2-3B grades, both on CPU in GitHub Actions.
+An agent that answers questions about SEC filings by choosing its own next step: search, read a page, calculate, or answer. Code-level guardrails decide whether an answer is allowed out. It uses the same retriever, filings and grading as the [Document Q&A](../../core/document-qa-platform/README.md) project, so the two can be compared directly on all 150 FinanceBench questions. Free models only: Qwen2.5-3B runs the agent, Llama-3.2-3B grades, both on CPU in GitHub Actions.
 
 ## How it works
 

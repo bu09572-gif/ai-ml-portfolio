@@ -1,159 +1,103 @@
-# AI/ML and data engineering projects
+# AI/ML and Data Engineering Portfolio
 
-Projects built on real public data with free, open-source tools. Each one reports numbers I measured, and each has tests.
+Applied AI, machine learning and data engineering projects. Every project uses real public data and free, open-source tools, reports numbers I measured, and has tests that run in CI.
 
-| Project | What it does | Where |
+**How to browse:** click a project name below to open its folder. Each folder has its own README with the data, method, results and how to run it.
+
+## Contents
+
+- [Core AI platform](#core-ai-platform): 3 projects
+- [Healthcare](#healthcare): 1 project
+- [Finance](#finance): 4 projects
+- [Insurance](#insurance): 2 projects
+- [Tech / LLM](#tech--llm): 1 project
+- [Data engineering](#data-engineering): 5 projects
+
+## Core AI platform
+
+Folder: [`projects/core`](projects/core)
+
+| Project | What it does | Key result |
 |---|---|---|
-| Filing Ingestion Pipeline | Downloads SEC filings, extracts page text, chunks it, runs data checks | `src/docpipe` |
-| SEC Filing Q&A with Page Citations | BM25 search with company/year filters, LLM answers that cite the page | `src/docqa` |
-| LLM Evaluation Harness | Scores retrieval and answers, fails CI when quality drops | `src/evalkit` |
-| SEC Filing Analyst | Finds each input number on its page, does the math in Python | [sec-filing-analyst](projects/finance/sec-filing-analyst) |
-| Real-Time Card Fraud Scoring with SHAP Explanations | XGBoost fraud API with top-3 reasons; 73% of fraud caught at 80% precision, 9 ms p50 | [realtime-fraud-scoring](projects/finance/realtime-fraud-scoring) |
-| Explainable Credit Default Model with Fairness Checks | Monotone XGBoost on 30k real card holders, decline reasons from SHAP, four-fifths rule by sex/age/marriage; AUC 0.776 | [explainable-credit-risk](projects/finance/explainable-credit-risk) |
-| Model Risk Validation Toolkit | SR 11-7 style checks (data, challenger, calibration, PSI, monotonicity, fairness); caught 6 of 6 injected faults and 2 real issues in the fraud model | [model-risk-checker](projects/finance/model-risk-checker) |
-| Agentic RAG Copilot for SEC Filings | Agent that searches, reads and calculates, with code-enforced guardrails | [agentic-rag-copilot](projects/core/agentic-rag-copilot) |
-| Text-to-SQL Assistant with Safe Execution and Self-Repair | Read-only SQL from plain English, with error-driven repair; 42.1% execution accuracy on all 1,534 BIRD dev questions with a free 3B model | [text-to-sql](projects/tech/text-to-sql) |
-| PII Redaction Pipeline on Real Court Cases | Masks personal identifiers in ECHR judgments; 97.7% of direct identifiers fully masked | [pii-redaction](projects/core/pii-redaction) |
-| ICD-10 Diagnosis Coding Assistant for Clinical Notes | Ranks ICD-10 codes for 1,000 expert-coded clinical cases (CodiEsp) with evidence sentences; MAP 0.326, 53% of top-5 suggestions correct | [icd10-coding-assistant](projects/healthcare/icd10-coding-assistant) |
-| Motor Insurance Pricing with Discrimination-Free Premiums | Frequency and severity models on 678k French motor policies, with an age-fairness check; GBM Gini 0.361 | [motor-pricing-fairness](projects/insurance/motor-pricing-fairness) |
-| Motor Claim Severity Model with Extreme-Value Large-Loss Analysis | 26k real claims: fixed-fee mix, GPD tail (shape 1.07), capped severity models and a large-loss load | [claims-severity-large-loss](projects/insurance/claims-severity-large-loss) |
-| Flight Operations Warehouse (dbt + DuckDB) | Star schema over 336,776 real flights, with dbt tests | [flight-ops-dbt-warehouse](projects/data-engineering/flight-ops-dbt-warehouse) |
-| Flight Data Quality Monitor | Daily anomaly checks, tested by breaking the data on purpose | [flight-data-quality-monitor](projects/data-engineering/flight-data-quality-monitor) |
-| Flight Status CDC Pipeline with SCD2 History | Change capture from an ops database into current and history tables | [flight-status-cdc](projects/data-engineering/flight-status-cdc) |
-| Streaming Flight Lakehouse (Kafka, Spark, Delta Lake) | Bronze, silver and gold tables from a Kafka stream | [flight-streaming-lakehouse](projects/data-engineering/flight-streaming-lakehouse) |
-| Daily Flight Pipeline on Airflow | Extract, check, then publish or quarantine each day | [flight-pipeline-airflow](projects/data-engineering/flight-pipeline-airflow) |
+| [Document Q&A Platform for SEC Filings](projects/core/document-qa-platform) | Filing ingestion pipeline, Q&A with page citations, and an LLM evaluation harness that fails CI when quality drops | 84 real filings, 150 analyst questions; company/year filters double retrieval hit@5 |
+| [Agentic RAG Copilot for SEC Filings](projects/core/agentic-rag-copilot) | Agent that searches, reads and calculates, with guardrails enforced in code | 20.7% vs 19.3% for plain Q&A; 34% vs 14% on open-ended questions |
+| [PII Redaction Pipeline on Real Court Cases](projects/core/pii-redaction) | Trained NER model that masks personal identifiers in court judgments | 97.7% of direct identifiers fully masked, 90% precision |
 
-The first three work together, and the rest of this page covers them. Each project under `projects/` has its own README.
+## Healthcare
 
-## Foundations: document Q&A over SEC filings
+Folder: [`projects/healthcare`](projects/healthcare)
 
-The three foundation projects:
-
-- **Filing Ingestion Pipeline** (`src/docpipe`): downloads filings, extracts page text, chunks it, and runs data checks
-- **SEC Filing Q&A with Page Citations** (`src/docqa`): retrieval (BM25 with metadata filters) and LLM answers with page citations
-- **LLM Evaluation Harness** (`src/evalkit`): evaluation of retrieval and answers, plus a regression check that runs in CI
-
-Everything runs on free tools. The default LLM is Qwen2.5-3B through Ollama, so no API key is needed. Groq and Claude are optional backends.
-
-## Data
-
-[FinanceBench](https://github.com/patronus-ai/financebench) (Islam et al., 2023, [arXiv 2311.11944](https://arxiv.org/abs/2311.11944)): 368 public-company filings (10-K, 10-Q, 8-K, earnings releases) and an open set of 150 questions written by financial analysts. Each question has a reference answer and the page where the evidence is. The PDFs are downloaded at run time and are not stored in this repo.
-
-I only process the 84 filings that the 150 questions refer to.
-
-## Results
-
-### Pipeline
-
-From `evals/results/financebench/pipeline_run.json`:
-
-- 84 filings from 32 companies (165.5 MB of PDFs)
-- 12,013 pages and 37,785 chunks
-- all 9 data checks pass; 0.77% of pages have no text layer
-- text extraction took 53 s on a 4-core machine
-
-Before trusting any retrieval numbers, I checked that every evidence snippet in the dataset appears on the page number my extractor assigns it. All 189 do, so the page numbering lines up.
-
-### Retrieval
-
-150 questions. hit@k means one of the evidence pages is in the top k results. Each row adds one change to the row above.
-
-| Setup | hit@1 | hit@5 | hit@10 | MRR | right filing in top 5 |
-|---|---|---|---|---|---|
-| BM25 over all 84 filings | 0.053 | 0.113 | 0.160 | 0.082 | 0.513 |
-| + one result per page | 0.053 | 0.120 | 0.167 | 0.084 | 0.520 |
-| + company / fiscal-year filter from the question | 0.113 | 0.233 | 0.313 | 0.160 | 0.800 |
-| + finance term expansion ("capex" → "purchases of property, plant and equipment") | 0.107 | 0.307 | 0.413 | 0.194 | 0.760 |
-| Reference: search only the correct filing | 0.167 | 0.433 | 0.620 | 0.289 | 1.000 |
-
-The company/year filter roughly doubled hit@5, and the term expansion added about 7 more points. A query takes about 14 ms on CPU.
-
-The term list is generic accounting vocabulary, but I tested it on the same 150 questions, so the last row is probably a bit optimistic.
-
-### Answers
-
-All 150 questions, answered by Qwen2.5-3B from the top 5 retrieved pages and graded by Llama-3.2-3B. Both run on CPU through Ollama in GitHub Actions, so the cost is $0. Per-question results are in `evals/results/financebench/answers_ollama_qwen2.5-3b.jsonl`.
-
-| Metric | Value |
-|---|---|
-| Accuracy | 19.3% (29 / 150) |
-| Said "not enough information" | 67.3% |
-| Accuracy when it gave an answer | 59.2% |
-| Numeric answers within 1% of the reference | 48.6% (of 37 checked) |
-| Accuracy: evidence page retrieved vs. not | 45.7% vs. 7.7% |
-| "Not enough information": evidence page retrieved vs. not | 28.3% vs. 84.6% |
-| Answers with a citation / citations pointing at an evidence page | 35.3% / 35.5% |
-| Latency p50 / p95 | 42 s / 97 s |
-
-Notes:
-
-- The LLM judge on its own gave 94%. When I looked at the graded answers, it was marking most "not enough information" replies as correct (93% of them). So the final grade now treats those replies as refusals by rule, and a numeric answer that misses the reference number can't be graded correct (`evalkit.metrics.final_grade`). That is where the 19.3% comes from.
-- 12 of the 49 answered questions have no number to check. For those the grade still comes from the small judge, so the 59.2% may be a little high.
-- Most of the misses come from retrieval. With the evidence page in context, accuracy goes from 8% to 46%. Better retrieval (dense or hybrid search, a reranker, picking the right filing first) is the next step, more than a bigger model.
-- For rough context only: the FinanceBench paper reports GPT-4-Turbo with a shared vector store at about 19% correct. The setups are different.
-
-The CI workflow also runs dense and hybrid retrieval (`--dense`).
-
-## How it fits together
-
-```
-FinanceBench PDFs
-      │
-      ▼
-docpipe   fetch with retries; skip files already downloaded
-          bronze: raw PDFs + manifest with sha256
-          silver: page text (pypdfium2)
-          gold:   chunks that never cross a page, with company / filing / page metadata
-          data checks + run report; local disk or s3:// (DATA_ROOT)
-      │
-      ▼
-docqa     BM25 on a scipy sparse matrix, company/year filters, term expansion,
-          optional dense embeddings + reciprocal rank fusion
-          LLM answer with [S#] source tags mapped back to pages
-          FastAPI: /search, /ask
-      │
-      ▼
-evalkit   hit@k, MRR, LLM judge + rule checks, citation precision, latency, cost
-          regression gate against evals/baseline/
-```
-
-## Running it
-
-The easiest way is a GitHub Codespace (Code → Codespaces → Create codespace). Ollama gets installed when the container is created.
-
-```bash
-make pipeline                # download and process the 84 filings (~1.5 min)
-make eval                    # retrieval table
-make test
-make api                     # http://localhost:8000/docs
-ollama pull qwen2.5:3b
-make eval-answers LIMIT=20   # answer + grade 20 questions with the local model
-```
-
-LLM backend, set with `LLM_PROVIDER`:
-
-| Value | Cost | Needs |
+| Project | What it does | Key result |
 |---|---|---|
-| `ollama` (default) | free | nothing; change the model with `LLM_MODEL` |
-| `groq` | free tier | `GROQ_API_KEY` |
-| `anthropic` | paid | `ANTHROPIC_API_KEY` |
+| [ICD-10 Diagnosis Coding Assistant for Clinical Notes](projects/healthcare/icd10-coding-assistant) | Ranks ICD-10 codes for a clinical note, with the sentence that supports each code | MAP 0.326 on 250 expert-coded cases; 53% of top-5 suggestions correct |
 
-`DATA_ROOT=s3://bucket/prefix` writes the same layout to S3 (`pip install -e ".[aws]"`), where Athena can read the parquet files.
+In progress: Clinical LLM evaluation (accuracy, robustness and bias checks); Clinical note summarizer with de-identification; Prior authorization assistant over CMS coverage policies; Claim denial predictor and appeal drafter.
+
+## Finance
+
+Folder: [`projects/finance`](projects/finance)
+
+| Project | What it does | Key result |
+|---|---|---|
+| [Real-Time Card Fraud Scoring with SHAP Explanations](projects/finance/realtime-fraud-scoring) | XGBoost fraud API that returns a score, an alert and the top 3 reasons | 73% of fraud caught at 80% precision; 9 ms median latency |
+| [Explainable Credit Default Model with Fairness Checks](projects/finance/explainable-credit-risk) | Monotone XGBoost with plain-language decline reasons and four-fifths rule checks | AUC 0.776; every adverse impact ratio at or above 0.90 |
+| [Model Risk Validation Toolkit](projects/finance/model-risk-checker) | SR 11-7 style validation: leakage, challenger, calibration, drift, monotonicity, fairness | Caught 6 of 6 injected faults and 2 real issues in the fraud model |
+| [SEC Filing Analyst](projects/finance/sec-filing-analyst) | Finds each input number on its page and does the math in Python, never in the model | 40% of calculator answers within 1%; 18% overall vs 20% for plain Q&A, with the reasons |
+
+In progress: Anti-money-laundering with graph ML.
+
+## Insurance
+
+Folder: [`projects/insurance`](projects/insurance)
+
+| Project | What it does | Key result |
+|---|---|---|
+| [Motor Insurance Pricing with Discrimination-Free Premiums](projects/insurance/motor-pricing-fairness) | Frequency and severity pricing models, and what removing driver age really changes | 678k real policies; GBM Gini 0.361 vs GLM 0.279 |
+| [Motor Claim Severity Model with Extreme-Value Large-Loss Analysis](projects/insurance/claims-severity-large-loss) | Claim size models below a cap, a Pareto tail fit above it, and a large-loss load | 1.8% of claims carry 34.5% of cost; tail shape 1.07 |
+
+In progress: Underwriting assistant; AI governance report (state AI rules); Subrogation detection.
+
+## Tech / LLM
+
+Folder: [`projects/tech`](projects/tech)
+
+| Project | What it does | Key result |
+|---|---|---|
+| [Text-to-SQL Assistant with Safe Execution and Self-Repair](projects/tech/text-to-sql) | Plain English to read-only SQL, with error-driven repair | 42.1% execution accuracy on all 1,534 BIRD dev questions with a free 3B model |
+
+In progress: Multi-step agent with guardrails; LLM red-team suite; Search and recommendations; Production RAG with a cost dashboard.
+
+## Data engineering
+
+Folder: [`projects/data-engineering`](projects/data-engineering)
+
+| Project | What it does | Key result |
+|---|---|---|
+| [Flight Operations Warehouse (dbt + DuckDB)](projects/data-engineering/flight-ops-dbt-warehouse) | Star schema over real flights with dbt tests | 336,776 flights; 13 models and 17 tests, all passing in CI |
+| [Flight Data Quality Monitor](projects/data-engineering/flight-data-quality-monitor) | Daily anomaly checks, tested by breaking the data on purpose | 480 injected-fault trials; large problems caught every time |
+| [Flight Status CDC Pipeline with SCD2 History](projects/data-engineering/flight-status-cdc) | Change capture from an ops database into current and history tables | 1,000,898 changes replayed; all reconciliation checks at 0 |
+| [Streaming Flight Lakehouse (Kafka, Spark, Delta Lake)](projects/data-engineering/flight-streaming-lakehouse) | Bronze, silver and gold Delta tables from a Kafka stream, with a crash test | Killed with kill -9 mid-stream; after restart all 4 checks are 0 |
+| [Daily Flight Pipeline on Airflow](projects/data-engineering/flight-pipeline-airflow) | Extract, check, then publish or quarantine each day | 365 daily runs, 0 failed, 12 bad days quarantined |
+
+## Shared code and data
+
+- `src/`: the document Q&A platform (`docpipe`, `docqa`, `evalkit`) and shared flight data code (`flightsdata`), imported by several projects.
+- Datasets hosted outside GitHub are mirrored into this repo's releases (`data-v1`, `data-v2`) by `tools/` in GitHub Actions, with SHA-256 checksums, so every run uses the same copy.
+- LLM evaluations run free local models (Qwen2.5 and Llama 3.2 through Ollama) in GitHub Actions and commit their results.
 
 ## CI
 
-- `ci.yml`: lint, unit tests, then the pipeline and retrieval eval on the real filings. The build fails if hit@5, hit@10 or MRR drops more than 0.02 below `evals/baseline/financebench.json`.
+- `ci.yml`: lint and every project's tests, then the document Q&A pipeline and retrieval eval on the real filings. The build fails if hit@5, hit@10 or MRR drops more than 0.02 below `evals/baseline/financebench.json`.
 - `data-engineering.yml`: dbt build and tests, the quality monitor, the CDC replay, the Kafka/Spark lakehouse with a crash test, and an Airflow backfill.
 - `free-llm-eval.yml`: answers and grades all 150 questions with the local models, split across 10 parallel jobs, then commits the results. Starts from the Actions tab or when `evals/run-request.txt` changes.
 
 ## Layout
 
 ```
-src/docpipe/   sources/, extract.py, chunk.py, quality.py, storage.py, run.py
-src/docqa/     retrieve.py, llm.py, answer.py, api.py
-src/evalkit/   dataset.py, metrics.py, run.py, gate.py
-src/flightsdata/  NYC flights download, change events, quality metrics (shared by the projects below)
-projects/data-engineering/   one folder per project
-evals/         baseline/, results/
-tests/
+projects/<area>/<project>/   one folder per project, each with README, code, tests and results
+                             areas: core, healthcare, finance, insurance, tech, data-engineering
+src/                         shared code: docpipe, docqa, evalkit (document Q&A platform), flightsdata
+tools/                       mirrors public datasets into GitHub releases
+evals/                       document Q&A baseline and results
+tests/                       document Q&A platform tests
 ```
