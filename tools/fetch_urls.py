@@ -45,6 +45,10 @@ for _years, _sfx in [("2005-2006", "D"), ("2007-2008", "E"), ("2009-2010", "F")]
             f"https://wwwn.cdc.gov/Nchs/Nhanes/{_years}/{_t}_{_sfx}.XPT"]
     URLS[f"nhanes_mort_{_sfx}.dat"] = ("https://ftp.cdc.gov/pub/Health_Statistics/NCHS/datalinkage/linked_mortality/"
                                        f"NHANES_{_years.replace('-', '_')}_MORT_2019_PUBLIC.dat")
+# NYC Open Data, Motor Vehicle Collisions (NYPD crash reports), all of 2023: crashes and vehicles
+_Q = "%24where=crash_date%20between%20%272023-01-01T00:00:00%27%20and%20%272023-12-31T23:59:59%27&%24limit=2000000"
+URLS["nyc_collisions_crashes_2023.csv"] = f"https://data.cityofnewyork.us/resource/h9gi-nx95.csv?{_Q}"
+URLS["nyc_collisions_vehicles_2023.csv"] = f"https://data.cityofnewyork.us/resource/bm4k-52h4.csv?{_Q}"
 # Files that change upstream (the weekly CMS export) must not be re-mirrored over the pinned copy.
 # If tools/fetch-only.txt lists names, only those are fetched, into their own manifest.
 ONLY = Path(__file__).with_name("fetch-only.txt")
