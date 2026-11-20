@@ -13,6 +13,8 @@ import requests
 URLS = {
     # CodiEsp gold standard, ICD-10 coded clinical cases (Miranda-Escalada et al. 2020), CC BY 4.0
     "codiesp.zip": "https://zenodo.org/api/records/3837305/files/codiesp.zip/content",
+    # valid ICD-10 codes with descriptions for CodiEsp (Zenodo 3706838), CC BY 4.0
+    "codiesp_codes.zip": "https://zenodo.org/api/records/3706838/files/codiesp_codes.zip/content",
     # CMS Medicare Coverage Database exports: National and Local Coverage Determinations (public domain)
     "cms_ncd.zip": "https://downloads.cms.gov/medicare-coverage-database/downloads/exports/ncd.zip",
     "cms_current_lcd.zip": "https://downloads.cms.gov/medicare-coverage-database/downloads/exports/current_lcd.zip",
