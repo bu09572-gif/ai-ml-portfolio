@@ -1,0 +1,13 @@
+{
+  "credit_default": {
+    "PASS": 17,
+    "WARN": 3,
+    "FAIL": 1
+  },
+  "card_fraud": {
+    "PASS": 8,
+    "FAIL": 3,
+    "WARN": 2
+  },
+  "faults_caught": "6 of 6"
+}

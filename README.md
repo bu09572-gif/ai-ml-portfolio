@@ -10,6 +10,7 @@ Projects built on real public data with free, open-source tools. Each one report
 | SEC Filing Analyst | Finds each input number on its page, does the math in Python | [sec-filing-analyst](projects/finance/sec-filing-analyst) |
 | Real-Time Card Fraud Scoring with SHAP Explanations | XGBoost fraud API with top-3 reasons; 73% of fraud caught at 80% precision, 9 ms p50 | [realtime-fraud-scoring](projects/finance/realtime-fraud-scoring) |
 | Explainable Credit Default Model with Fairness Checks | Monotone XGBoost on 30k real card holders, decline reasons from SHAP, four-fifths rule by sex/age/marriage; AUC 0.776 | [explainable-credit-risk](projects/finance/explainable-credit-risk) |
+| Model Risk Validation Toolkit | SR 11-7 style checks (data, challenger, calibration, PSI, monotonicity, fairness); caught 6 of 6 injected faults and 2 real issues in the fraud model | [model-risk-checker](projects/finance/model-risk-checker) |
 | Agentic RAG Copilot for SEC Filings | Agent that searches, reads and calculates, with code-enforced guardrails | [agentic-rag-copilot](projects/core/agentic-rag-copilot) |
 | Text-to-SQL Assistant with Safe Execution and Self-Repair | Read-only SQL from plain English, with error-driven repair; 42.1% execution accuracy on all 1,534 BIRD dev questions with a free 3B model | [text-to-sql](projects/tech/text-to-sql) |
 | PII Redaction Pipeline on Real Court Cases | Masks personal identifiers in ECHR judgments; 97.7% of direct identifiers fully masked | [pii-redaction](projects/core/pii-redaction) |

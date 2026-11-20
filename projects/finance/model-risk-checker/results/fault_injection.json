@@ -1,0 +1,79 @@
+[
+  {
+    "fault": "target leakage",
+    "expected_check": "single-feature leakage",
+    "expected_check_status": "FAIL",
+    "caught": true,
+    "all_flags": [
+      "single-feature leakage: FAIL"
+    ]
+  },
+  {
+    "fault": "test rows in training data",
+    "expected_check": "test rows also in train",
+    "expected_check_status": "FAIL",
+    "caught": true,
+    "all_flags": [
+      "test rows also in train: FAIL",
+      "Hosmer-Lemeshow test: FAIL",
+      "calibration error by decile: WARN",
+      "score change under 1% noise: WARN"
+    ]
+  },
+  {
+    "fault": "population drift",
+    "expected_check": "feature PSI",
+    "expected_check_status": "FAIL",
+    "caught": true,
+    "all_flags": [
+      "score PSI (train vs test): WARN",
+      "feature PSI (worst feature): FAIL",
+      "score change under 1% noise: WARN"
+    ]
+  },
+  {
+    "fault": "miscalibrated scores",
+    "expected_check": "observed / expected events",
+    "expected_check_status": "FAIL",
+    "caught": true,
+    "all_flags": [
+      "test rows also in train: WARN",
+      "observed / expected events: FAIL",
+      "Hosmer-Lemeshow test: FAIL",
+      "calibration error by decile: FAIL",
+      "score change under 1% noise: WARN"
+    ]
+  },
+  {
+    "fault": "unconstrained model",
+    "expected_check": "monotone in",
+    "expected_check_status": "FAIL",
+    "caught": true,
+    "all_flags": [
+      "test rows also in train: WARN",
+      "overfitting (train minus test): WARN",
+      "Hosmer-Lemeshow test: FAIL",
+      "calibration error by decile: WARN",
+      "score change under 1% noise: WARN",
+      "monotone in delay_sep (+): FAIL",
+      "monotone in max_delay (+): WARN",
+      "monotone in utilization_sep (+): FAIL",
+      "monotone in limit (-): FAIL",
+      "monotone in paid_sep (-): FAIL"
+    ]
+  },
+  {
+    "fault": "age penalty",
+    "expected_check": "adverse impact ratio by age_group",
+    "expected_check_status": "FAIL",
+    "caught": true,
+    "all_flags": [
+      "test rows also in train: WARN",
+      "beats the challenger model: WARN",
+      "Hosmer-Lemeshow test: FAIL",
+      "calibration error by decile: WARN",
+      "score change under 1% noise: WARN",
+      "adverse impact ratio by age_group: FAIL"
+    ]
+  }
+]
