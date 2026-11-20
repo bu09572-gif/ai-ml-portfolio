@@ -29,6 +29,12 @@ SYSTEM_CHECK = (
     '{"status": "met" | "not_met" | "not_documented", "quote": "<exact words from the note, or empty>"}. '
     "Use met only if the note clearly shows the criterion; not_met if the note shows it is not true; "
     "not_documented if the note does not say. The quote must be copied exactly from the note.")
+SYSTEM_CHECK_NUMBERED = (
+    "You review a clinical note for a prior authorization request. Below are numbered sentences from the "
+    "note. Decide whether they document the coverage criterion. Reply as JSON: "
+    '{"status": "met" | "not_met" | "not_documented", "evidence": [sentence numbers]}. '
+    "Use met only if the sentences clearly show the criterion; not_met if they show it is not true; "
+    "not_documented if they do not say. For met or not_met, list the numbers of the sentences that show it.")
 STATUSES = ("met", "not_met", "not_documented")
 
 
@@ -96,6 +102,36 @@ def check(note: str, criterion: str, model: str) -> dict:
     final = status if status in ("met", "not_met") and ok else ("not_documented" if status else None)
     return {"criterion": criterion, "model_status": status, "quote": quote, "quote_verified": ok,
             "status": final, "latency_s": round(c.latency_s, 1)}
+
+
+def sentences(note: str) -> list[str]:
+    parts = re.split(r"(?<=[.!?:])\s+(?=[A-Z0-9])|\n+", str(note))
+    return [p.strip() for p in parts if len(p.split()) >= 3]
+
+
+def check_numbered(note: str, criterion: str, model: str, k: int = 12) -> dict:
+    """The model sees the k note sentences closest to the criterion, numbered, and cites numbers.
+    The evidence is the cited sentences themselves, so it is word for word from the note; a met or
+    not_met with no valid number turns into not_documented."""
+    sents = sentences(note)
+    if sents:
+        ix = BM25Index(pd.DataFrame({"header": "", "text": sents}))
+        top = sorted(np.argsort(-ix.scores(criterion), kind="stable")[:k].tolist())
+    else:
+        top = []
+    shown = [sents[j] for j in top]
+    body = "\n".join(f"[{i + 1}] {t}" for i, t in enumerate(shown))
+    c = llm.chat(SYSTEM_CHECK_NUMBERED, f"Criterion: {criterion}\n\nNote sentences:\n{body}", model=model,
+                 max_tokens=120, json_mode=True)
+    d = _json(c.text)
+    status = d.get("status") if d.get("status") in STATUSES else None
+    ev = d.get("evidence") if isinstance(d.get("evidence"), list) else []
+    nums = sorted({int(x) for x in ev if str(x).strip().isdigit() and 1 <= int(x) <= len(shown)})
+    quote = " ".join(shown[i - 1] for i in nums)
+    ok = bool(nums)
+    final = status if status in ("met", "not_met") and ok else ("not_documented" if status else None)
+    return {"criterion": criterion, "model_status": status, "evidence": nums, "quote": quote,
+            "quote_verified": ok, "status": final, "latency_s": round(c.latency_s, 1)}
 
 
 def decision(checks: list[dict]) -> str:

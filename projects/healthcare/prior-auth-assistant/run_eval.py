@@ -22,6 +22,7 @@ import pandas as pd
 OUT = Path(__file__).resolve().parent / "results"
 MODEL = os.environ.get("LLM_MODEL", "qwen2.5:3b")
 NOTE_WORDS = 2500
+CHECK_MODE = os.environ.get("CHECK_MODE", "numbered")   # "quote": free-text quote (run 1)
 
 
 def policy_lcds() -> dict:
@@ -35,6 +36,9 @@ def policy_lcds() -> dict:
 
 
 def run_criteria() -> None:
+    if (OUT / "criteria.json").exists():
+        print("criteria.json already committed; reusing it")
+        return
     res = {}
     for svc, p in policy_lcds().items():
         c = cr.extract(p["text"], MODEL)
@@ -67,7 +71,8 @@ def run_checks(shard: str) -> None:
             checks = []
             for c in cr.relevant(pool, p["text"]):
                 try:
-                    checks.append(cr.check(p["text"], c, MODEL))
+                    fn = cr.check_numbered if CHECK_MODE == "numbered" else cr.check
+                    checks.append(fn(p["text"], c, MODEL))
                 except Exception as e:  # noqa: BLE001 - one failed call marks one criterion
                     checks.append({"criterion": c, "status": None, "error": type(e).__name__})
             row = {k2: p[k2] for k2 in ("note_id", "service", "policy", "pairing")}
@@ -77,7 +82,7 @@ def run_checks(shard: str) -> None:
 
 
 def summarize(df: pd.DataFrame, crit: dict) -> dict:
-    out = {"model": MODEL, "notes": int(df.note_id.nunique()), "policies": {}}
+    out = {"model": MODEL, "check_mode": CHECK_MODE, "notes": int(df.note_id.nunique()), "policies": {}}
     for svc, c in crit.items():
         out["policies"][svc] = {"lcd": c["display_id"], "passages": c["passages"], "criteria_extracted": len(c["criteria"]),
                                 "criteria_quote_verified": sum(x["verified"] for x in c["criteria"])}

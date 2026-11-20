@@ -1,1 +1,1 @@
-run 1: qwen2.5:3b, 6 LCDs, 39 notes
+run 2: qwen2.5:3b, numbered note sentences as evidence (run 1 kept in results/run1_free_quote)

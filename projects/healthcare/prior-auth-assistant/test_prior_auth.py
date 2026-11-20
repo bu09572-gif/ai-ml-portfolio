@@ -56,3 +56,19 @@ def test_decision():
 def test_relevant_keeps_matching_criteria():
     crits = [f"unrelated criterion number {i}" for i in range(10)] + ["superior visual field loss documented"]
     assert "superior visual field loss documented" in cr.relevant(crits, NOTE, k=3)
+
+
+def test_check_numbered_quotes_are_note_sentences(monkeypatch):
+    class C:
+        text, latency_s = '{"status": "met", "evidence": [2, 9]}', 0.1
+    monkeypatch.setattr(cr.llm, "chat", lambda *a, **k: C)
+    r = cr.check_numbered(NOTE, "superior visual field loss", "m")
+    assert r["status"] == "met" and r["evidence"] == [2]          # 9 is out of range and dropped
+    assert cr.verified(r["quote"], NOTE)
+
+
+def test_check_numbered_without_evidence_is_not_documented(monkeypatch):
+    class C:
+        text, latency_s = '{"status": "not_met", "evidence": []}', 0.1
+    monkeypatch.setattr(cr.llm, "chat", lambda *a, **k: C)
+    assert cr.check_numbered(NOTE, "visual field loss", "m")["status"] == "not_documented"
