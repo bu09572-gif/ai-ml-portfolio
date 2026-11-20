@@ -35,6 +35,7 @@ def cases() -> list[dict]:
 def run(shard: str) -> None:
     i, n = map(int, shard.split("/"))
     todo = cases()[i::n]
+    OUT.mkdir(exist_ok=True)
     with (OUT / f"rows_shard{i}.jsonl").open("w") as fh:
         for k, c in enumerate(todo):
             for model in MODELS:
