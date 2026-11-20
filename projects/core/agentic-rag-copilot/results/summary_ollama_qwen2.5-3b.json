@@ -1,0 +1,71 @@
+{
+  "n": 150,
+  "config": "agent",
+  "k": 5,
+  "provider": "ollama",
+  "model": "qwen2.5:3b",
+  "judge_model": "llama3.2:3b",
+  "accuracy": 0.06,
+  "accuracy_when_answered": 0.321,
+  "accuracy_llm_judge_alone": 0.927,
+  "judge_called_refusals_correct": 0.934,
+  "incorrect_rate": 0.127,
+  "refusal_rate": 0.813,
+  "unparsed_grades": 0,
+  "numeric_match_when_answered": 0.227,
+  "numeric_answers_checked": 22,
+  "refusal_rate_when_retrieval_hit_vs_miss": {
+    "miss": 0.85,
+    "hit": 0.703
+  },
+  "answers_with_citations": 0.187,
+  "citation_page_precision": 0.321,
+  "accuracy_by_question_type": {
+    "domain-relevant": 0.08,
+    "metrics-generated": 0.02,
+    "novel-generated": 0.08
+  },
+  "accuracy_when_retrieval_hit_vs_miss": {
+    "miss": 0.044,
+    "hit": 0.108
+  },
+  "cost_usd_total": 0,
+  "latency_s_p50": 176.34,
+  "latency_s_p95": 318.66,
+  "agent": {
+    "steps_mean": 7.85,
+    "actions_total": {
+      "read": 628,
+      "calculate": 229,
+      "search": 206,
+      "answer": 111,
+      "invalid": 3
+    },
+    "read_an_evidence_page": 0.247,
+    "answers_sent_back_by_guardrail": 9,
+    "refused_by_guardrail": {
+      "it cites no pages; cite the pages you read like [P2]": 50,
+      "ran out of steps": 45,
+      "these numbers are not on any page you read and did not come from calculate": 7,
+      "model error": 3,
+      "it cites P5 which you did not read": 1
+    },
+    "accuracy_by_question_type": {
+      "domain-relevant": 0.08,
+      "metrics-generated": 0.02,
+      "novel-generated": 0.08
+    }
+  },
+  "plain_qa_same_questions": {
+    "n": 150,
+    "accuracy": 0.193,
+    "refusal_rate": 0.673,
+    "incorrect_rate": 0.133,
+    "citation_page_precision": 0.355,
+    "accuracy_by_question_type": {
+      "domain-relevant": 0.14,
+      "metrics-generated": 0.2,
+      "novel-generated": 0.24
+    }
+  }
+}
