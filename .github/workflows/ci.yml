@@ -20,6 +20,10 @@ jobs:
         run: |
           (cd projects/finance/sec-filing-analyst && python -m pytest -q test_analyst.py)
           (cd projects/core/agentic-rag-copilot && python -m pytest -q test_copilot.py)
+      - name: PII redaction unit tests
+        run: |
+          pip install spacy
+          cd projects/core/pii-redaction && python -m pytest -q test_redact.py
 
   real-data-eval:
     needs: test

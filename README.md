@@ -9,6 +9,7 @@ Projects built on real public data with free, open-source tools. Each one report
 | LLM Evaluation Harness | Scores retrieval and answers, fails CI when quality drops | `src/evalkit` |
 | SEC Filing Analyst | Finds each input number on its page, does the math in Python | [sec-filing-analyst](projects/finance/sec-filing-analyst) |
 | Agentic RAG Copilot for SEC Filings | Agent that searches, reads and calculates, with code-enforced guardrails | [agentic-rag-copilot](projects/core/agentic-rag-copilot) |
+| PII Redaction Pipeline on Real Court Cases | Masks personal identifiers in ECHR judgments; 97.7% of direct identifiers fully masked | [pii-redaction](projects/core/pii-redaction) |
 | Flight Operations Warehouse (dbt + DuckDB) | Star schema over 336,776 real flights, with dbt tests | [flight-ops-dbt-warehouse](projects/data-engineering/flight-ops-dbt-warehouse) |
 | Flight Data Quality Monitor | Daily anomaly checks, tested by breaking the data on purpose | [flight-data-quality-monitor](projects/data-engineering/flight-data-quality-monitor) |
 | Flight Status CDC Pipeline with SCD2 History | Change capture from an ops database into current and history tables | [flight-status-cdc](projects/data-engineering/flight-status-cdc) |

@@ -1,0 +1,112 @@
+{
+  "rules": {
+    "recall_direct_entities": 0.496,
+    "recall_quasi_entities": 0.569,
+    "recall_all_entities": 0.565,
+    "token_recall": 0.592,
+    "token_precision": 0.898,
+    "token_f1": 0.714,
+    "mention_recall": 0.488,
+    "token_recall_by_type": {
+      "CODE": 0.942,
+      "PERSON": 0.287,
+      "DATETIME": 0.92,
+      "ORG": 0.087,
+      "LOC": 0.071,
+      "DEM": 0.122,
+      "MISC": 0.198,
+      "QUANTITY": 0.331
+    },
+    "seconds": 0.2,
+    "ms_per_case": 1,
+    "masked_spans": 2931
+  },
+  "ner": {
+    "recall_direct_entities": 0.786,
+    "recall_quasi_entities": 0.873,
+    "recall_all_entities": 0.867,
+    "token_recall": 0.901,
+    "token_precision": 0.521,
+    "token_f1": 0.66,
+    "mention_recall": 0.859,
+    "token_recall_by_type": {
+      "CODE": 0.801,
+      "PERSON": 0.921,
+      "DATETIME": 0.993,
+      "ORG": 0.849,
+      "LOC": 0.904,
+      "DEM": 0.579,
+      "MISC": 0.361,
+      "QUANTITY": 0.732
+    },
+    "seconds": 13.5,
+    "ms_per_case": 106,
+    "masked_spans": 9144
+  },
+  "trained": {
+    "recall_direct_entities": 0.977,
+    "recall_quasi_entities": 0.809,
+    "recall_all_entities": 0.82,
+    "token_recall": 0.821,
+    "token_precision": 0.901,
+    "token_f1": 0.859,
+    "mention_recall": 0.79,
+    "token_recall_by_type": {
+      "CODE": 0.961,
+      "PERSON": 0.912,
+      "DATETIME": 0.96,
+      "ORG": 0.423,
+      "LOC": 0.718,
+      "DEM": 0.25,
+      "MISC": 0.279,
+      "QUANTITY": 0.613
+    },
+    "seconds": 31.4,
+    "ms_per_case": 248,
+    "masked_spans": 4748
+  },
+  "trained+rules": {
+    "recall_direct_entities": 0.977,
+    "recall_quasi_entities": 0.818,
+    "recall_all_entities": 0.829,
+    "token_recall": 0.831,
+    "token_precision": 0.868,
+    "token_f1": 0.849,
+    "mention_recall": 0.799,
+    "token_recall_by_type": {
+      "CODE": 0.966,
+      "PERSON": 0.912,
+      "DATETIME": 0.974,
+      "ORG": 0.423,
+      "LOC": 0.718,
+      "DEM": 0.271,
+      "MISC": 0.293,
+      "QUANTITY": 0.657
+    },
+    "seconds": 29.9,
+    "ms_per_case": 235,
+    "masked_spans": 5033
+  },
+  "trained+ner": {
+    "recall_direct_entities": 0.989,
+    "recall_quasi_entities": 0.912,
+    "recall_all_entities": 0.918,
+    "token_recall": 0.939,
+    "token_precision": 0.537,
+    "token_f1": 0.683,
+    "mention_recall": 0.913,
+    "token_recall_by_type": {
+      "CODE": 0.987,
+      "PERSON": 0.966,
+      "DATETIME": 0.999,
+      "ORG": 0.903,
+      "LOC": 0.936,
+      "DEM": 0.618,
+      "MISC": 0.396,
+      "QUANTITY": 0.855
+    },
+    "seconds": 47.2,
+    "ms_per_case": 372,
+    "masked_spans": 9256
+  }
+}
