@@ -6,3 +6,4 @@ v2 state AI rules only, 2026-11-20
 v2 NAIC bulletin retry
 v2 WI bulletin
 v2 NHANES + linked mortality
+v2 NHANES (list fix)
