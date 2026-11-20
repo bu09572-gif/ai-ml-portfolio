@@ -1,0 +1,1 @@
+run 1: qwen2.5:3b + llama3.2:3b, judge llama-guard3:1b

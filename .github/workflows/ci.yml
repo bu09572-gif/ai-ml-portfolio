@@ -21,6 +21,7 @@ jobs:
           (cd projects/finance/sec-filing-analyst && python -m pytest -q test_analyst.py)
           (cd projects/core/agentic-rag-copilot && python -m pytest -q test_copilot.py)
           (cd projects/tech/text-to-sql && python -m pytest -q test_sqlagent.py)
+          (cd projects/tech/llm-red-team && python -m pytest -q test_redteam.py)
       - name: PII redaction unit tests
         run: |
           pip install spacy
