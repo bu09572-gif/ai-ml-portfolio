@@ -4,6 +4,19 @@ Applied AI, machine learning and data engineering projects. Every project uses r
 
 **How to browse:** click a project name below to open its folder. Each folder has its own README with the data, method, results and how to run it.
 
+## Featured projects
+
+Each of these also has its own repository with tests in CI.
+
+| Project | Area | Repository |
+|---|---|---|
+| Document Q&A Platform for SEC Filings, with an LLM evaluation harness | Core AI | [document-qa-platform](https://github.com/bu09572-gif/document-qa-platform) |
+| Clinical Note Summarizer with De-identification | Healthcare | [clinical-note-summarizer](https://github.com/bu09572-gif/clinical-note-summarizer) |
+| Real-Time Card Fraud Scoring with SHAP Explanations | Finance | [realtime-fraud-scoring](https://github.com/bu09572-gif/realtime-fraud-scoring) |
+| Tool-Using Agent with Prompt-Injection Guardrails | Tech / LLM | [llm-agent-guardrails](https://github.com/bu09572-gif/llm-agent-guardrails) |
+| Streaming Flight Lakehouse (Kafka, Spark, Delta Lake) | Data engineering | [streaming-lakehouse](https://github.com/bu09572-gif/streaming-lakehouse) |
+| Subrogation Opportunity Detection from Crash Reports | Insurance | [subrogation-detection](https://github.com/bu09572-gif/subrogation-detection) |
+
 ## Contents
 
 - [Core AI platform](#core-ai-platform): 3 projects
