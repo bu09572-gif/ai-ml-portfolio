@@ -72,8 +72,8 @@ jobs:
           key: bronze-financebench-v1
       - name: Pipeline on real FinanceBench filings
         run: python -m docpipe.run --scope eval
-      - name: Retrieval evaluation (BM25, filters, expansion, dense, hybrid)
-        run: python -m evalkit.run --dataset financebench --dense
+      - name: Retrieval evaluation (BM25, filters, expansion, filing routing)
+        run: python -m evalkit.run --dataset financebench
       - name: Regression gate vs committed baseline
         run: python -m evalkit.gate --dataset financebench
       - uses: actions/upload-artifact@v4

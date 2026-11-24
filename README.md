@@ -10,7 +10,7 @@ Each of these also has its own repository with tests in CI.
 
 | Project | Area | Repository |
 |---|---|---|
-| Document Q&A Platform for SEC Filings, with an LLM evaluation harness | Core AI | [document-qa-platform](https://github.com/bu09572-gif/document-qa-platform) |
+| Production RAG over SEC Filings, with a Golden-Set Evaluation Harness | Core AI | [document-qa-platform](https://github.com/bu09572-gif/document-qa-platform) |
 | Clinical Note Summarizer with De-identification | Healthcare | [clinical-note-summarizer](https://github.com/bu09572-gif/clinical-note-summarizer) |
 | Real-Time Card Fraud Scoring: an End-to-End MLOps Pipeline | Finance | [realtime-fraud-scoring](https://github.com/bu09572-gif/realtime-fraud-scoring) |
 | Tool-Using Agent with Prompt-Injection Guardrails | Tech / LLM | [llm-agent-guardrails](https://github.com/bu09572-gif/llm-agent-guardrails) |
@@ -32,7 +32,7 @@ Folder: [`projects/core`](projects/core)
 
 | Project | What it does | Key result |
 |---|---|---|
-| [Document Q&A Platform for SEC Filings](projects/core/document-qa-platform) | Filing ingestion pipeline, Q&A with page citations, and an LLM evaluation harness that fails CI when quality drops | 84 real filings, 150 analyst questions; company/year filters double retrieval hit@5 |
+| [Production RAG over SEC Filings, with a Golden-Set Evaluation Harness](projects/core/document-qa-platform) | RAG over 84 real filings with page citations: filing routing, hybrid BM25 + dense search, a 50-question golden set, manual audit of the LLM judge, failure analysis, Docker service with Prometheus metrics | Accuracy 20% → 34% on the golden set; retrieval failures 34 → 17; the LLM judge alone would have said 82% |
 | [Agentic RAG Copilot for SEC Filings](projects/core/agentic-rag-copilot) | Agent that searches, reads and calculates, with guardrails enforced in code | 20.7% vs 19.3% for plain Q&A; 34% vs 14% on open-ended questions |
 | [PII Redaction Pipeline on Real Court Cases](projects/core/pii-redaction) | Trained NER model that masks personal identifiers in court judgments | 97.7% of direct identifiers fully masked, 90% precision |
 
