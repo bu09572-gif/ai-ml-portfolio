@@ -31,7 +31,7 @@ jobs:
           cd projects/core/pii-redaction && python -m pytest -q test_redact.py
       - name: Fraud scoring tests (real ULB data, committed model)
         run: |
-          pip install xgboost
+          pip install -r projects/finance/realtime-fraud-scoring/requirements.txt
           cd projects/finance/realtime-fraud-scoring && python -m pytest -q test_fraud.py
           cd ../explainable-credit-risk && python -m pytest -q test_credit.py
           cd ../model-risk-checker && python -m pytest -q test_checks.py

@@ -12,7 +12,7 @@ Each of these also has its own repository with tests in CI.
 |---|---|---|
 | Document Q&A Platform for SEC Filings, with an LLM evaluation harness | Core AI | [document-qa-platform](https://github.com/bu09572-gif/document-qa-platform) |
 | Clinical Note Summarizer with De-identification | Healthcare | [clinical-note-summarizer](https://github.com/bu09572-gif/clinical-note-summarizer) |
-| Real-Time Card Fraud Scoring with SHAP Explanations | Finance | [realtime-fraud-scoring](https://github.com/bu09572-gif/realtime-fraud-scoring) |
+| Real-Time Card Fraud Scoring: an End-to-End MLOps Pipeline | Finance | [realtime-fraud-scoring](https://github.com/bu09572-gif/realtime-fraud-scoring) |
 | Tool-Using Agent with Prompt-Injection Guardrails | Tech / LLM | [llm-agent-guardrails](https://github.com/bu09572-gif/llm-agent-guardrails) |
 | Streaming Flight Lakehouse (Kafka, Spark, Delta Lake) | Data engineering | [streaming-lakehouse](https://github.com/bu09572-gif/streaming-lakehouse) |
 | Subrogation Opportunity Detection from Crash Reports | Insurance | [subrogation-detection](https://github.com/bu09572-gif/subrogation-detection) |
@@ -54,7 +54,7 @@ Folder: [`projects/finance`](projects/finance)
 
 | Project | What it does | Key result |
 |---|---|---|
-| [Real-Time Card Fraud Scoring with SHAP Explanations](projects/finance/realtime-fraud-scoring) | XGBoost fraud API that returns a score, an alert and the top 3 reasons | 73% of fraud caught at 80% precision; 9 ms median latency |
+| [Real-Time Card Fraud Scoring: an End-to-End MLOps Pipeline](projects/finance/realtime-fraud-scoring) | XGBoost fraud API with SHAP reasons, shipped end to end: MLflow registry and promotion gate, Docker, Prometheus and Grafana monitoring, drift checks, load and cost tests, CI/CD to a container registry | 80% alert precision; 6.4 ms median latency; $0.003 per million transactions in batches; score drift stayed low while input features drifted every hour |
 | [Explainable Credit Default Model with Fairness Checks](projects/finance/explainable-credit-risk) | Monotone XGBoost with plain-language decline reasons and four-fifths rule checks | AUC 0.776; every adverse impact ratio at or above 0.90 |
 | [Model Risk Validation Toolkit](projects/finance/model-risk-checker) | SR 11-7 style validation: leakage, challenger, calibration, drift, monotonicity, fairness | Caught 6 of 6 injected faults and 2 real issues in the fraud model |
 | [SEC Filing Analyst](projects/finance/sec-filing-analyst) | Finds each input number on its page and does the math in Python, never in the model | 40% of calculator answers within 1%; 18% overall vs 20% for plain Q&A, with the reasons |

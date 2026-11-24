@@ -1,0 +1,55 @@
+{
+  "predictions_per_s": [
+    {
+      "metric": {},
+      "value": [
+        1795552606.551,
+        "58.76363636363636"
+      ]
+    }
+  ],
+  "p95_latency_s": [
+    {
+      "metric": {},
+      "value": [
+        1795552606.559,
+        "0.009984197038724375"
+      ]
+    }
+  ],
+  "alerts_per_10k": [
+    {
+      "metric": {},
+      "value": [
+        1795552606.567,
+        "17.766061092326208"
+      ]
+    }
+  ],
+  "score_psi": [
+    {
+      "metric": {
+        "__name__": "fraud_feature_psi",
+        "feature": "score",
+        "instance": "api:8000",
+        "job": "fraud-api"
+      },
+      "value": [
+        1795552606.575,
+        "0.114"
+      ]
+    }
+  ],
+  "features_psi_over_0.25": [
+    {
+      "metric": {},
+      "value": [
+        1795552606.585,
+        "8"
+      ]
+    }
+  ],
+  "alerts_firing": [
+    "FeatureDrift:pending"
+  ]
+}
