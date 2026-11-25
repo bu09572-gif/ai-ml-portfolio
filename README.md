@@ -16,11 +16,12 @@ Each of these also has its own repository with tests in CI.
 | MCP Agent with Guardrails and Human Approval | Tech / LLM | [llm-agent-guardrails](https://github.com/bu09572-gif/llm-agent-guardrails) |
 | Streaming Flight Lakehouse (Kafka, Spark, Delta Lake) | Data engineering | [streaming-lakehouse](https://github.com/bu09572-gif/streaming-lakehouse) |
 | Subrogation Opportunity Detection from Crash Reports | Insurance | [subrogation-detection](https://github.com/bu09572-gif/subrogation-detection) |
+| Drug Safety Review with Multi-Agent LLMs and a LoRA Fine-Tuned Extractor | Healthcare | [drug-safety-agents](https://github.com/bu09572-gif/drug-safety-agents) |
 
 ## Contents
 
 - [Core AI platform](#core-ai-platform): 3 projects
-- [Healthcare](#healthcare): 5 projects
+- [Healthcare](#healthcare): 6 projects
 - [Finance](#finance): 5 projects
 - [Insurance](#insurance): 5 projects
 - [Tech / LLM](#tech--llm): 5 projects
@@ -47,6 +48,7 @@ Folder: [`projects/healthcare`](projects/healthcare)
 | [Clinical Note Summarizer with De-identification](projects/healthcare/clinical-note-summarizer) | Removes identifiers before a free local model summarizes 300 real clinical notes; checks leaks, invented numbers and an LLM judge | Identifier repeats fall from 22% to 4% of notes; the 3B judge's flags are wrong 81% of the time |
 | [Prior Authorization Assistant over Medicare Coverage Policies](projects/healthcare/prior-auth-assistant) | Finds the right Medicare coverage policy (LCD) for a clinical note, turns it into a checklist of quoted criteria, and checks the note with cited evidence | Right policy in the top 10 for 82% of notes; a free 3B model's met/not-met verdicts fail the evidence check, so they go to a reviewer |
 | [Claim Denial Analytics and Grounded Appeal Letters](projects/healthcare/claim-denial-appeals) | Denial and appeal analytics on the CMS 2024 Transparency in Coverage file (386M claims), plus a free local model drafting appeal letters from quoted chart evidence | Only 1.6 appeals per 1,000 denials, yet 43% win; grounded letters keep 98% of quotes real vs 75% when the model reads the whole chart |
+| [Drug Safety Review with Multi-Agent LLMs and a LoRA Fine-Tuned Extractor](https://github.com/bu09572-gif/drug-safety-agents) | LoRA fine-tuned 0.5B model pulls adverse drug events from PubMed case reports; a planner / worker / reviewer workflow (LangGraph) checks each finding against the FDA label, with full tracing | Fine-tuned F1 0.667 vs 0.293 prompting, 0.362 RAG and 0.467 for a 3x larger model with RAG; 99.5% valid JSON |
 
 ## Finance
 
