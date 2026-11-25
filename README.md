@@ -13,7 +13,7 @@ Each of these also has its own repository with tests in CI.
 | Production RAG over SEC Filings, with a Golden-Set Evaluation Harness | Core AI | [document-qa-platform](https://github.com/bu09572-gif/document-qa-platform) |
 | Clinical Note Summarizer with De-identification | Healthcare | [clinical-note-summarizer](https://github.com/bu09572-gif/clinical-note-summarizer) |
 | Real-Time Card Fraud Scoring: an End-to-End MLOps Pipeline | Finance | [realtime-fraud-scoring](https://github.com/bu09572-gif/realtime-fraud-scoring) |
-| Tool-Using Agent with Prompt-Injection Guardrails | Tech / LLM | [llm-agent-guardrails](https://github.com/bu09572-gif/llm-agent-guardrails) |
+| MCP Agent with Guardrails and Human Approval | Tech / LLM | [llm-agent-guardrails](https://github.com/bu09572-gif/llm-agent-guardrails) |
 | Streaming Flight Lakehouse (Kafka, Spark, Delta Lake) | Data engineering | [streaming-lakehouse](https://github.com/bu09572-gif/streaming-lakehouse) |
 | Subrogation Opportunity Detection from Crash Reports | Insurance | [subrogation-detection](https://github.com/bu09572-gif/subrogation-detection) |
 
@@ -82,7 +82,7 @@ Folder: [`projects/tech`](projects/tech)
 | [Movie Recommendations: Retrieval, Ranking and Honest Offline Evaluation](projects/tech/movie-recommendations) | Popularity, kNN, implicit ALS, EASE and a two-stage ranker on MovieLens 1M, ranking each user's next movie against the full catalogue | EASE on the last 5 movies: 19.1% Hit@10 vs 10.0% for full-history EASE and 17.9% for the ranker |
 | [LLM Red-Team Suite: Jailbreak Attacks, Defences and Over-Refusal](projects/tech/llm-red-team) | JailbreakBench requests x 4 jailbreak patterns x 3 defences on two free 3B models, judged by Llama Guard, with over-refusal measured on matched harmless requests | Prefix injection jailbreaks Qwen2.5 3B 79% of the time; self-check cuts attacks 40% to 5% but refuses 42% of harmless requests |
 | [Production RAG: Cost, Latency and Quality Dashboard](projects/tech/rag-cost-dashboard) | Every serving knob (3 free models, k = 3/5/10 chunks, context compression, a small-to-large router) measured on FinanceBench for tokens, CPU seconds, p95 latency and accuracy, with a Streamlit cost dashboard | Compression cuts tokens 40% and lifted the best setting to 22.5% accuracy; the router cost more and scored lower because the small model refuses 58-81% of the time |
-| [Tool-Using Agent with Prompt-Injection Guardrails](projects/tech/agent-injection-guardrails) | A finance agent with an email tool, attacked by real Gandalf attacker text hidden in the SEC filing page it reads; compares a spotlight prompt, a domain-tuned injection classifier and rules enforced in code | Attacks hijack the agent 50-88% of the time; the prompt defence does nothing, code rules block 100%, and the tuned filter blocks 99%+ with 0 false alarms on real filings |
+| [MCP Agent with Guardrails and Human Approval](projects/tech/agent-injection-guardrails) | A finance agent that calls tools over MCP through a guardrail gateway (budgets, allowlist, schema checks, rules in code, human approval, injection filter), with an approval inbox API and a 1,080-episode evaluation against real attacker text hidden in SEC filings | Without guardrails a poisoned filing hijacks the agent 78-82% of the time; with them 0 of 216 attacks succeed, at no accuracy cost |
 
 ## Data engineering
 
